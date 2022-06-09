@@ -23,6 +23,7 @@
 		CBE44AD828523163008E015D /* SNShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE44AD728523163008E015D /* SNShop.swift */; };
 		CBE44ADA2852324C008E015D /* SnShopPost+Previews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE44AD92852324C008E015D /* SnShopPost+Previews.swift */; };
 		CBE44AE028523301008E015D /* SNShop+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE44ADF28523301008E015D /* SNShop+Extensions.swift */; };
+		CBE44AE228529B87008E015D /* TestingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE44AE128529B87008E015D /* TestingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		CBE44AD728523163008E015D /* SNShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNShop.swift; sourceTree = "<group>"; };
 		CBE44AD92852324C008E015D /* SnShopPost+Previews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SnShopPost+Previews.swift"; sourceTree = "<group>"; };
 		CBE44ADF28523301008E015D /* SNShop+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SNShop+Extensions.swift"; sourceTree = "<group>"; };
+		CBE44AE128529B87008E015D /* TestingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				CBE44A972852041A008E015D /* SnotifyApp.swift */,
+				CBE44AE128529B87008E015D /* TestingView.swift */,
 				CBE44AC628520F8A008E015D /* Views */,
 				CBE44AC728520F8F008E015D /* ViewModels */,
 				CBE44AC528520F86008E015D /* Models */,
@@ -337,6 +340,7 @@
 				CBE44AD2285217BD008E015D /* Date+Extensions.swift in Sources */,
 				CBE44ACB2852112D008E015D /* HomeView.swift in Sources */,
 				CBE44ACE285213AB008E015D /* ShopPostView.swift in Sources */,
+				CBE44AE228529B87008E015D /* TestingView.swift in Sources */,
 				CBE44AE028523301008E015D /* SNShop+Extensions.swift in Sources */,
 				CBE44AD62852315D008E015D /* SNShopPost.swift in Sources */,
 				CBE44AC928521126008E015D /* ProfileView.swift in Sources */,
