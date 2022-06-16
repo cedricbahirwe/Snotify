@@ -10,6 +10,8 @@ import SwiftUI
 struct HomeView: View {
     @State private var newPosts: [SNShopPost] = SNShopPost.previews
     @State private var isLoading: Bool = false
+    @State private var isAShop: Bool = false
+    @State private var showNewPostView: Bool = false
     var body: some View {
         NavigationView {
             List(newPosts) { newPost in
@@ -19,14 +21,32 @@ struct HomeView: View {
                     } label: { EmptyView() }
                         .opacity(0)
 
-                    ShopPostView(newPost)
+                    ShopPostRowView(newPost)
                 }
                 .listRowBackground(EmptyView())
                 .listRowSeparator(.hidden)
                 .redacted(reason: isLoading ? .init() : .placeholder)
             }
             .listStyle(PlainListStyle())
+            .fullScreenCover(isPresented: $showNewPostView, onDismiss: {
+                // On Dismiss, Do Something (e.g: Reload)
+            }, content: {
+                ShopPostView()
+            })
             .navigationTitle("Nouveautés")
+            .toolbar {
+                ToolbarItem(id: "CreatePost",
+                            placement: .navigationBarTrailing,
+                            showsByDefault: isAShop) {
+                    Button {
+                        showNewPostView = true
+                        // Create a shop post
+                    } label: {
+                        Label("Publier a nouveau post",
+                              systemImage: "plus.square")
+                    }
+                }
+            }
             .onAppear() {
                 DispatchQueue.main.asyncAfter(deadline: .now()+2) {
                     self.isLoading = true

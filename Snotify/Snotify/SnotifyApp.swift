@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct SnotifyApp: App {
+    @UIApplicationDelegateAdaptor var appDelegata: AppDelegate
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            PhotosAccessView(isPresented: .constant(true))
+//            TestingView()
+//            ContentView()
         }
     }
 }
