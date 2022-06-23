@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB09C7A22864C69200B15C38 /* MainAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB09C7A12864C69200B15C38 /* MainAppDelegate.swift */; };
+		CB09C7A42864C6BA00B15C38 /* MainSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB09C7A32864C6BA00B15C38 /* MainSceneDelegate.swift */; };
 		CBBC1650285C9EAA007385E3 /* SNLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC164F285C9EAA007385E3 /* SNLoginView.swift */; };
 		CBBC1652285C9EB0007385E3 /* SNRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC1651285C9EB0007385E3 /* SNRegisterView.swift */; };
 		CBBC1655285C9EFB007385E3 /* Extension+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC1654285C9EFB007385E3 /* Extension+Font.swift */; };
@@ -16,7 +18,6 @@
 		CBD3E1E628532B830086A3D9 /* moi.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CBD3E1E528532B830086A3D9 /* moi.jpeg */; };
 		CBD3E1E82853320F0086A3D9 /* ShopPostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD3E1E72853320F0086A3D9 /* ShopPostRowView.swift */; };
 		CBD3E1EB28533B7C0086A3D9 /* PhotosAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD3E1EA28533B7C0086A3D9 /* PhotosAccessView.swift */; };
-		CBD3E1EE28533E490086A3D9 /* AppDelegateFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD3E1ED28533E490086A3D9 /* AppDelegateFile.swift */; };
 		CBE44A982852041A008E015D /* SnotifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE44A972852041A008E015D /* SnotifyApp.swift */; };
 		CBE44A9A2852041A008E015D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE44A992852041A008E015D /* ContentView.swift */; };
 		CBE44A9C2852041C008E015D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBE44A9B2852041C008E015D /* Assets.xcassets */; };
@@ -54,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CB09C7A12864C69200B15C38 /* MainAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAppDelegate.swift; sourceTree = "<group>"; };
+		CB09C7A32864C6BA00B15C38 /* MainSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSceneDelegate.swift; sourceTree = "<group>"; };
 		CBBC164F285C9EAA007385E3 /* SNLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNLoginView.swift; sourceTree = "<group>"; };
 		CBBC1651285C9EB0007385E3 /* SNRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNRegisterView.swift; sourceTree = "<group>"; };
 		CBBC1654285C9EFB007385E3 /* Extension+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Font.swift"; sourceTree = "<group>"; };
@@ -63,7 +66,6 @@
 		CBD3E1E528532B830086A3D9 /* moi.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = moi.jpeg; sourceTree = "<group>"; };
 		CBD3E1E72853320F0086A3D9 /* ShopPostRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopPostRowView.swift; sourceTree = "<group>"; };
 		CBD3E1EA28533B7C0086A3D9 /* PhotosAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosAccessView.swift; sourceTree = "<group>"; };
-		CBD3E1ED28533E490086A3D9 /* AppDelegateFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateFile.swift; sourceTree = "<group>"; };
 		CBE44A942852041A008E015D /* Snotify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snotify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBE44A972852041A008E015D /* SnotifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnotifyApp.swift; sourceTree = "<group>"; };
 		CBE44A992852041A008E015D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -149,7 +151,8 @@
 		CBD3E1EC28533E390086A3D9 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				CBD3E1ED28533E490086A3D9 /* AppDelegateFile.swift */,
+				CB09C7A12864C69200B15C38 /* MainAppDelegate.swift */,
+				CB09C7A32864C6BA00B15C38 /* MainSceneDelegate.swift */,
 			);
 			path = "Support Files";
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				CBE44ACB2852112D008E015D /* HomeView.swift in Sources */,
 				CBBC1659285CA86C007385E3 /* NotificationsAccessView.swift in Sources */,
 				CBBC1655285C9EFB007385E3 /* Extension+Font.swift in Sources */,
+				CB09C7A42864C6BA00B15C38 /* MainSceneDelegate.swift in Sources */,
 				CBE44ACE285213AB008E015D /* ShopPostView.swift in Sources */,
 				CBE44AE228529B87008E015D /* TestingView.swift in Sources */,
 				CBE44AE028523301008E015D /* SNShop+Extensions.swift in Sources */,
@@ -423,8 +427,8 @@
 				CBBC1650285C9EAA007385E3 /* SNLoginView.swift in Sources */,
 				CBD3E1E428532A1F0086A3D9 /* SNLocationNotification.swift in Sources */,
 				CBE44ADA2852324C008E015D /* SnShopPost+Previews.swift in Sources */,
-				CBD3E1EE28533E490086A3D9 /* AppDelegateFile.swift in Sources */,
 				CBD3E1E82853320F0086A3D9 /* ShopPostRowView.swift in Sources */,
+				CB09C7A22864C69200B15C38 /* MainAppDelegate.swift in Sources */,
 				CBE44AD828523163008E015D /* SNShop.swift in Sources */,
 				CBE44A982852041A008E015D /* SnotifyApp.swift in Sources */,
 			);

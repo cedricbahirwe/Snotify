@@ -9,14 +9,31 @@ import SwiftUI
 
 @main
 struct SnotifyApp: App {
-    @UIApplicationDelegateAdaptor var appDelegata: AppDelegate
     @UIApplicationDelegateAdaptor
     private var appDelegate: MainAppDelegate
+    @Environment(\.scenePhase) private var scenePhase
+
     var body: some Scene {
         WindowGroup {
 //            PhotosAccessView(isPresented: .constant(true))
 //            TestingView()
             ContentView()
+
         }
+        .onChange(of: scenePhase, perform: observeScenePhase)
+    }
+
+    private func observeScenePhase(_ scene: ScenePhase) {
+        switch scene {
+        case .background:
+            print("Enter background mode")
+        case .inactive:
+            print("Enter inactive mode")
+        case .active:
+            print("Enter active mode")
+        @unknown default:
+            print("Enter unknown mode")
+        }
+
     }
 }
