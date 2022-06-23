@@ -13,6 +13,8 @@ struct ContentView: View {
     }
     @AppStorage("SelectAppTab")
     private var selectedTab: String = SFTabs.home.rawValue
+    @EnvironmentObject
+    private var appDelegate: MainAppDelegate
     var body: some View {
         TabView(selection: $selectedTab) {
             HomeView()

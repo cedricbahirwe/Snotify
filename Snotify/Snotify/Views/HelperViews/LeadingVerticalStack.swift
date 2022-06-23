@@ -7,17 +7,36 @@
 
 import SwiftUI
 
-struct LeadingVerticalStack: View {
-    var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text("Hello, World!")
+typealias LeadingVerticalStack = LVStack
+struct LVStack<Content: View>: View {
+    private var spacing: CGFloat?
+    private var contentView: Content
+    init(spacing: CGFloat? = nil, @ViewBuilder content: () -> Content) {
+        self.spacing = spacing
+        self.contentView = content()
+    }
 
+    var body: some View {
+        VStack(alignment: .leading, spacing: spacing) {
+            contentView
         }
     }
 }
 
 struct LeadingVerticalStack_Previews: PreviewProvider {
     static var previews: some View {
-        LeadingVerticalStack()
+        LeadingVerticalStack {
+//            Text("Information")
+            Text("Informatioan")
+            Text("Information")
+            Text("Information")
+            Text("Information")
+            Text("Information")
+            Text("Information")
+            Text("Information")
+            Text("Information")
+            Text("Information")
+            Text("Information")
+        }
     }
 }
