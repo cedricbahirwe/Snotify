@@ -11,27 +11,51 @@ struct HomeView: View {
     @State private var newPosts: [SNShopPost] = SNShopPost.previews
     @State private var isLoading: Bool = false
     @State private var isAShop: Bool = false
-    @State private var showNewPostView: Bool = false
+    @StateObject private var snPostingManager = SNPostingManager.shared
     var body: some View {
         NavigationView {
-            List(newPosts) { newPost in
-                ZStack(alignment: .leading) {
-                    NavigationLink {
-                        ShopPostDetailView(post: newPost)
-                    } label: { EmptyView() }
-                        .opacity(0)
-
-                    ShopPostRowView(newPost)
+            List {
+                if let newPost = snPostingManager.temporaryPost {
+                    if snPostingManager.isPublishingPost {
+                        HStack {
+                            Image(newPost.images.first ?? "")
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                            Text("Publier par \(newPost.shop.name)")
+                                .foregroundColor(.gray)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(3)
+                        .overlay(Color.accentColor.frame(height: 2), alignment: .bottom)
+                        .animation(.easeInOut, value: snPostingManager.isPublishingPost)
+                        .onDisappear() {
+                            withAnimation {
+                                newPosts.insert(newPost, at: 0)
+                            }
+                        }
+                    }
                 }
-                .listRowBackground(EmptyView())
-                .listRowSeparator(.hidden)
-                .redacted(reason: isLoading ? .init() : .placeholder)
+                
+                ForEach(newPosts) { post in
+                    ZStack(alignment: .leading) {
+                        NavigationLink {
+                            ShopPostDetailView(post: post)
+                        } label: { EmptyView() }
+                            .opacity(0)
+
+                        ShopPostRowView(post)
+                    }
+                    .listRowBackground(EmptyView())
+                    .listRowSeparator(.hidden)
+                    .redacted(reason: isLoading ? .init() : .placeholder)
+                }
             }
             .listStyle(PlainListStyle())
-            .fullScreenCover(isPresented: $showNewPostView, onDismiss: {
+            .fullScreenCover(isPresented: $snPostingManager.isSubmitMode, onDismiss: {
                 // On Dismiss, Do Something (e.g: Reload)
             }, content: {
                 ShopPostView()
+                    .environmentObject(snPostingManager)
             })
             .navigationTitle("Nouveautés")
             .toolbar {
@@ -39,8 +63,7 @@ struct HomeView: View {
                             placement: .navigationBarTrailing,
                             showsByDefault: isAShop) {
                     Button {
-                        showNewPostView = true
-                        // Create a shop post
+                        snPostingManager.isSubmitMode.toggle()
                     } label: {
                         Label("Publier a nouveau post",
                               systemImage: "plus.square")

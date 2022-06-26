@@ -117,7 +117,7 @@ class LocalNotification {
 }
 
 class LocalNotificationManager: ObservableObject {
-//    var notification =  [Notification]()
+    //    var notification =  [Notification]()
 
     init() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
@@ -130,11 +130,11 @@ class LocalNotificationManager: ObservableObject {
     }
 
     func sendNotification(title: String, subtitle: String?, body: String, launchIn: Double, identifier: String) {
-       let content = UNMutableNotificationContent()
-       content.title = title
-       if let subtitle = subtitle {
-           content.subtitle = subtitle
-       }
+        let content = UNMutableNotificationContent()
+        content.title = title
+        if let subtitle = subtitle {
+            content.subtitle = subtitle
+        }
         content.body = body
         content.categoryIdentifier = identifier
         content.sound = UNNotificationSound.defaultRingtone
@@ -153,5 +153,55 @@ class LocalNotificationManager: ObservableObject {
             }
             print("Notification Register Success")
         }
+    }
+
+
+    func schedulePostNotification(title: String, subtitle: String?, body: String, launchIn: Double,
+                                  identifier: String,
+                                  imageName: String? = nil) {
+        let content = UNMutableNotificationContent()
+        content.title = title
+        if let subtitle = subtitle {
+            content.subtitle = subtitle
+        }
+        content.body = body
+        content.categoryIdentifier = identifier
+        content.sound = UNNotificationSound.defaultRingtone
+
+        if let imageURL = imageName?.createLocalURL() {
+            let attachment = try! UNNotificationAttachment(identifier: "imageName", url: imageURL, options: .none)
+            content.attachments = [attachment]
+        }
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: launchIn, repeats: false)
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+
+        UNUserNotificationCenter.current().add(request) { (error:Error?) in
+            if error != nil {
+                print(error?.localizedDescription ?? "some unknown error")
+            }
+            print("Notification Register Success")
+        }
+    }
+}
+
+extension String {
+    func createLocalURL() -> URL? {
+        guard let image = UIImage(named: self) else {
+            return nil
+        }
+
+        let fileManager = FileManager.default
+        guard let cacheDirectory = fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+            return nil
+        }
+        let url = cacheDirectory.appendingPathComponent("\(self).PNG")
+
+        guard fileManager.fileExists(atPath: url.path) else {
+            guard let data = image.pngData() else { fatalError() }
+            fileManager.createFile(atPath: url.path, contents: data, attributes: nil)
+            return url
+        }
+
+        return url
     }
 }

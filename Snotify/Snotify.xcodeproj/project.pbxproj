@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		CB09C7A22864C69200B15C38 /* MainAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB09C7A12864C69200B15C38 /* MainAppDelegate.swift */; };
 		CB09C7A42864C6BA00B15C38 /* MainSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB09C7A32864C6BA00B15C38 /* MainSceneDelegate.swift */; };
+		CB6B4690286749910085EA12 /* NewPostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B468F286749910085EA12 /* NewPostDetailView.swift */; };
+		CB6B469428674CD90085EA12 /* SNShopPost+Previews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B469328674CD90085EA12 /* SNShopPost+Previews.swift */; };
+		CB6B469628674CF00085EA12 /* SNImages+Previews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B469528674CF00085EA12 /* SNImages+Previews.swift */; };
+		CB6B4698286755C60085EA12 /* SNPostingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B4697286755C60085EA12 /* SNPostingManager.swift */; };
 		CBBC1650285C9EAA007385E3 /* SNLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC164F285C9EAA007385E3 /* SNLoginView.swift */; };
 		CBBC1652285C9EB0007385E3 /* SNRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC1651285C9EB0007385E3 /* SNRegisterView.swift */; };
 		CBBC1655285C9EFB007385E3 /* Extension+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC1654285C9EFB007385E3 /* Extension+Font.swift */; };
@@ -32,7 +36,6 @@
 		CBE44AD2285217BD008E015D /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE44AD1285217BD008E015D /* Date+Extensions.swift */; };
 		CBE44AD62852315D008E015D /* SNShopPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE44AD52852315D008E015D /* SNShopPost.swift */; };
 		CBE44AD828523163008E015D /* SNShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE44AD728523163008E015D /* SNShop.swift */; };
-		CBE44ADA2852324C008E015D /* SnShopPost+Previews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE44AD92852324C008E015D /* SnShopPost+Previews.swift */; };
 		CBE44AE028523301008E015D /* SNShop+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE44ADF28523301008E015D /* SNShop+Extensions.swift */; };
 		CBE44AE228529B87008E015D /* TestingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE44AE128529B87008E015D /* TestingView.swift */; };
 /* End PBXBuildFile section */
@@ -58,6 +61,10 @@
 		CB09C7A12864C69200B15C38 /* MainAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAppDelegate.swift; sourceTree = "<group>"; };
 		CB09C7A32864C6BA00B15C38 /* MainSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSceneDelegate.swift; sourceTree = "<group>"; };
 		CB6B468E28673D9E0085EA12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CB6B468F286749910085EA12 /* NewPostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostDetailView.swift; sourceTree = "<group>"; };
+		CB6B469328674CD90085EA12 /* SNShopPost+Previews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SNShopPost+Previews.swift"; sourceTree = "<group>"; };
+		CB6B469528674CF00085EA12 /* SNImages+Previews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SNImages+Previews.swift"; sourceTree = "<group>"; };
+		CB6B4697286755C60085EA12 /* SNPostingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNPostingManager.swift; sourceTree = "<group>"; };
 		CBBC164F285C9EAA007385E3 /* SNLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNLoginView.swift; sourceTree = "<group>"; };
 		CBBC1651285C9EB0007385E3 /* SNRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNRegisterView.swift; sourceTree = "<group>"; };
 		CBBC1654285C9EFB007385E3 /* Extension+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Font.swift"; sourceTree = "<group>"; };
@@ -84,7 +91,6 @@
 		CBE44AD1285217BD008E015D /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		CBE44AD52852315D008E015D /* SNShopPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNShopPost.swift; sourceTree = "<group>"; };
 		CBE44AD728523163008E015D /* SNShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNShop.swift; sourceTree = "<group>"; };
-		CBE44AD92852324C008E015D /* SnShopPost+Previews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SnShopPost+Previews.swift"; sourceTree = "<group>"; };
 		CBE44ADF28523301008E015D /* SNShop+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SNShop+Extensions.swift"; sourceTree = "<group>"; };
 		CBE44AE128529B87008E015D /* TestingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,6 +132,7 @@
 		CBBC1653285C9EE4007385E3 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				CB6B4697286755C60085EA12 /* SNPostingManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -203,7 +210,8 @@
 			children = (
 				CBE44A9E2852041C008E015D /* Preview Assets.xcassets */,
 				CBE44ADF28523301008E015D /* SNShop+Extensions.swift */,
-				CBE44AD92852324C008E015D /* SnShopPost+Previews.swift */,
+				CB6B469328674CD90085EA12 /* SNShopPost+Previews.swift */,
+				CB6B469528674CF00085EA12 /* SNImages+Previews.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -267,6 +275,7 @@
 				CBE44AC828521126008E015D /* ProfileView.swift */,
 				CBE44ACF285214BB008E015D /* ShopPostDetailView.swift */,
 				CBE44ACD285213AB008E015D /* ShopPostView.swift */,
+				CB6B468F286749910085EA12 /* NewPostDetailView.swift */,
 				CBD3E1E72853320F0086A3D9 /* ShopPostRowView.swift */,
 				CBD3E1E928533B680086A3D9 /* HelperViews */,
 			);
@@ -411,6 +420,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB6B469628674CF00085EA12 /* SNImages+Previews.swift in Sources */,
 				CBE44A9A2852041A008E015D /* ContentView.swift in Sources */,
 				CBE44AD0285214BB008E015D /* ShopPostDetailView.swift in Sources */,
 				CBE44AD2285217BD008E015D /* Date+Extensions.swift in Sources */,
@@ -425,13 +435,15 @@
 				CBBC1652285C9EB0007385E3 /* SNRegisterView.swift in Sources */,
 				CBD3E1EB28533B7C0086A3D9 /* PhotosAccessView.swift in Sources */,
 				CBBC165D285CAAD4007385E3 /* LeadingVerticalStack.swift in Sources */,
+				CB6B469428674CD90085EA12 /* SNShopPost+Previews.swift in Sources */,
+				CB6B4690286749910085EA12 /* NewPostDetailView.swift in Sources */,
 				CBE44AC928521126008E015D /* ProfileView.swift in Sources */,
 				CBBC1650285C9EAA007385E3 /* SNLoginView.swift in Sources */,
 				CBD3E1E428532A1F0086A3D9 /* SNLocationNotification.swift in Sources */,
-				CBE44ADA2852324C008E015D /* SnShopPost+Previews.swift in Sources */,
 				CBD3E1E82853320F0086A3D9 /* ShopPostRowView.swift in Sources */,
 				CB09C7A22864C69200B15C38 /* MainAppDelegate.swift in Sources */,
 				CBE44AD828523163008E015D /* SNShop.swift in Sources */,
+				CB6B4698286755C60085EA12 /* SNPostingManager.swift in Sources */,
 				CBE44A982852041A008E015D /* SnotifyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

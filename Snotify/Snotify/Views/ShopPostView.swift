@@ -12,7 +12,7 @@ struct ShopPostView: View {
     private let columns = Array(repeating: GridItem(.flexible()), count: 4)
     @State private var isHidden = true
 
-    @State private var selectedImage: Image?
+    @State private var selectedImage: String?
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
@@ -21,10 +21,9 @@ struct ShopPostView: View {
 
                     LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
                         Section {
-                            (selectedImage ?? Image("iphone1"))
+                            Image(selectedImage ?? "iphone1")
                                 .resizable()
                                 .scaledToFit()
-//                                .aspectRatio(1, contentMode: .fill)
                                 .frame(
                                     width: UIScreen.main.bounds.width,
                                     height: UIScreen.main.bounds.width
@@ -68,8 +67,8 @@ struct ShopPostView: View {
             .overlay(
                 VStack {
                     Spacer()
-                    Button {
-                        //
+                    NavigationLink {
+                        NewPostDetailView(imageName: selectedImage ?? .init())
                     } label: {
                         Text("Continuer")
                             .foregroundColor(.accentColor)
@@ -104,15 +103,14 @@ struct ShopPostView: View {
     }
 
     private func gridImageView(_ imgName: String) -> some View {
-        let img = Image(imgName)
-        return img
+        return Image(imgName)
             .resizable()
             .aspectRatio(1, contentMode: .fill)
             .clipped()
             .id(imgName)
-            .overlay(Color.gray.opacity(img==selectedImage ? 0.5 : 0))
+            .overlay(Color.gray.opacity(imgName==selectedImage ? 0.5 : 0))
             .onTapGesture {
-                selectedImage = Image(imgName)
+                selectedImage = imgName
             }
     }
 }

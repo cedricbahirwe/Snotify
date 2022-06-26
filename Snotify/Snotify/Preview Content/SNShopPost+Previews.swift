@@ -1,8 +1,8 @@
 //
-//  SnShopPost+Previews.swift
+//  SNShopPost+Previews.swift
 //  Snotify
 //
-//  Created by Cédric Bahirwe on 09/06/2022.
+//  Created by Cédric Bahirwe on 25/06/2022.
 //
 
 import Foundation

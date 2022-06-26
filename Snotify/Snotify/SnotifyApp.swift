@@ -18,6 +18,9 @@ struct SnotifyApp: App {
 //            PhotosAccessView(isPresented: .constant(true))
 //            TestingView()
             ContentView()
+                .onAppear() {
+//                    UIImage(named: "iphone4")?.createLocalURL()
+                }
 
         }
         .onChange(of: scenePhase, perform: observeScenePhase)
