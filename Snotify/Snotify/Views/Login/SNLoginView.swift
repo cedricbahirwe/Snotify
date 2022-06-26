@@ -35,7 +35,7 @@ struct SNLoginView: View {
                 VStack(alignment: .leading) {
                     Text("Mot de passe")
                         .font(.rounded(weight: .bold))
-                    SecureField("Entere votre mot de passe", text: .constant(""))
+                    SecureField("Enter votre mot de passe", text: .constant(""))
                         .font(.rounded())
                         .padding(.horizontal)
                         .frame(height: 45)
@@ -49,7 +49,7 @@ struct SNLoginView: View {
                     Button {
                         // Login
                     } label: {
-                        Text("Login")
+                        Text("Se connecter")
                             .font(.rounded(weight: .bold))
                             .frame(maxWidth: .infinity)
                             .frame(height: 45)
@@ -121,6 +121,7 @@ struct SNLoginView: View {
             }
         }
         .padding(20)
+        .background(.background, ignoresSafeAreaEdges: .all)
     }
 }
 

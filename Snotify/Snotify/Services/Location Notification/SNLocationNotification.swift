@@ -116,9 +116,7 @@ class LocalNotification {
     }
 }
 
-class LocalNotificationManager: ObservableObject {
-    //    var notification =  [Notification]()
-
+final class LocalNotificationManager: ObservableObject {
     init() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
             if granted == true && error == nil {
@@ -129,34 +127,10 @@ class LocalNotificationManager: ObservableObject {
         }
     }
 
-    func sendNotification(title: String, subtitle: String?, body: String, launchIn: Double, identifier: String) {
-        let content = UNMutableNotificationContent()
-        content.title = title
-        if let subtitle = subtitle {
-            content.subtitle = subtitle
-        }
-        content.body = body
-        content.categoryIdentifier = identifier
-        content.sound = UNNotificationSound.defaultRingtone
-
-        let imageName = "moi"
-        guard let imageURL = Bundle.main.url(forResource: imageName, withExtension: "jpeg") else { return }
-        let attachment = try! UNNotificationAttachment(identifier: imageName, url: imageURL, options: .none)
-        content.attachments = [attachment]
-
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: launchIn, repeats: false)
-        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
-
-        UNUserNotificationCenter.current().add(request) { (error:Error?) in
-            if error != nil {
-                print(error?.localizedDescription ?? "some unknown error")
-            }
-            print("Notification Register Success")
-        }
-    }
-
-
-    func schedulePostNotification(title: String, subtitle: String?, body: String, launchIn: Double,
+    func schedulePostNotification(title: String,
+                                  subtitle: String?,
+                                  body: String,
+                                  launchIn: Double,
                                   identifier: String,
                                   imageName: String? = nil) {
         let content = UNMutableNotificationContent()

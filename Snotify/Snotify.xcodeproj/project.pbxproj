@@ -13,6 +13,8 @@
 		CB6B469428674CD90085EA12 /* SNShopPost+Previews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B469328674CD90085EA12 /* SNShopPost+Previews.swift */; };
 		CB6B469628674CF00085EA12 /* SNImages+Previews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B469528674CF00085EA12 /* SNImages+Previews.swift */; };
 		CB6B4698286755C60085EA12 /* SNPostingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B4697286755C60085EA12 /* SNPostingManager.swift */; };
+		CB6B469A286879E60085EA12 /* SNAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B4699286879E60085EA12 /* SNAuthenticationManager.swift */; };
+		CB6B469C286879EE0085EA12 /* SNSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B469B286879EE0085EA12 /* SNSessionManager.swift */; };
 		CBBC1650285C9EAA007385E3 /* SNLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC164F285C9EAA007385E3 /* SNLoginView.swift */; };
 		CBBC1652285C9EB0007385E3 /* SNRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC1651285C9EB0007385E3 /* SNRegisterView.swift */; };
 		CBBC1655285C9EFB007385E3 /* Extension+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC1654285C9EFB007385E3 /* Extension+Font.swift */; };
@@ -65,6 +67,8 @@
 		CB6B469328674CD90085EA12 /* SNShopPost+Previews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SNShopPost+Previews.swift"; sourceTree = "<group>"; };
 		CB6B469528674CF00085EA12 /* SNImages+Previews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SNImages+Previews.swift"; sourceTree = "<group>"; };
 		CB6B4697286755C60085EA12 /* SNPostingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNPostingManager.swift; sourceTree = "<group>"; };
+		CB6B4699286879E60085EA12 /* SNAuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNAuthenticationManager.swift; sourceTree = "<group>"; };
+		CB6B469B286879EE0085EA12 /* SNSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSessionManager.swift; sourceTree = "<group>"; };
 		CBBC164F285C9EAA007385E3 /* SNLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNLoginView.swift; sourceTree = "<group>"; };
 		CBBC1651285C9EB0007385E3 /* SNRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNRegisterView.swift; sourceTree = "<group>"; };
 		CBBC1654285C9EFB007385E3 /* Extension+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Font.swift"; sourceTree = "<group>"; };
@@ -133,6 +137,8 @@
 			isa = PBXGroup;
 			children = (
 				CB6B4697286755C60085EA12 /* SNPostingManager.swift */,
+				CB6B4699286879E60085EA12 /* SNAuthenticationManager.swift */,
+				CB6B469B286879EE0085EA12 /* SNSessionManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -422,6 +428,7 @@
 			files = (
 				CB6B469628674CF00085EA12 /* SNImages+Previews.swift in Sources */,
 				CBE44A9A2852041A008E015D /* ContentView.swift in Sources */,
+				CB6B469A286879E60085EA12 /* SNAuthenticationManager.swift in Sources */,
 				CBE44AD0285214BB008E015D /* ShopPostDetailView.swift in Sources */,
 				CBE44AD2285217BD008E015D /* Date+Extensions.swift in Sources */,
 				CBE44ACB2852112D008E015D /* HomeView.swift in Sources */,
@@ -431,6 +438,7 @@
 				CBE44ACE285213AB008E015D /* ShopPostView.swift in Sources */,
 				CBE44AE228529B87008E015D /* TestingView.swift in Sources */,
 				CBE44AE028523301008E015D /* SNShop+Extensions.swift in Sources */,
+				CB6B469C286879EE0085EA12 /* SNSessionManager.swift in Sources */,
 				CBE44AD62852315D008E015D /* SNShopPost.swift in Sources */,
 				CBBC1652285C9EB0007385E3 /* SNRegisterView.swift in Sources */,
 				CBD3E1EB28533B7C0086A3D9 /* PhotosAccessView.swift in Sources */,
