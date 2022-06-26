@@ -11,6 +11,10 @@ extension View {
     func getBounds() -> CGRect {
         UIScreen.main.bounds
     }
+
+    func viewInDark() -> some View {
+        self.preferredColorScheme(.dark)
+    }
 }
 
 extension NSObject {

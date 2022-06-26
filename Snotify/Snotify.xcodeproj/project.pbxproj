@@ -33,7 +33,6 @@
 		CB6B46C22868B5BA0085EA12 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B46C12868B5B90085EA12 /* View+Extensions.swift */; };
 		CB6B46C42868B7C80085EA12 /* SNDebugPrinters.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B46C32868B7C80085EA12 /* SNDebugPrinters.swift */; };
 		CBBC1650285C9EAA007385E3 /* SNLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC164F285C9EAA007385E3 /* SNLoginView.swift */; };
-		CBBC1652285C9EB0007385E3 /* SNRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC1651285C9EB0007385E3 /* SNRegisterView.swift */; };
 		CBBC1655285C9EFB007385E3 /* Extension+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC1654285C9EFB007385E3 /* Extension+Font.swift */; };
 		CBBC1659285CA86C007385E3 /* NotificationsAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC1658285CA86C007385E3 /* NotificationsAccessView.swift */; };
 		CBBC165D285CAAD4007385E3 /* LeadingVerticalStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC165C285CAAD4007385E3 /* LeadingVerticalStack.swift */; };
@@ -92,7 +91,6 @@
 		CB6B46C12868B5B90085EA12 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		CB6B46C32868B7C80085EA12 /* SNDebugPrinters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNDebugPrinters.swift; sourceTree = "<group>"; };
 		CBBC164F285C9EAA007385E3 /* SNLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNLoginView.swift; sourceTree = "<group>"; };
-		CBBC1651285C9EB0007385E3 /* SNRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNRegisterView.swift; sourceTree = "<group>"; };
 		CBBC1654285C9EFB007385E3 /* Extension+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Font.swift"; sourceTree = "<group>"; };
 		CBBC1658285CA86C007385E3 /* NotificationsAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsAccessView.swift; sourceTree = "<group>"; };
 		CBBC165C285CAAD4007385E3 /* LeadingVerticalStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadingVerticalStack.swift; sourceTree = "<group>"; };
@@ -171,7 +169,6 @@
 			isa = PBXGroup;
 			children = (
 				CBBC164F285C9EAA007385E3 /* SNLoginView.swift */,
-				CBBC1651285C9EB0007385E3 /* SNRegisterView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -508,7 +505,6 @@
 				CBE44AE028523301008E015D /* SNShop+Extensions.swift in Sources */,
 				CB6B469C286879EE0085EA12 /* SNSessionManager.swift in Sources */,
 				CBE44AD62852315D008E015D /* SNShopPost.swift in Sources */,
-				CBBC1652285C9EB0007385E3 /* SNRegisterView.swift in Sources */,
 				CB6B46C42868B7C80085EA12 /* SNDebugPrinters.swift in Sources */,
 				CB6B46B7286891F30085EA12 /* SNFirebaseManager.swift in Sources */,
 				CBD3E1EB28533B7C0086A3D9 /* PhotosAccessView.swift in Sources */,

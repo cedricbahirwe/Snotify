@@ -70,20 +70,16 @@ final class SNFirebaseManager: NSObject {
                 withAnimation {
                     self.isLoggedIn = true
                 }
-                print("All email: \(user.email ?? "No email found")")
 
-                print("All metadata: \(String(describing: user.metadata.lastSignInDate))")
-                print("All metadata: \(String(describing: user.metadata.creationDate))")
+                print("User ID: \(String(describing: user.uid))")
 
+                print("User name: \(String(describing: user.displayName))")
 
-                if let providerData = user.providerData.first {
-                    print("User name: \(String(describing: providerData.displayName))")
-                    print("User photo: \(String(describing: providerData.photoURL))")
-                    print("User email: \(String(describing: providerData.email))")
-                    print("User phone: \(String(describing: providerData.phoneNumber))")
-                }
+                print("User Photo URL: \(String(describing: user.photoURL))")
 
-                print("User name: \(user.displayName ?? "Hahah!")")
+                print("User email: \(user.email ?? "No email found")")
+
+                print("User phone: \(user.phoneNumber ?? "No phone found")")
             }
         }
     }
