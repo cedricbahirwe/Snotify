@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SNLoginView: View {
     @State private var isSigningIn = false
-    @State private var showRegistrationView = true
+    @State private var showRegistrationView = false
     var body: some View {
         ZStack {
             VStack {
@@ -73,12 +73,15 @@ struct SNLoginView: View {
                             .font(.rounded(weight: .medium))
 
                     }.hidden()
+
+                    if showRegistrationView {
+                        ctaButton
+                    }
                 }
                 .frame(maxHeight: .infinity)
 
-                if showRegistrationView {
-                    thirdPartiesView
-                }
+                thirdPartiesView
+                    .opacity(showRegistrationView ? 0 : 1)
             }
             .padding(20)
             .background(.background, ignoresSafeAreaEdges: .all)
@@ -158,16 +161,23 @@ private extension SNLoginView {
                     )
                 }
             }
-            Button {
-                withAnimation {
-                    showRegistrationView.toggle()
-                }
-            } label: {
-                Text("Créer un compte?")
-                    .font(.rounded(.callout, weight: .medium))
-            }
-            .padding(30)
+            ctaButton
         }
+    }
+
+    private var ctaButton: some View {
+        Button {
+            withAnimation {
+                showRegistrationView.toggle()
+            }
+        } label: {
+            Text(showRegistrationView ? "Déjà un compte?, connectez-vous plutôt." : "Créer un compte?")
+                .font(.rounded(.callout, weight: .medium))
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 30)
     }
 }
 
