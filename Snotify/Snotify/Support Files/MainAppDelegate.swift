@@ -8,6 +8,8 @@
 import Firebase
 import CoreLocation
 import UIKit
+import FirebaseAuth
+import GoogleSignIn
 
 final class MainAppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
     private let locationManager = CLLocationManager()
@@ -17,6 +19,12 @@ final class MainAppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
 
         // Configure FireBase App
         FirebaseApp.configure()
+
+//        GIDSignIn.sharedInstance.handle(url)
+//        GIDSignIn.sharedInstance().delegate = self
+
+
+//        GIDSign
 //        FirebaseApp.configure()
 //        // Create the firestore ref
 //        ref = Firestore.firestore()
@@ -71,6 +79,7 @@ final class MainAppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
                      open url: URL,
                      options: [UIApplication.OpenURLOptionsKey : Any] = [:] ) -> Bool {
 
+        GIDSignIn.sharedInstance.handle(url)
         // Determine who sent the URL.
         let sendingAppID = options[.sourceApplication]
         debugPrint("source application = \(sendingAppID ?? "Unknown")")

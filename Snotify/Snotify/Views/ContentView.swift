@@ -13,7 +13,8 @@ struct ContentView: View {
     @AppStorage("SelectAppTab")
     private var selectedTab: SNTab = SNTab.home
 
-    @AppStorage("SelectAppTab") private var isLoggedIn = false
+    @AppStorage("isUserLoggedIn") private var isLoggedIn = false
+
     var body: some View {
         ZStack {
             TabView(selection: $selectedTab) {
@@ -31,12 +32,8 @@ struct ContentView: View {
                     .tag(SNTab.profile)
             }
 
-//            if !isLoggedIn {
             SNLoginView()
                 .rotation3DEffect(isLoggedIn ? .degrees(90) : .zero, axis: (x: 0, y: -10, z: 0))
-//                .zIndex(isLoggedIn ? -100 : 1)
-
-//            }
         }
         .onAppear() {
         }

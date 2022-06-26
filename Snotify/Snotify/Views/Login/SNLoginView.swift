@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SNLoginView: View {
+    @State private var isSigningIn = false
     var body: some View {
         VStack {
             Text("Snotify")
@@ -46,9 +47,7 @@ struct SNLoginView: View {
                 }
 
                 VStack {
-                    Button {
-                        // Login
-                    } label: {
+                    Button(action: {}) {
                         Text("Se connecter")
                             .font(.rounded(weight: .bold))
                             .frame(maxWidth: .infinity)
@@ -83,9 +82,7 @@ struct SNLoginView: View {
                     Color.gray.frame(height: 1)
                 }
                 HStack(spacing: 18) {
-                    Button {
-                        // Password
-                    } label: {
+                    Button(action: handleGoogleLogin) {
                         Text("Google")
                             .font(.rounded(weight: .bold))
                             .foregroundColor(.blue)
@@ -122,6 +119,26 @@ struct SNLoginView: View {
         }
         .padding(20)
         .background(.background, ignoresSafeAreaEdges: .all)
+        .overlay(
+            ZStack {
+                if isSigningIn {
+                    Color.black
+                        .opacity(0.25)
+                        .ignoresSafeArea()
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .font(.title2)
+                        .frame(width: 60, height: 60)
+                        .background(Color.white)
+                        .cornerRadius(10)
+                }
+            }
+        )
+    }
+
+    private func handleGoogleLogin() {
+        isSigningIn = true
+        SNFirebaseManager.shared.loginWithGoogle { isSigningIn = false }
     }
 }
 

@@ -81,6 +81,13 @@ struct ProfileView: View {
                     }
                 }
             }
+
+            Button(role: .destructive) {
+                SNFirebaseManager.shared.signOut()
+            } label: {
+                Text("Sign Out")
+            }
+
         }
         .navigationBarHidden(true)
     }

@@ -16,8 +16,8 @@ struct SnotifyApp: App {
     var body: some Scene {
         WindowGroup {
 //            PhotosAccessView(isPresented: .constant(true))
-            TestingView()
-//            ContentView()
+//            TestingView()
+            ContentView()
                 .onOpenURL(perform: handIncomingURL)
 
         }
