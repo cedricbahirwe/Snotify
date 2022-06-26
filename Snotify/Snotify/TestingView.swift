@@ -8,25 +8,16 @@
 import SwiftUI
 
 struct TestingView: View {
-    let loc = LocalNotificationManager()
     var body: some View {
         VStack {
-            
-            Button("toggle") {
-                loc.schedulePostNotification(title: "asdaf", subtitle: "asfasf", body: "asfasfasf", launchIn: 3, identifier: "asfasfasf")
-//                sendNotification
-            }
-            
-            
-            Spacer()
+            EmptyView()
         }
     }
-    
 }
 
 struct TestingView_Previews: PreviewProvider {
     static var previews: some View {
         TestingView()
-            .preferredColorScheme(.dark)
+            .preferredColorScheme(.light)
     }
 }

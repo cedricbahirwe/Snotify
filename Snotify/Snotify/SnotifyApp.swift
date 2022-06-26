@@ -16,11 +16,9 @@ struct SnotifyApp: App {
     var body: some Scene {
         WindowGroup {
 //            PhotosAccessView(isPresented: .constant(true))
-//            TestingView()
-            ContentView()
-                .onAppear() {
-//                    UIImage(named: "iphone4")?.createLocalURL()
-                }
+            TestingView()
+//            ContentView()
+                .onOpenURL(perform: handIncomingURL)
 
         }
         .onChange(of: scenePhase, perform: observeScenePhase)
@@ -38,5 +36,9 @@ struct SnotifyApp: App {
             print("Enter unknown mode")
         }
 
+    }
+
+    private func handIncomingURL(_ url: URL) {
+        print("✅Well, this was new ")
     }
 }

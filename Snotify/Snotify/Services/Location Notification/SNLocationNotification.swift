@@ -140,7 +140,7 @@ final class LocalNotificationManager: ObservableObject {
         }
         content.body = body
         content.categoryIdentifier = identifier
-        content.sound = UNNotificationSound.defaultRingtone
+        content.sound = UNNotificationSound.default
 
         if let imageURL = imageName?.createLocalURL() {
             let attachment = try! UNNotificationAttachment(identifier: "imageName", url: imageURL, options: .none)

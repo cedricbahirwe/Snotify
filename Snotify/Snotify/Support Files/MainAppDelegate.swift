@@ -5,8 +5,9 @@
 //  Created by Cédric Bahirwe on 23/06/2022.
 //
 
-import SwiftUI
+import Firebase
 import CoreLocation
+import UIKit
 
 final class MainAppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
     private let locationManager = CLLocationManager()
@@ -15,6 +16,7 @@ final class MainAppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
 
         // Configure FireBase App
+        FirebaseApp.configure()
 //        FirebaseApp.configure()
 //        // Create the firestore ref
 //        ref = Firestore.firestore()
