@@ -10,8 +10,8 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject
     private var appDelegate: MainAppDelegate
-    @AppStorage("SelectAppTab")
-    private var selectedTab: SNTab = SNTab.home
+//    @AppStorage("selectAppTab")
+    @State private var selectedTab: SNTab = SNTab.home
 
     @AppStorage("isUserLoggedIn") private var isLoggedIn = false
 
@@ -21,7 +21,6 @@ struct ContentView: View {
                 HomeView()
                     .tabItem {
                         Label("Home", systemImage: "house")
-
                     }
                     .tag(SNTab.home)
 

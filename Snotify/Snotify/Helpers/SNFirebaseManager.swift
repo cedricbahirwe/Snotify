@@ -11,8 +11,15 @@ import Foundation
 import SwiftUI
 
 final class SNFirebaseManager: NSObject {
-    @AppStorage("isUserLoggedIn") private var isLoggedIn = false
+    @AppStorage("isUserLoggedIn")
+    private var isLoggedIn = false
     static let shared = SNFirebaseManager()
+    private let firebaseAuth = Auth.auth()
+
+    var hasFirebaseCurrentUser: Bool {
+        firebaseAuth.currentUser != nil
+    }
+
     // MARK: - Initializers
     private override init() {
         super.init()
@@ -55,7 +62,7 @@ final class SNFirebaseManager: NSObject {
 
 
             // Sign in in FireBase Auth
-            Auth.auth().signIn(with: credential) { result, error in
+            self.firebaseAuth.signIn(with: credential) { result, error in
                 if let error = error {
                     setSignInFalse()
                     printf("There was an error: \(error.localizedDescription)")
@@ -85,6 +92,69 @@ final class SNFirebaseManager: NSObject {
     }
 
 
+
+    /// Sign In existing user using Firebase
+    /// - Parameters:
+    ///   - email: user's email
+    ///   - password: user's password
+    ///   - completion: whether the Sign In process was successful
+    func signInWithEmailAndPassword(_ email: String, _ password: String, completion: @escaping(Bool) -> Void) {
+        firebaseAuth.signIn(
+            withEmail: email,
+            password: password) { [weak self] result, error in
+                guard let self =  self else { return }
+                if let error = error {
+                    completion(false)
+                    printf("There was an error: \(error)")
+                    return
+                }
+
+                guard let result = result else {
+                    completion(false)
+                    return
+                }
+                completion(true)
+                prints("\(String(describing: result.user.email))")
+                prints("\(String(describing: result.user.displayName))")
+                withAnimation {
+                    self.isLoggedIn = true
+                }
+
+            }
+    }
+
+
+    /// Sign up new user using Firebase
+    /// - Parameters:
+    ///   - email: user's email
+    ///   - password: user's password
+    ///   - completion: whether the Sign Up process was successful
+    func signUpWithEmailAndPassword(_ email: String,
+                                    _ password: String,
+                                    completion: @escaping(Bool) -> Void) {
+        firebaseAuth.createUser(withEmail: email, password: password) { [weak self] result, error in
+            guard let self =  self else { return }
+            if let error = error {
+                completion(false)
+                printf("There was an error: \(error.localizedDescription)")
+                return
+            }
+
+            guard let result = result else {
+                completion(false)
+                return
+            }
+            completion(true)
+            prints("\(result.user)")
+            prints("\(String(describing: result.user.email))")
+            prints("\(String(describing: result.user.displayName))")
+            withAnimation {
+                self.isLoggedIn = true
+            }
+        }
+    }
+
+    /// Sign Out of `GoogleSignIn` and `FireBase Auth`
     func signOut() {
         do  {
             GIDSignIn.sharedInstance.signOut()
