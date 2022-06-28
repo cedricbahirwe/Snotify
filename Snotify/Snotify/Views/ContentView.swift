@@ -10,10 +10,9 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject
     private var appDelegate: MainAppDelegate
-//    @AppStorage("selectAppTab")
     @State private var selectedTab: SNTab = SNTab.home
 
-    @AppStorage("isUserLoggedIn") private var isLoggedIn = false
+    @AppStorage(SNKeys.isUserLoggedIn) private var isLoggedIn = false
 
     var body: some View {
         ZStack {

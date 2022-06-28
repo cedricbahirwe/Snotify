@@ -11,11 +11,12 @@ import Foundation
 import SwiftUI
 
 final class SNFirebaseManager: NSObject {
-    @AppStorage("isUserLoggedIn")
+    @AppStorage(SNKeys.isUserLoggedIn)
     private var isLoggedIn = false
     static let shared = SNFirebaseManager()
     private let firebaseAuth = Auth.auth()
 
+    // Check whether there's a SDK loggedIn user
     var hasFirebaseCurrentUser: Bool {
         firebaseAuth.currentUser != nil
     }
@@ -25,6 +26,8 @@ final class SNFirebaseManager: NSObject {
         super.init()
     }
 
+    /// Sig In usin `GoogleSinIn` and on success sign In in `Firebase`
+    /// - Parameter completion: <#completion description#>
     func loginWithGoogle(completion: @escaping() -> Void) {
         func setSignInFalse() {
             completion()
@@ -91,8 +94,6 @@ final class SNFirebaseManager: NSObject {
         }
     }
 
-
-
     /// Sign In existing user using Firebase
     /// - Parameters:
     ///   - email: user's email
@@ -122,7 +123,6 @@ final class SNFirebaseManager: NSObject {
 
             }
     }
-
 
     /// Sign up new user using Firebase
     /// - Parameters:

@@ -57,6 +57,7 @@
 		CBE44AE028523301008E015D /* SNShop+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE44ADF28523301008E015D /* SNShop+Extensions.swift */; };
 		CBE44AE228529B87008E015D /* TestingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE44AE128529B87008E015D /* TestingView.swift */; };
 		CBF7CBA7286BAAB800183138 /* SNEmailAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF7CBA6286BAAB800183138 /* SNEmailAddress.swift */; };
+		CBF7CBA9286BB63600183138 /* SNLocalStorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF7CBA8286BB63600183138 /* SNLocalStorageKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,7 @@
 		CBE44ADF28523301008E015D /* SNShop+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SNShop+Extensions.swift"; sourceTree = "<group>"; };
 		CBE44AE128529B87008E015D /* TestingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingView.swift; sourceTree = "<group>"; };
 		CBF7CBA6286BAAB800183138 /* SNEmailAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNEmailAddress.swift; sourceTree = "<group>"; };
+		CBF7CBA8286BB63600183138 /* SNLocalStorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNLocalStorageKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +214,7 @@
 				CB6B46BB28689C4B0085EA12 /* Google Services */,
 				CB09C7A12864C69200B15C38 /* MainAppDelegate.swift */,
 				CB09C7A32864C6BA00B15C38 /* MainSceneDelegate.swift */,
+				CBF7CBA8286BB63600183138 /* SNLocalStorageKeys.swift */,
 			);
 			path = "Support Files";
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 				CBE44AE228529B87008E015D /* TestingView.swift in Sources */,
 				CBE44AE028523301008E015D /* SNShop+Extensions.swift in Sources */,
 				CB6B469C286879EE0085EA12 /* SNSessionManager.swift in Sources */,
+				CBF7CBA9286BB63600183138 /* SNLocalStorageKeys.swift in Sources */,
 				CBE44AD62852315D008E015D /* SNShopPost.swift in Sources */,
 				CB6B46C42868B7C80085EA12 /* SNDebugPrinters.swift in Sources */,
 				CB6B46B7286891F30085EA12 /* SNFirebaseManager.swift in Sources */,
