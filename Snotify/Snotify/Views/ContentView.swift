@@ -8,32 +8,46 @@
 import SwiftUI
 
 struct ContentView: View {
-    enum SFTabs: String {
-        case home, profile
-    }
-    @AppStorage("SelectAppTab")
-    private var selectedTab: String = SFTabs.home.rawValue
+    @EnvironmentObject
+    private var appDelegate: MainAppDelegate
+    @State private var selectedTab: SNTab = SNTab.home
+
+    @AppStorage(SNKeys.isUserLoggedIn) private var isLoggedIn = false
+
     var body: some View {
-        TabView(selection: $selectedTab) {
-            HomeView()
-                .tabItem {
-                    Label("Home", systemImage: "house")
+        ZStack {
+            TabView(selection: $selectedTab) {
+                HomeView()
+                    .tabItem {
+                        Label("Home", systemImage: "house")
+                    }
+                    .tag(SNTab.home)
 
-                }
-                .tag(SFTabs.home.rawValue)
+                ProfileView()
+                    .tabItem {
+                        Label("Profile", systemImage: "person")
+                    }
+                    .tag(SNTab.profile)
+            }
 
-            ProfileView()
-                .tabItem {
-                    Label("Profile", systemImage: "person")
-                }
-                .tag(SFTabs.profile.rawValue)
+            SNLoginView()
+                .rotation3DEffect(isLoggedIn ? .degrees(90) : .zero, axis: (x: 0, y: -10, z: 0))
+        }
+        .onAppear() {
         }
     }
+
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
             .preferredColorScheme(.dark)
+    }
+}
+
+private extension ContentView {
+    enum SNTab: String {
+        case home, profile
     }
 }
