@@ -9,15 +9,16 @@ import SwiftUI
 
 extension ProfileEditView {
     struct UserEditView: View {
-        @Binding var userModel: ProfileEditView.CustomerModel
+        typealias Layout = ProfileEditView.Layout
+        @Binding var model: ProfileEditView.CustomerModel
         var body: some View {
             Group {
                 HStack {
                     Group {
-                        TextField("Prénom", text: $userModel.firstName)
+                        TextField("Prénom", text: $model.firstName)
                             .textContentType(.givenName)
 
-                        TextField("Nom de famille", text: $userModel.lastName)
+                        TextField("Nom de famille", text: $model.lastName)
                             .textContentType(.familyName)
                     }
                     .font(.rounded())
@@ -28,7 +29,7 @@ extension ProfileEditView {
                             .stroke(Color.gray, lineWidth: 1)
                     )
                 }
-                TextField("nom@domain.com", text: $userModel.email)
+                TextField("nom@domain.com", text: $model.email)
                     .textContentType(.emailAddress)
                     .keyboardType(.emailAddress)
                     .textInputAutocapitalization(.never)
@@ -41,7 +42,7 @@ extension ProfileEditView {
                     )
 
 
-                TextField("Numéro de téléphone", text: $userModel.phoneNumber)
+                TextField("Numéro de téléphone", text: $model.phoneNumber)
                     .textContentType(.telephoneNumber)
                     .keyboardType(.phonePad)
                     .font(.rounded())
@@ -58,6 +59,6 @@ extension ProfileEditView {
 
 struct UserEditView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileEditView.UserEditView(userModel:  .constant(.init()))
+        ProfileEditView.UserEditView(model: .constant(.init()))
     }
 }

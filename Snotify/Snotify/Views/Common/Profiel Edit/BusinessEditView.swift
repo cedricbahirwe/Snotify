@@ -9,10 +9,11 @@ import SwiftUI
 
 extension ProfileEditView {
     struct BusinessEditView: View {
-        @Binding var busineessModel: BusinessModel
+        typealias Layout = ProfileEditView.Layout
+        @Binding var model: BusinessModel
         var body: some View {
             Group {
-                TextField("Business name", text: $busineessModel.name)
+                TextField("Business name", text: $model.name)
                     .textContentType(.organizationName)
                     .font(.rounded())
                     .padding(.horizontal)
@@ -22,16 +23,16 @@ extension ProfileEditView {
                             .stroke(Color.gray, lineWidth: 1)
                     )
 
-                TextEditor(text: busineessModel.description.isEmpty ? .constant("Description") : $busineessModel.description)
+                TextEditor(text: model.description.isEmpty ? .constant("Description") : $model.description)
                     .padding(.horizontal, 10)
                     .frame(maxHeight: 80)
-                    .foregroundColor(busineessModel.description.isEmpty ? .secondary : .primary)
+                    .foregroundColor(model.description.isEmpty ? .secondary : .primary)
                     .overlay(
                         RoundedRectangle(cornerRadius: 15)
                             .stroke(Color.gray, lineWidth: 1)
                     )
 
-                TextField("Business address", text: $busineessModel.address)
+                TextField("Business address", text: $model.address)
                     .textContentType(.fullStreetAddress)
                     .font(.rounded())
                     .padding(.horizontal)
@@ -41,7 +42,7 @@ extension ProfileEditView {
                             .stroke(Color.gray, lineWidth: 1)
                     )
 
-                TextField("email@domain.com", text: $busineessModel.email)
+                TextField("email@domain.com", text: $model.email)
                     .textContentType(.emailAddress)
                     .keyboardType(.emailAddress)
                     .textInputAutocapitalization(.never)
@@ -54,7 +55,7 @@ extension ProfileEditView {
                     )
 
 
-                TextField("Numéro de téléphone", text: $busineessModel.phoneNumber)
+                TextField("Numéro de téléphone", text: $model.phoneNumber)
                     .textContentType(.telephoneNumber)
                     .keyboardType(.phonePad)
                     .font(.rounded())
@@ -70,6 +71,6 @@ extension ProfileEditView {
 }
 struct BusinessEditView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileEditView.BusinessEditView(busineessModel: .constant(.init()))
+        ProfileEditView.BusinessEditView(model: .constant(.init()))
     }
 }

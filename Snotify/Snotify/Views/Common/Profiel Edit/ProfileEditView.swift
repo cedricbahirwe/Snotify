@@ -13,21 +13,20 @@ struct ProfileEditView: View {
     @State private var userModel = CustomerModel()
 
     // MARK: Business Properties
-    @State private var busineessModel = BusinessModel()
+    @State private var businessModel = BusinessModel()
 
     var body: some View {
         VStack(alignment: .leading) {
             Text("Vous y etes presque, Please fill in the missing information")
-                .font(.title.weight(.bold))
+                .font(.rounded(.title).weight(.bold))
                 .padding(.top, 50)
             VStack(alignment: .leading, spacing: 20) {
                 switch sessionType {
                 case .customer:
-                    UserEditView(userModel: $userModel)
+                    UserEditView(model: $userModel)
                 case .business:
-                    BusinessEditView(busineessModel: $busineessModel)
+                    BusinessEditView(model: $businessModel)
                 }
-
 
                 Button(action: submitDetails) {
                     Text("Confirmer")
@@ -49,13 +48,15 @@ struct ProfileEditView: View {
     private func submitDetails() {
 
     }
-}
 
-extension ProfileEditView {
+
     enum Layout {
         static let fieldHeight: CGFloat = 40
     }
+}
 
+extension ProfileEditView {
+    
     struct CustomerModel {
         var firstName = ""
         var lastName = ""
