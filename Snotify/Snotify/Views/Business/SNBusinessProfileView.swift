@@ -9,8 +9,7 @@ import SwiftUI
 
 
 struct SNBusinessProfileView: ProfileViewProtocol {
-    @AppStorage<SNSessionType>(SNKeys.snUserType)
-    private var sessionType = .customer
+    var sessionType: SNSessionType = .customer
 
     var body: some View {
         VStack {
