@@ -177,7 +177,7 @@ struct SNBusinessProfileView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             SNBusinessProfileView()
-//                .viewInDark()
+                .viewInDark()
         }
     }
 }

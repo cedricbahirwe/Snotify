@@ -56,11 +56,13 @@
 		CBE44AD828523163008E015D /* SNShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE44AD728523163008E015D /* SNShop.swift */; };
 		CBE44AE028523301008E015D /* SNShop+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE44ADF28523301008E015D /* SNShop+Extensions.swift */; };
 		CBE44AE228529B87008E015D /* TestingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE44AE128529B87008E015D /* TestingView.swift */; };
-		CBF6F12A2871BFE90067E920 /* SNProfileDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF6F1292871BFE90067E920 /* SNProfileDetailsView.swift */; };
 		CBF6F12C2871C0F00067E920 /* SNSessionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF6F12B2871C0F00067E920 /* SNSessionType.swift */; };
 		CBF6F1332871C4980067E920 /* SNBusinessProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF6F1322871C4980067E920 /* SNBusinessProfileView.swift */; };
 		CBF6F1352871C4A20067E920 /* SNUserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF6F1342871C4A20067E920 /* SNUserProfileView.swift */; };
 		CBF6F1372871CF2F0067E920 /* ProfileViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF6F1362871CF2F0067E920 /* ProfileViewProtocol.swift */; };
+		CBF6F1392871D6EF0067E920 /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF6F1382871D6EF0067E920 /* ProfileEditView.swift */; };
+		CBF6F13C2871DFCC0067E920 /* BusinessEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF6F13B2871DFCC0067E920 /* BusinessEditView.swift */; };
+		CBF6F13E2871DFD60067E920 /* UserEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF6F13D2871DFD60067E920 /* UserEditView.swift */; };
 		CBF7CBA7286BAAB800183138 /* SNEmailAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF7CBA6286BAAB800183138 /* SNEmailAddress.swift */; };
 		CBF7CBA9286BB63600183138 /* SNLocalStorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF7CBA8286BB63600183138 /* SNLocalStorageKeys.swift */; };
 /* End PBXBuildFile section */
@@ -124,11 +126,13 @@
 		CBE44AD728523163008E015D /* SNShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNShop.swift; sourceTree = "<group>"; };
 		CBE44ADF28523301008E015D /* SNShop+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SNShop+Extensions.swift"; sourceTree = "<group>"; };
 		CBE44AE128529B87008E015D /* TestingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingView.swift; sourceTree = "<group>"; };
-		CBF6F1292871BFE90067E920 /* SNProfileDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNProfileDetailsView.swift; sourceTree = "<group>"; };
 		CBF6F12B2871C0F00067E920 /* SNSessionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSessionType.swift; sourceTree = "<group>"; };
 		CBF6F1322871C4980067E920 /* SNBusinessProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNBusinessProfileView.swift; sourceTree = "<group>"; };
 		CBF6F1342871C4A20067E920 /* SNUserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNUserProfileView.swift; sourceTree = "<group>"; };
 		CBF6F1362871CF2F0067E920 /* ProfileViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewProtocol.swift; sourceTree = "<group>"; };
+		CBF6F1382871D6EF0067E920 /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
+		CBF6F13B2871DFCC0067E920 /* BusinessEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessEditView.swift; sourceTree = "<group>"; };
+		CBF6F13D2871DFD60067E920 /* UserEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditView.swift; sourceTree = "<group>"; };
 		CBF7CBA6286BAAB800183138 /* SNEmailAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNEmailAddress.swift; sourceTree = "<group>"; };
 		CBF7CBA8286BB63600183138 /* SNLocalStorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNLocalStorageKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -183,7 +187,6 @@
 			isa = PBXGroup;
 			children = (
 				CBBC164F285C9EAA007385E3 /* SNLoginView.swift */,
-				CBF6F1292871BFE90067E920 /* SNProfileDetailsView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -342,12 +345,6 @@
 				CBF6F1312871C4900067E920 /* Business */,
 				CBF6F1302871C48A0067E920 /* User */,
 				CBF6F12F2871C4840067E920 /* Common */,
-				CBE44ACA2852112D008E015D /* HomeView.swift */,
-				CBE44AC828521126008E015D /* ProfileView.swift */,
-				CBE44ACF285214BB008E015D /* ShopPostDetailView.swift */,
-				CBE44ACD285213AB008E015D /* ShopPostView.swift */,
-				CB6B468F286749910085EA12 /* NewPostDetailView.swift */,
-				CBD3E1E72853320F0086A3D9 /* ShopPostRowView.swift */,
 				CBD3E1E928533B680086A3D9 /* HelperViews */,
 			);
 			path = Views;
@@ -365,6 +362,13 @@
 			children = (
 				CBBC164A285C9E83007385E3 /* Login */,
 				CBF6F1362871CF2F0067E920 /* ProfileViewProtocol.swift */,
+				CBE44AC828521126008E015D /* ProfileView.swift */,
+				CBF6F13A2871DFB80067E920 /* Profiel Edit */,
+				CBE44ACA2852112D008E015D /* HomeView.swift */,
+				CBE44ACF285214BB008E015D /* ShopPostDetailView.swift */,
+				CBE44ACD285213AB008E015D /* ShopPostView.swift */,
+				CB6B468F286749910085EA12 /* NewPostDetailView.swift */,
+				CBD3E1E72853320F0086A3D9 /* ShopPostRowView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -383,6 +387,16 @@
 				CBF6F1322871C4980067E920 /* SNBusinessProfileView.swift */,
 			);
 			path = Business;
+			sourceTree = "<group>";
+		};
+		CBF6F13A2871DFB80067E920 /* Profiel Edit */ = {
+			isa = PBXGroup;
+			children = (
+				CBF6F1382871D6EF0067E920 /* ProfileEditView.swift */,
+				CBF6F13D2871DFD60067E920 /* UserEditView.swift */,
+				CBF6F13B2871DFCC0067E920 /* BusinessEditView.swift */,
+			);
+			path = "Profiel Edit";
 			sourceTree = "<group>";
 		};
 		CBF7CBA5286BAAAB00183138 /* Custom Types */ = {
@@ -553,13 +567,14 @@
 				CBE44ACB2852112D008E015D /* HomeView.swift in Sources */,
 				CBBC1659285CA86C007385E3 /* NotificationsAccessView.swift in Sources */,
 				CBBC1655285C9EFB007385E3 /* Extension+Font.swift in Sources */,
-				CBF6F12A2871BFE90067E920 /* SNProfileDetailsView.swift in Sources */,
 				CB09C7A42864C6BA00B15C38 /* MainSceneDelegate.swift in Sources */,
+				CBF6F1392871D6EF0067E920 /* ProfileEditView.swift in Sources */,
 				CBE44ACE285213AB008E015D /* ShopPostView.swift in Sources */,
 				CBF7CBA7286BAAB800183138 /* SNEmailAddress.swift in Sources */,
 				CBE44AE228529B87008E015D /* TestingView.swift in Sources */,
 				CBE44AE028523301008E015D /* SNShop+Extensions.swift in Sources */,
 				CBF6F1352871C4A20067E920 /* SNUserProfileView.swift in Sources */,
+				CBF6F13C2871DFCC0067E920 /* BusinessEditView.swift in Sources */,
 				CBF6F12C2871C0F00067E920 /* SNSessionType.swift in Sources */,
 				CB6B469C286879EE0085EA12 /* SNSessionManager.swift in Sources */,
 				CBF7CBA9286BB63600183138 /* SNLocalStorageKeys.swift in Sources */,
@@ -572,6 +587,7 @@
 				CB6B46C22868B5BA0085EA12 /* View+Extensions.swift in Sources */,
 				CB6B4690286749910085EA12 /* NewPostDetailView.swift in Sources */,
 				CBE44AC928521126008E015D /* ProfileView.swift in Sources */,
+				CBF6F13E2871DFD60067E920 /* UserEditView.swift in Sources */,
 				CBBC1650285C9EAA007385E3 /* SNLoginView.swift in Sources */,
 				CBD3E1E428532A1F0086A3D9 /* SNLocationNotification.swift in Sources */,
 				CBD3E1E82853320F0086A3D9 /* ShopPostRowView.swift in Sources */,
