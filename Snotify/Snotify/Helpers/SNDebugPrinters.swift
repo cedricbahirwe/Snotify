@@ -33,3 +33,12 @@ func prints(_ items: Any..., separator: String = " ", terminator: String = "\n")
     print("✅", items, separator, terminator)
     #endif
 }
+
+/// Global function to help print `verbose` on debug scheme only
+///
+/// - Parameter e: error
+func printv(_ items: Any..., separator: String = " ", terminator: String = "\n") {
+    #if DEBUG
+    print("👀", items, separator, terminator)
+    #endif
+}

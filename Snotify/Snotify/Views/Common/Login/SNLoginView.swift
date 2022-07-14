@@ -129,7 +129,7 @@ struct SNLoginView: View {
         case .email:
             focusedField = .password
         default:
-            NSLog("Signing In")
+            printv("Signing In")
             processManualAuth()
         }
     }
@@ -148,6 +148,7 @@ struct SNLoginView: View {
                                                                 loginModel.password) {
                 isSigningIn = false
                 if $0 {
+                    loginModel = .init()
                     prints("Sucessfully registered and logged in")
                 }
             }
