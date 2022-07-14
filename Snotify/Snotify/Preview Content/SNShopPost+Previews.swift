@@ -8,7 +8,7 @@
 import Foundation
 
 extension SNShopPost {
-    static let preview = SNShopPost(id: UUID().uuidString, images: ["iphone1", "iphone2"],
+    static let preview = SNShopPost(id: "CC33DDB4-467C-46BF-B0E9-C98492F327B8", images: ["iphone1", "iphone2"],
                                     description: "Nouveau iphone, avec $500, vous l'avez",
                                     createdDate: Date(timeIntervalSinceNow: -600),
                                     shop: .preview)

@@ -15,26 +15,25 @@ struct ContentView: View {
     @AppStorage(SNKeys.isUserLoggedIn) private var isLoggedIn = false
 
     var body: some View {
-        ZStack {
-            TabView(selection: $selectedTab) {
-                HomeView()
-                    .tabItem {
-                        Label("Home", systemImage: "house")
-                    }
-                    .tag(SNTab.home)
-
-                ProfileView()
-                    .tabItem {
-                        Label("Profile", systemImage: "person")
-                    }
-                    .tag(SNTab.profile)
-            }
-
-            SNLoginView()
-                .rotation3DEffect(isLoggedIn ? .degrees(90) : .zero, axis: (x: 0, y: -10, z: 0))
-        }
-        .onAppear() {
-        }
+        TestingView.init()
+//        ZStack {
+//            TabView(selection: $selectedTab) {
+//                HomeView()
+//                    .tabItem {
+//                        Label("Home", systemImage: "house")
+//                    }
+//                    .tag(SNTab.home)
+//
+//                ProfileView()
+//                    .tabItem {
+//                        Label("Profile", systemImage: "person")
+//                    }
+//                    .tag(SNTab.profile)
+//            }
+//
+//            SNLoginView()
+//                .rotation3DEffect(isLoggedIn ? .degrees(90) : .zero, axis: (x: 0, y: -10, z: 0))
+//        }
     }
 
 }

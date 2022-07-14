@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct SNShopPost: Identifiable {
+public struct SNShopPost: Identifiable, Codable {
     public var id: String
     public var images: [String]
     public var description: String?

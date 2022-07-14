@@ -14,7 +14,6 @@ public struct SNShop : Identifiable, Codable {
     public var profilePicture: String?
     public var location: SNLocation?
     public var description: String?
-    public var metadata: [String: String]
 }
 
 public struct SNLocation:  Codable {
