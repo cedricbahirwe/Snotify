@@ -72,7 +72,7 @@ final class MainAppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
     }
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        NSLog(error.localizedDescription)
+        NSLog("Notificaiton failure", error.localizedDescription)
     }
 
     func application(_ application: UIApplication,

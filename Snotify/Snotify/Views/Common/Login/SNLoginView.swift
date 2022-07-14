@@ -13,6 +13,7 @@ struct SNLoginView: View {
 
     // - MARK: - Private Properties
     @State private var loginModel = LoginModel()
+    @FocusState private var focusedField: LoginModel.Field?
 
     var body: some View {
         ZStack {
@@ -31,6 +32,8 @@ struct SNLoginView: View {
                             Text("Email")
                                 .font(.rounded(weight: .bold))
                             TextField("nom@domain.com", text: $loginModel.email)
+                                .focused($focusedField, equals: .email)
+                                .submitLabel(.next)
                                 .textContentType(.emailAddress)
                                 .keyboardType(.emailAddress)
                                 .textInputAutocapitalization(.never)
@@ -48,6 +51,8 @@ struct SNLoginView: View {
                                 .font(.rounded(weight: .bold))
 
                             SecureField("Enter votre mot de passe", text: $loginModel.password)
+                                .focused($focusedField, equals: .password)
+                                .submitLabel(.join)
                                 .textContentType(showRegistrationView ? .newPassword : .password)
                                 .font(.rounded())
                                 .padding(.horizontal)
@@ -85,8 +90,11 @@ struct SNLoginView: View {
                         }.hidden()
 
                         if showRegistrationView {
-                            ctaButton
+                            signUpView
                         }
+                    }
+                    .onSubmit {
+                        manageKeyboardFocus()
                     }
                 }
 
@@ -116,6 +124,16 @@ struct SNLoginView: View {
         }
     }
 
+    private func manageKeyboardFocus() {
+        switch focusedField {
+        case .email:
+            focusedField = .password
+        default:
+            printv("Signing In")
+            processManualAuth()
+        }
+    }
+
     private func handleGoogleLogin() {
         isSigningIn = true
         SNFirebaseManager.shared.loginWithGoogle { isSigningIn = false }
@@ -123,12 +141,14 @@ struct SNLoginView: View {
 
     private func processManualAuth() {
         guard loginModel.isValid() else { return }
+        focusedField = nil
         isSigningIn = true
         if showRegistrationView {
             SNFirebaseManager.shared.signUpWithEmailAndPassword(loginModel.email,
                                                                 loginModel.password) {
                 isSigningIn = false
                 if $0 {
+                    loginModel = .init()
                     prints("Sucessfully registered and logged in")
                 }
             }
@@ -153,52 +173,15 @@ private extension SNLoginView {
                 Color.gray.frame(height: 1)
             }
             HStack(spacing: 18) {
-                Button(action: handleGoogleLogin) {
+                googleSignInView
 
-                    Label(title:{
-                        Text("Google")
-                    }) {
-                        Image("google")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 20, height: 20)
-                    }
-                    .font(.rounded(weight: .semibold))
-                    .foregroundColor(.blue)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 45)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(Color.accentColor, lineWidth: 1)
-                    )
-                }
-
-                Button {
-                    // Password
-                } label: {
-                    Label(title:{
-                        Text("Facebook")
-                    }) {
-                        Image("facebook")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 20, height: 20)
-                    }
-                    .font(.rounded(weight: .semibold))
-                    .foregroundColor(.blue)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 45)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(Color.accentColor, lineWidth: 1)
-                    )
-                }
+//                facebookSignInView
             }
-            ctaButton
+            signUpView
         }
     }
 
-    private var ctaButton: some View {
+    private var signUpView: some View {
         Button {
             withAnimation {
                 showRegistrationView.toggle()
@@ -211,6 +194,52 @@ private extension SNLoginView {
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 30)
+    }
+}
+
+private extension SNLoginView {
+    var googleSignInView: some View {
+        Button(action: handleGoogleLogin) {
+
+            Label(title:{
+                Text("Google")
+            }) {
+                Image("google")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 20, height: 20)
+            }
+            .font(.rounded(weight: .semibold))
+            .foregroundColor(.blue)
+            .frame(maxWidth: .infinity)
+            .frame(height: 45)
+            .overlay(
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(Color.accentColor, lineWidth: 1)
+            )
+        }
+    }
+    var facebookSignInView: some View {
+        Button {
+            // Password
+        } label: {
+            Label(title:{
+                Text("Facebook")
+            }) {
+                Image("facebook")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 20, height: 20)
+            }
+            .font(.rounded(weight: .semibold))
+            .foregroundColor(.blue)
+            .frame(maxWidth: .infinity)
+            .frame(height: 45)
+            .overlay(
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(Color.accentColor, lineWidth: 1)
+            )
+        }
     }
 }
 
@@ -235,6 +264,11 @@ private extension SNLoginView {
 
         func isValid() -> Bool {
             isEmailValid && isPasswordValid
+        }
+
+        enum Field {
+            case email
+            case password
         }
     }
 }

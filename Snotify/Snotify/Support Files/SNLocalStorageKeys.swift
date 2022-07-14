@@ -10,4 +10,6 @@ import Foundation
 public typealias SNKeys = SNLocalStorageKeys
 public enum SNLocalStorageKeys {
     static let isUserLoggedIn = "isUserLoggedIn"
+
+    static let snUserType = "snUserType"
 }
