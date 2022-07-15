@@ -20,12 +20,16 @@ final class SNShopPostListViewModel: ObservableObject {
             .store(in: &cancellables )
     }
 
-    public func addNewPost(_ post: SNShopPost) {
+    public func addLocalPost(_ post: SNShopPost) {
         let postVM = SNShopPostViewModel(post)
         self.shopPostVM.append(postVM)
     }
 
-    public func insetNewPost(_ post: SNShopPost, at index: Int) {
+    public func addRemotePost(_ post: SNShopPost) {
+        postRepository.addPost(post)
+    }
+
+    public func insertNewPost(_ post: SNShopPost, at index: Int) {
         let postVM = SNShopPostViewModel(post)
         self.shopPostVM.insert(postVM, at: index)
     }

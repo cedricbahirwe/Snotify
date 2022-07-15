@@ -28,7 +28,9 @@ final class SNPostRepository: ObservableObject {
             if let querySnapshot = querySnapshot {
                 let result = querySnapshot.documents.compactMap { document -> SNShopPost? in
                     do {
-                        return try document.data(as: SNShopPost.self)
+                        let res = try document.data(as: SNShopPost.self)
+                        printf(res)
+                        return res
                     } catch {
                         printf("Decoding error:", error, querySnapshot.documents.forEach { print($0.data()) } )
                         return nil
@@ -37,6 +39,14 @@ final class SNPostRepository: ObservableObject {
                 
                 self.posts = result
             }
+        }
+    }
+
+    public func addPost(_ post: SNShopPost) {
+        do {
+            let _ = try db.collection(.posts).addDocument(from: post)
+        } catch {
+            printf("Upload error:", error.localizedDescription)
         }
     }
 

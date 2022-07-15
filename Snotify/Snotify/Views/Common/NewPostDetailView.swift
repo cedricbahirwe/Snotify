@@ -15,6 +15,7 @@ struct NewPostDetailView: View {
     @State private var selectedCurrency: String = "USD"
     @State private var postDescription = ""
     @EnvironmentObject private var snPostingManager: SNPostingManager
+    @State private var postModel = SNShopPost()
     var body: some View {
         ScrollView {
             VStack {
@@ -37,7 +38,7 @@ struct NewPostDetailView: View {
                     }
 
                     HStack {
-                        TextField("Enter un prix...", text: .constant(""))
+                        TextField("Enter un prix...", text:  .constant(""))
                             .keyboardType(.decimalPad)
 
                         Picker("Choisissez votre devise", selection: $selectedCurrency) {
@@ -64,7 +65,7 @@ struct NewPostDetailView: View {
                         InfoButton(.price)
                     }
 
-                    TextField("Laissez un commentaire...", text: .constant(""))
+                    TextField("Laissez un commentaire...", text:  .constant(""))
                 }
 
                 Divider()
@@ -101,8 +102,6 @@ struct NewPostDetailView: View {
         let post = SNShopPost(id: UUID().uuidString,
                               images: [imageName],
                               description: postDescription,
-                              createdDate: Date(),
-                              views: 0,
                               shop: .preview)
         SNPostingManager.shared.publishPost(post)
     }

@@ -34,12 +34,12 @@ struct ShopPostDetailView: View {
                 .frame(width: 40, height: 40)
 
                 VStack(alignment: .leading, spacing: 0) {
-                    Text("Chez Mama Esther")
+                    Text(post.shop.name)
                         .font(.system(.body, design: .rounded))
                         .fontWeight(.medium)
                         .minimumScaleFactor(0.9)
                         .lineLimit(1)
-                    Text("Virunga, Depot No.01")
+                    Text(post.shop.address)
                         .font(.caption)
                         .minimumScaleFactor(0.85)
                         .lineLimit(1)
@@ -61,19 +61,21 @@ struct ShopPostDetailView: View {
             }
 
             Color.gray
-                .frame(maxWidth: 400, maxHeight: 400)
-                .cornerRadius(10)
                 .hidden()
                 .overlay(postImageView)
+                .frame(maxWidth: 400, maxHeight: 400)
+                .cornerRadius(10)
+
 
             VStack {
-                Text("Nouveau iphone, avec $500, vous l'avez")
-                    .lineLimit(2)
+                Text(post.description ?? "")
+                    .lineLimit(5)
             }
 
-            Spacer()
+            Spacer(minLength: 0)
         }
         .padding(.horizontal)
+        .background(Color.red)
     }
 
     private var postImageView: some View {

@@ -10,7 +10,10 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 public struct SNShopPost: Identifiable, Codable {
-    public init(id: String, images: [String], description: String? = nil, createdDate: Date, comments: String? = nil, price: Double? = nil, currency: String? = nil, views: Int, shop: SNShop) {
+    public init(id: String?, images: [String], description: String? = nil,
+                createdDate: Date = Date(), comments: String? = nil,
+                price: Double? = nil, currency: String? = nil,
+                views: Int = 0, shop: SNShop) {
         self.id = id
         self.images = images
         self.description = description
@@ -21,7 +24,19 @@ public struct SNShopPost: Identifiable, Codable {
         self.views = views
         self.shopItem = shop
     }
-
+    
+    public init(shop: SNShop? = nil) {
+        self.id = nil
+        self.images = []
+        self.description = nil
+        self.createdDate = Date()
+        self.comments = nil
+        self.price = nil
+        self.currency = nil
+        self.views = 0
+        self.shopItem = nil
+    }
+    
     @DocumentID public var id: String?
     public var images: [String]
     public var description: String?
@@ -31,6 +46,6 @@ public struct SNShopPost: Identifiable, Codable {
     public var currency: String?
     public var views: Int
     public var shopItem: SNShop?
-
+    
     var shop: SNShop { shopItem ?? SNShop.preview }
 }
