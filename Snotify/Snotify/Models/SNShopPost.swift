@@ -15,5 +15,6 @@ public struct SNShopPost: Identifiable, Codable {
     public var comments: String?
     public var price: Double?
     public var currency: String?
+    public var views: Int
     public var shop: SNShop
 }

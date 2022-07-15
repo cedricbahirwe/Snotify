@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var newPosts: [SNShopPost] = SNShopPost.previews
+    @StateObject var shopPostListVM = SNShopPostListViewModel()
+//    @State private var newPosts: [SNShopPost] = SNShopPost.previews
     @State private var isLoading: Bool = false
     @State private var isAShop: Bool = false
     @StateObject private var snPostingManager = SNPostingManager.shared
@@ -30,20 +31,20 @@ struct HomeView: View {
                         .animation(.easeInOut, value: snPostingManager.isPublishingPost)
                         .onDisappear() {
                             withAnimation {
-                                newPosts.insert(newPost, at: 0)
+                                shopPostListVM.insetNewPost(newPost, at: 0)
                             }
                         }
                     }
                 }
                 
-                ForEach(newPosts) { post in
+                ForEach(shopPostListVM.shopPostVM) { postCell  in
                     ZStack(alignment: .leading) {
                         NavigationLink {
-                            ShopPostDetailView(post: post)
+                            ShopPostDetailView(post: postCell.post)
                         } label: { EmptyView() }
                             .opacity(0)
 
-                        ShopPostRowView(post)
+                        ShopPostRowView(postCell: postCell)
                     }
                     .listRowBackground(EmptyView())
                     .listRowSeparator(.hidden)

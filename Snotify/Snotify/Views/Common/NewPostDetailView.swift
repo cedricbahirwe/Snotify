@@ -102,6 +102,7 @@ struct NewPostDetailView: View {
                               images: [imageName],
                               description: postDescription,
                               createdDate: Date(),
+                              views: 0,
                               shop: .preview)
         SNPostingManager.shared.publishPost(post)
     }

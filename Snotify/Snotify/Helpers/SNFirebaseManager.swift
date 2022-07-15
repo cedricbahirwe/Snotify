@@ -26,6 +26,10 @@ final class SNFirebaseManager: NSObject {
         super.init()
     }
 
+    public func getCurrentUserID() -> String? {
+        firebaseAuth.currentUser?.uid
+    }
+
     /// Sig In usin `GoogleSinIn` and on success sign In in `Firebase`
     /// - Parameter completion: <#completion description#>
     func loginWithGoogle(completion: @escaping() -> Void) {

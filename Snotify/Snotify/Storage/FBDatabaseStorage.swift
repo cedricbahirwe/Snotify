@@ -9,11 +9,14 @@ import Foundation
 import FirebaseDatabase
 
 final class FBDatabaseStorage {
+    // Shared instance
     static let shared = FBDatabaseStorage()
-    // MARK: - Private Initializer
-    private init() { }
+
     // Store reference to our real time NoSQL DataBase
     private let database = Database.database().reference()
+
+    // MARK: - Private Initializer
+    private init() { }
 
     public func getDatabase() -> DatabaseReference {
         return database
@@ -34,13 +37,24 @@ final class FBDatabaseStorage {
     }
 
     // MARK: - Read Operations
-    public func getValue(forKey key: String) -> Decodable? {
-//        database.child(key).val
-        print(database.value(forKey: key))
-        print("Can", database.value(forKey: key) as? Decodable)
-        return database.value(forKey: key) as? Decodable
-    }
+    public func getValue<T: Decodable>(forKey key: String, completionHandler: @escaping (T?) -> Void) {
+        FBDatabaseStorage.shared.getDatabase()
+            .child(key)
+            .observeSingleEvent(of: .value) { snapshot in
+                guard let dictionary = snapshot.value as? SNDictionary else {
+                    printf("Not a dictionary", snapshot.value ?? "-")
+                    return
+                }
 
+                do {
+                    let result = try SNParser.decode(dictionary, as: T.self)
+                    completionHandler(result)
+                } catch {
+                    printf("Decoding Error: \(error.localizedDescription)")
+                    completionHandler(nil)
+                }
+            }
+    }
 
     // MARK: - Update Operations
 

@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct ShopPostRowView: View {
-    var post: SNShopPost
-    init(_ postUpdate: SNShopPost) {
-        self.post = postUpdate
-    }
+    @ObservedObject var postCell: SNShopPostViewModel
+
+    private var post: SNShopPost { postCell.post }
     @State private var hasSubscribed = false
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack {
-                let image = post.shop.profilePicture ?? "iphone1"
+                let image = postCell.post.shop.profilePicture ?? "iphone1"
                 Image(image)
                     .resizable()
                     .clipShape(Circle())
@@ -99,7 +98,7 @@ struct ShopPostRowView: View {
 
 struct ShopPostRowView_Previews: PreviewProvider {
     static var previews: some View {
-        ShopPostRowView(.previews[0])
+        ShopPostRowView(postCell: .init(.previews[0]))
             .padding()
             .previewLayout(.fixed(width: 410, height: 400))
     }

@@ -8,25 +8,8 @@
 import SwiftUI
 
 struct TestingView: View {
-    var post = SNShopPost.preview
+    let post = SNShopPost.preview
 
-    init() {
-        FBDatabaseStorage.shared.getDatabase()
-            .child(post.id)
-            .observeSingleEvent(of: .value) { snapshot in
-                guard let postDict = snapshot.value as? SNDictionary else {
-                    printv(snapshot.value ?? "-")
-                    return
-                }
-
-                do {
-                    let decodedPost = try SNParser.decode(postDict, as: SNShopPost.self)
-                    prints(decodedPost)
-                } catch {
-                    printf("Decoding Error: \(error.localizedDescription)")
-                }
-            }
-    }
     var body: some View {
         VStack {
 
@@ -47,7 +30,7 @@ struct TestingView: View {
     }
 
     private func getValue() {
-        FBDatabaseStorage.shared.getValue(forKey: post.id)
+//        FBDatabaseStorage.shared.getValue(forKey: post.id)
     }
 }
 
