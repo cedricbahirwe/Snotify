@@ -13,16 +13,26 @@ struct ShopPostDetailView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack {
-                Image("iphone1")
-                    .resizable()
-                    .clipShape(Circle())
-                    .padding(2)
-                    .background(.background)
-                    .clipShape(Circle())
-                    .padding(1)
-                    .background(.secondary)
-                    .clipShape(Circle())
-                    .frame(width: 40, height: 40)
+                Group {
+                    if let url = URL(string: post.shop.profilePicture ?? "") {
+                        AsyncImage(url: url){ image in
+                            image.resizable()
+                        } placeholder: {
+                            Color.gray
+                        }
+                    } else {
+                        Color.gray
+                    }
+                }
+                .clipShape(Circle())
+                .padding(2)
+                .background(.background)
+                .clipShape(Circle())
+                .padding(1)
+                .background(.secondary)
+                .clipShape(Circle())
+                .frame(width: 40, height: 40)
+
                 VStack(alignment: .leading, spacing: 0) {
                     Text("Chez Mama Esther")
                         .font(.system(.body, design: .rounded))
@@ -48,25 +58,38 @@ struct ShopPostDetailView: View {
                         .background(hasSubscribed ? .green : .clear, in: RoundedRectangle(cornerRadius: 13))
                         .overlay(RoundedRectangle(cornerRadius: 13).stroke(Color.green, lineWidth: 1))
                 }
-                .redacted(reason: .placeholder)
-
             }
-            .padding()
-            Image("iphone2")
-                .resizable()
-                .scaledToFill()
+
+            Color.gray
                 .frame(maxWidth: 400, maxHeight: 400)
                 .cornerRadius(10)
+                .hidden()
+                .overlay(postImageView)
 
             VStack {
                 Text("Nouveau iphone, avec $500, vous l'avez")
                     .lineLimit(2)
             }
 
-
             Spacer()
         }
-        .padding()
+        .padding(.horizontal)
+    }
+
+    private var postImageView: some View {
+        ZStack {
+            if let url = URL(string: post.images.isEmpty ? "" : post.images[0]) {
+                AsyncImage(url: url) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                } placeholder: {
+                    Color.gray
+                }
+            } else {
+                Color.gray
+            }
+        }
     }
 }
 

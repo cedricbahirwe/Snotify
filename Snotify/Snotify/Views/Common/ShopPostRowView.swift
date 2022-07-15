@@ -15,18 +15,15 @@ struct ShopPostRowView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack {
-//                let image = postCell.post.shop.profilePicture ?? "iphone1"
                 Group {
                     if let url = URL(string: postCell.post.shop.profilePicture ?? "") {
                         AsyncImage(url: url){ image in
                             image.resizable()
                         } placeholder: {
-                            Color.secondary
+                            Color.gray
                         }
-//                        .clipShape(Circle())
-//                        .frame(width: 40, height: 40)
                     } else {
-                        Color.secondary
+                        Color.gray
                     }
                 }
                 .clipShape(Circle())
