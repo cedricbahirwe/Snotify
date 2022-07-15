@@ -8,17 +8,17 @@
 import Combine
 
 final class SNShopPostListViewModel: ObservableObject {
+    @Published private var postRepository = SNPostRepository()
     @Published private(set) var shopPostVM = [SNShopPostViewModel]()
 
     private var cancellables = Set<AnyCancellable>()
 
-
     init() {
-
-        self.shopPostVM = SNShopPost.previews.map(SNShopPostViewModel.init)
-
+        postRepository.$posts
+            .map({ $0.map(SNShopPostViewModel.init) })
+            .assign(to: \.shopPostVM, on: self)
+            .store(in: &cancellables )
     }
-
 
     public func addNewPost(_ post: SNShopPost) {
         let postVM = SNShopPostViewModel(post)
@@ -29,5 +29,4 @@ final class SNShopPostListViewModel: ObservableObject {
         let postVM = SNShopPostViewModel(post)
         self.shopPostVM.insert(postVM, at: index)
     }
-
 }

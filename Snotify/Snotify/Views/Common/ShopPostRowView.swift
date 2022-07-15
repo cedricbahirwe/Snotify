@@ -15,17 +15,29 @@ struct ShopPostRowView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack {
-                let image = postCell.post.shop.profilePicture ?? "iphone1"
-                Image(image)
-                    .resizable()
-                    .clipShape(Circle())
-                    .padding(2)
-                    .background(.background)
-                    .clipShape(Circle())
-                    .padding(1)
-                    .background(.secondary)
-                    .clipShape(Circle())
-                    .frame(width: 40, height: 40)
+//                let image = postCell.post.shop.profilePicture ?? "iphone1"
+                Group {
+                    if let url = URL(string: postCell.post.shop.profilePicture ?? "") {
+                        AsyncImage(url: url){ image in
+                            image.resizable()
+                        } placeholder: {
+                            Color.secondary
+                        }
+//                        .clipShape(Circle())
+//                        .frame(width: 40, height: 40)
+                    } else {
+                        Color.secondary
+                    }
+                }
+                .clipShape(Circle())
+                .padding(2)
+                .background(.background)
+                .clipShape(Circle())
+                .padding(1)
+                .background(.secondary)
+                .clipShape(Circle())
+                .frame(width: 40, height: 40)
+
                 VStack(alignment: .leading, spacing: 0) {
                     Text(post.shop.name)
                         .font(.system(.body, design: .rounded))
@@ -54,7 +66,7 @@ struct ShopPostRowView: View {
                     }
                     .buttonStyle(.plain)
 
-                    Button(action: showMore) {
+                    Button(action: {}) {
                         Image(systemName: "ellipsis")
                             .foregroundColor(.primary)
                             .padding(5)
@@ -62,18 +74,15 @@ struct ShopPostRowView: View {
                 }
             }
 
-            VStack(spacing: 0) {
-                let image = post.images.isEmpty ? "iphone1" : post.images[0]
-                Image(image)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(maxWidth: UIScreen.main.bounds.width-10)
-                    .overlay(
-                        shopContactBanner, alignment: .bottom
-                    )
-                    .padding(.bottom, 35)
-            }
-            .clipped()
+            Image("iphone1")
+                .resizable()
+                .scaledToFill()
+                .frame(maxWidth: UIScreen.main.bounds.width-10)
+                .hidden()
+                .overlay(postImageView)
+                .overlay(shopContactBanner, alignment: .bottom)
+                .padding(.bottom, 35)
+                .clipped()
 
             VStack(alignment: .leading, spacing: 5) {
                 if let description = post.description {
@@ -86,13 +95,24 @@ struct ShopPostRowView: View {
                     .font(.system(.caption, design: .rounded))
                     .foregroundColor(.secondary)
             }
-
         }
         .padding(.bottom)
     }
 
-    private func showMore() {
-
+    private var postImageView: some View {
+        ZStack {
+            if let url = URL(string: post.images.isEmpty ? "" : post.images[0]) {
+                AsyncImage(url: url) { image in
+                    image
+                        .resizable()
+                        .scaledToFill()
+                } placeholder: {
+                    Color.gray
+                }
+            } else {
+                Color.gray
+            }
+        }
     }
 }
 

@@ -48,11 +48,12 @@ struct HomeView: View {
                     }
                     .listRowBackground(EmptyView())
                     .listRowSeparator(.hidden)
-                    .redacted(reason: isLoading ? .init() : .placeholder)
+                    .redacted(reason: isLoading ? .placeholder : .init())
                 }
             }
             .listStyle(PlainListStyle())
-            .fullScreenCover(isPresented: $snPostingManager.isSubmitMode, onDismiss: {
+            .fullScreenCover(isPresented: $snPostingManager.isSubmitMode,
+                             onDismiss: {
                 // On Dismiss, Do Something (e.g: Reload)
             }, content: {
                 ShopPostView()
@@ -72,9 +73,9 @@ struct HomeView: View {
                 }
             }
             .onAppear() {
-                DispatchQueue.main.asyncAfter(deadline: .now()+2) {
-                    self.isLoading = true
-                }
+//                DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+//                    self.isLoading = true
+//                }
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())

@@ -26,7 +26,7 @@ struct TestingView: View {
     }
 
     private func saveValue() {
-        FBDatabaseStorage.shared.save(post, forKey: post.id)
+        FBDatabaseStorage.shared.save(post, forKey: post.id ?? UUID().uuidString)
     }
 
     private func getValue() {
