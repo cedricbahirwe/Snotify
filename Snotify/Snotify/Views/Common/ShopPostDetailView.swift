@@ -75,7 +75,6 @@ struct ShopPostDetailView: View {
             Spacer(minLength: 0)
         }
         .padding(.horizontal)
-        .background(Color.red)
     }
 
     private var postImageView: some View {

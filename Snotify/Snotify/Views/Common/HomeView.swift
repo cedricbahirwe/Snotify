@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var shopPostListVM = SNShopPostListViewModel()
-//    @State private var newPosts: [SNShopPost] = SNShopPost.previews
+    @StateObject var shopsListVM = SNShopsListViewModel()
     @State private var isLoading: Bool = false
     @State private var isAShop: Bool = false
     @StateObject private var snPostingManager = SNPostingManager.shared
@@ -19,9 +19,19 @@ struct HomeView: View {
                 if let newPost = snPostingManager.temporaryPost {
                     if snPostingManager.isPublishingPost {
                         HStack {
-                            Image(newPost.images.first ?? "")
-                                .resizable()
-                                .frame(width: 50, height: 50)
+                            Group {
+                                if let url = URL(string: newPost.images.first ?? "") {
+                                    AsyncImage(url: url){ image in
+                                        image.resizable()
+                                    } placeholder: {
+                                        Color.gray
+                                    }
+                                } else {
+                                    Color.gray
+                                }
+                            }
+                            .frame(width: 40, height: 40)
+                            .clipped()
                             Text("Publier par \(newPost.shop.name)")
                                 .foregroundColor(.gray)
                         }

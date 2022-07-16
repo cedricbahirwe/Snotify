@@ -23,6 +23,7 @@ struct ShopPostRowView: View {
                             Color.gray
                         }
                     } else {
+                        Image(systemName: "house.fill")
                         Color.gray
                     }
                 }

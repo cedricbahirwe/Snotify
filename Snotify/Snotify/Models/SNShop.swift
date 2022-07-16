@@ -10,7 +10,9 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 public struct SNShop : Identifiable, Codable {
-    public init(id: String, name: String, address: String, profilePicture: String? = nil, location: SNLocation? = nil, description: String? = nil) {
+    public init(id: String, name: String, address: String,
+                profilePicture: String? = nil, location: SNLocation?,
+                description: String? = nil) {
         self.id = id
         self.name = name
         self.address = address
@@ -19,7 +21,8 @@ public struct SNShop : Identifiable, Codable {
         self.description = description
     }
 
-    @DocumentID public var id: String?
+//    @DocumentID
+    public var id: String?
     public var name: String
     public var address: String
     public var profilePicture: String?

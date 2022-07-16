@@ -9,4 +9,5 @@ import Foundation
 
 public enum SNFBCollectionName: String {
     case posts
+    case shops
 }

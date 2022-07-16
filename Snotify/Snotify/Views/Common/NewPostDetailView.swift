@@ -10,12 +10,9 @@ import SwiftUI
 struct NewPostDetailView: View {
     let imageName: String
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.editMode) private var editMode
-    private let currencies = ["USD", "CDF"]
-    @State private var selectedCurrency: String = "USD"
-    @State private var postDescription = ""
+    private let currencies: [SNCurrency] = SNCurrency.allCases
     @EnvironmentObject private var snPostingManager: SNPostingManager
-    @State private var postModel = SNShopPost()
+    @State private var postModel = SNShopPost(shop: . previews.randomElement()!)
     var body: some View {
         ScrollView {
             VStack {
@@ -23,8 +20,7 @@ struct NewPostDetailView: View {
                     Image(imageName)
                         .resizable()
                         .frame(width: 60, height: 60)
-                    TextField("Enter une description", text: $postDescription)
-
+                    TextField("Enter une description", text: $postModel.description)
                 }
 
                 Divider()
@@ -38,15 +34,14 @@ struct NewPostDetailView: View {
                     }
 
                     HStack {
-                        TextField("Enter un prix...", text:  .constant(""))
+                        TextField("Entrer le prix...", value:  $postModel.price, format: .number)
                             .keyboardType(.decimalPad)
 
-                        Picker("Choisissez votre devise", selection: $selectedCurrency) {
-                            ForEach(currencies, id:\.self) { currency in
-                                Text(currency)
+                        Picker("Choisissez votre devise", selection: $postModel.currency) {
+                            ForEach(currencies, id: \.self) { currency in
+                                Text(currency.rawValue)
                                     .font(.body.weight(.semibold))
                                     .tag(currency)
-                                    .id(currency)
                             }
                         }
                         .pickerStyle(SegmentedPickerStyle())
@@ -65,14 +60,9 @@ struct NewPostDetailView: View {
                         InfoButton(.price)
                     }
 
-                    TextField("Laissez un commentaire...", text:  .constant(""))
+                    TextField("Laissez un commentaire...", text: $postModel.comments)
                 }
 
-                Divider()
-
-                Toggle("Publier seulement à mes abonnés", isOn: .constant(true))
-                    .opacity(0.5)
-                    .disabled(true)
                 Divider()
 
             }
@@ -99,11 +89,9 @@ struct NewPostDetailView: View {
     }
 
     private func publishPost() {
-        let post = SNShopPost(id: UUID().uuidString,
-                              images: [imageName],
-                              description: postDescription,
-                              shop: .preview)
-        SNPostingManager.shared.publishPost(post)
+        self.postModel.images = SNShopPost.preview.images
+        self.postModel.shop.location = SNLocation.ramdomLocation
+        SNPostingManager.shared.publishPost(postModel)
     }
 }
 

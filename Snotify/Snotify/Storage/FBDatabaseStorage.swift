@@ -50,7 +50,7 @@ final class FBDatabaseStorage {
                     let result = try SNParser.decode(dictionary, as: T.self)
                     completionHandler(result)
                 } catch {
-                    printf("Decoding Error: \(error.localizedDescription)")
+                    printf("DB Decoding Error: \(error.localizedDescription)")
                     completionHandler(nil)
                 }
             }

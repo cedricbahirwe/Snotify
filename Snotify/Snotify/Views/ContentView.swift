@@ -11,7 +11,6 @@ struct ContentView: View {
     @EnvironmentObject
     private var appDelegate: MainAppDelegate
     @State private var selectedTab: SNTab = SNTab.home
-
     @AppStorage(SNKeys.isUserLoggedIn) private var isLoggedIn = false
 
     var body: some View {
