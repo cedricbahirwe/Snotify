@@ -10,29 +10,50 @@ import MapKit
 
 struct SNBusinessProfileView: ProfileViewProtocol {
     var sessionType: SNSessionType = .customer
+    @StateObject var shopsListVM = SNShopsListViewModel()
     @State private var showSettingsView = false
+
+    private var shopVM: SNShopViewModel {
+        shopsListVM.shopsVM.first ?? .init(.preview)
+    }
+    private var hasLoadShop: Bool { shopsListVM.shopsVM.first != nil }
     var body: some View {
         ZStack {
             VStack(alignment: .leading) {
                 HStack(spacing: 20) {
-                    Image("iphone1")
-                        .resizable()
-                        .frame(width: 80, height: 80)
-                        .mask(Circle())
-                        .clipShape(Circle())
-                        .padding(3)
-                        .overlay(
-                            Circle()
-                                .stroke(Color.accentColor, lineWidth: 2)
-                        )
-
+                    Group {
+                        if let url = URL(string: shopVM.shop.profilePicture ?? "") {
+                            AsyncImage(url: url){ image in
+                                image.resizable()
+                            } placeholder: {
+                                Color.gray
+                            }
+                        } else {
+                            Color.gray
+                        }
+                    }
+                    .clipShape(Circle())
+                    .padding(2)
+                    .background(.background)
+                    .clipShape(Circle())
+                    .padding(1)
+                    .background(.secondary)
+                    .clipShape(Circle())
+                    .frame(width: 80, height: 80)
+                    .mask(Circle())
+                    .clipShape(Circle())
+                    .padding(3)
+                    .overlay(
+                        Circle()
+                            .stroke(Color.accentColor, lineWidth: 2)
+                    )
 
                     HStack {
-                        vStackView("7", "Publications")
+                        vStackView("\(shopVM.shop.postsCount)", "Publications")
                             .frame(maxWidth: .infinity)
-                        vStackView("100", "Abonnés")
+                        vStackView("\(shopVM.shop.followers)", "Abonnés")
                             .frame(maxWidth: .infinity)
-                        vStackView("1233", "J'aime")
+                        vStackView("\(shopVM.shop.likes)", "J'aime")
                             .frame(maxWidth: .infinity)
                     }
                     .frame(maxWidth: .infinity)
@@ -67,7 +88,7 @@ struct SNBusinessProfileView: ProfileViewProtocol {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 HStack {
-                    Text("Business Name")
+                    Text(shopVM.shop.name)
                         .bold()
                 }
             }
@@ -101,20 +122,19 @@ private extension SNBusinessProfileView {
 
     var shopDetailsView: some View {
         VStack(alignment: .leading) {
-            Text("Business Name")
-            Text("Catégorie(s)")
-                .font(.caption)
-                .foregroundColor(.secondary)
-            Text("Business Description is where the business can describe what they do or what theoffer.")
+            Text(shopVM.shop.name)
+            if let categories = shopVM.shop.categories.map(\.rawValue), categories.count > 0 {
+                Text("Catégorie(s)")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+
+            Text(shopVM.shop.description ?? "...")
                 .font(.callout.weight(.light))
 
-
-            Group {
-                Text("Business Address If Any.")
-                Text("Business Website Link If Any.")
-            }
-            .font(.callout)
-            .foregroundColor(.blue)
+            Text(shopVM.shop.address)
+                .font(.callout)
+                .foregroundColor(.blue)
 
         }
     }
@@ -134,29 +154,32 @@ private extension SNBusinessProfileView {
                     .overlay(ctaOverlay)
             }
 
-
-            Button {
-                //
-            } label: {
-                Text("Contacter")
-                    .font(.callout.weight(.semibold))
-                    .padding(.horizontal, 6)
-                    .frame(maxWidth: Layout.ctaFrame.width)
-                    .frame(height: Layout.ctaFrame.height)
-                    .background(Color.clear)
-                    .overlay(ctaOverlay)
+            if shopVM.shop.canCall() {
+                Button {
+                    shopVM.shop.callShop()
+                } label: {
+                    Text("Contacter")
+                        .font(.callout.weight(.semibold))
+                        .padding(.horizontal, 6)
+                        .frame(maxWidth: Layout.ctaFrame.width)
+                        .frame(height: Layout.ctaFrame.height)
+                        .background(Color.clear)
+                        .overlay(ctaOverlay)
+                }
             }
 
-            Button(action: openMapForPlace) {
-                Text("Voir sur Maps")
-                    .font(.callout.weight(.semibold))
-                    .padding(.horizontal, 8)
-                    .frame(maxWidth: Layout.ctaFrame.width)
-                    .frame(height: Layout.ctaFrame.height)
-                    .background(Color.clear)
-                    .overlay(ctaOverlay)
+            if shopVM.shop.location != nil {
+                Button(action: openMapForPlace) {
+                    Text("Voir sur Maps")
+                        .font(.callout.weight(.semibold))
+                        .padding(.horizontal, 8)
+                        .frame(maxWidth: Layout.ctaFrame.width)
+                        .frame(height: Layout.ctaFrame.height)
+                        .background(Color.clear)
+                        .overlay(ctaOverlay)
+                }
+                .fixedSize()
             }
-            .fixedSize()
         }
     }
 
@@ -180,11 +203,9 @@ private extension SNBusinessProfileView {
     }
 
     func openMapForPlace() {
-        let latitude:CLLocationDegrees = 0
-        let longitude:CLLocationDegrees = 0
-
+        guard let location = shopVM.shop.location else { return }
         let regionDistance:CLLocationDistance = 10000
-        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+        let coordinates = CLLocationCoordinate2DMake(location.latitude, location.longitude)
         let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
         let options = [
             MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
@@ -192,7 +213,7 @@ private extension SNBusinessProfileView {
         ]
         let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
         let mapItem = MKMapItem(placemark: placemark)
-        mapItem.name = "Restaurant Name"
+        mapItem.name = shopVM.shop.name
         mapItem.openInMaps(launchOptions: options)
     }
 }

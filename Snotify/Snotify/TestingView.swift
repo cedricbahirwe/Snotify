@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TestingView: View {
-    let post = SNShopPost.preview
+    let post = SNPost.preview
 
     var body: some View {
         VStack {

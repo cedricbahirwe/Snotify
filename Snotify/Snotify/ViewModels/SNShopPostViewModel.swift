@@ -8,7 +8,7 @@
 import Combine
 
 final class SNShopPostViewModel: Identifiable, ObservableObject {
-    @Published var post: SNShopPost
+    @Published var post: SNPost
 
     private(set) var id: String = ""
 
@@ -16,7 +16,7 @@ final class SNShopPostViewModel: Identifiable, ObservableObject {
 
     private var cancellables = Set<AnyCancellable>()
 
-    init(_ post: SNShopPost) {
+    init(_ post: SNPost) {
         self.post = post
 
         $post

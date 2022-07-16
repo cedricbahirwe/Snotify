@@ -12,7 +12,7 @@ import Combine
 final class SNPostRepository: ObservableObject {
     private let db = Firestore.firestore()
 
-    @Published private(set) var posts = [SNShopPost]()
+    @Published private(set) var posts = [SNPost]()
 
     init() {
         loadPosts()
@@ -26,9 +26,9 @@ final class SNPostRepository: ObservableObject {
             }
             
             if let querySnapshot = querySnapshot {
-                let result = querySnapshot.documents.compactMap { document -> SNShopPost? in
+                let result = querySnapshot.documents.compactMap { document -> SNPost? in
                     do {
-                        let res = try document.data(as: SNShopPost.self)
+                        let res = try document.data(as: SNPost.self)
                         prints(res)
                         return res
                     } catch {
@@ -42,7 +42,7 @@ final class SNPostRepository: ObservableObject {
         }
     }
 
-    public func addPost(_ post: SNShopPost) {
+    public func addPost(_ post: SNPost) {
         do {
             let _ = try db.collection(.posts).addDocument(from: post)
         } catch {

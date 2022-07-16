@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ShopPostDetailView: View {
-    var post: SNShopPost
+    var post: SNPost
     @State private var hasSubscribed = false
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {

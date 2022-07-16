@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HomeView: View {
     @StateObject var shopPostListVM = SNShopPostListViewModel()
-    @StateObject var shopsListVM = SNShopsListViewModel()
     @State private var isLoading: Bool = false
     @State private var isAShop: Bool = false
     @StateObject private var snPostingManager = SNPostingManager.shared

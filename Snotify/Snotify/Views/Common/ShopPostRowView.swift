@@ -10,7 +10,7 @@ import SwiftUI
 struct ShopPostRowView: View {
     @ObservedObject var postCell: SNShopPostViewModel
 
-    private var post: SNShopPost { postCell.post }
+    private var post: SNPost { postCell.post }
     @State private var hasSubscribed = false
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
