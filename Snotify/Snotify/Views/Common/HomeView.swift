@@ -49,7 +49,7 @@ struct HomeView: View {
                 ForEach(shopPostListVM.shopPostVM) { postCell  in
                     ZStack(alignment: .leading) {
                         NavigationLink {
-                            ShopPostDetailView(post: postCell.post)
+                            ShopPostDetailView(postVM: postCell)
                         } label: { EmptyView() }
                             .opacity(0)
 

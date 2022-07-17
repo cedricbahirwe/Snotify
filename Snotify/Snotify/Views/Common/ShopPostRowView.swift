@@ -11,7 +11,6 @@ struct ShopPostRowView: View {
     @ObservedObject var postCell: SNShopPostViewModel
 
     private var post: SNPost { postCell.post }
-    @State private var hasSubscribed = false
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack {
@@ -51,15 +50,15 @@ struct ShopPostRowView: View {
 
                 HStack {
                     Button {
-                        hasSubscribed.toggle()
+                        postCell.subscribe()
                     } label: {
-                        Text(hasSubscribed ? "Followed" : "Follow")
+                        Text(postCell.hasUserLiked ? "Followed" : "Follow")
                             .font(.system(.callout, design: .rounded))
                             .fontWeight(.medium)
-                            .foregroundColor(hasSubscribed ? .white : .green)
+                            .foregroundColor(postCell.hasUserLiked ? .white : .green)
                             .padding(.horizontal, 10)
                             .frame(height: 32)
-                            .background(hasSubscribed ? .green : .clear, in: RoundedRectangle(cornerRadius: 13))
+                            .background(postCell.hasUserLiked ? .green : .clear, in: RoundedRectangle(cornerRadius: 13))
                             .overlay(RoundedRectangle(cornerRadius: 13).stroke(Color.green, lineWidth: 1))
                     }
                     .buttonStyle(.plain)
@@ -125,7 +124,7 @@ struct ShopPostRowView_Previews: PreviewProvider {
 private extension ShopPostRowView {
     var shopContactBanner: some View {
         HStack {
-            Text("Contact le vendeur")
+            Text("Reach out to shop")
                 .font(.system(.caption, design: .rounded))
                 .fontWeight(.medium)
             Spacer()

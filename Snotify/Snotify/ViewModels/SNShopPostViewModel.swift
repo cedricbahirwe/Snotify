@@ -12,7 +12,7 @@ final class SNShopPostViewModel: Identifiable, ObservableObject {
 
     private(set) var id: String = ""
 
-    @Published var hasUserLiked = false
+    @Published private(set) var hasUserLiked = false
 
     private var cancellables = Set<AnyCancellable>()
 
@@ -20,7 +20,7 @@ final class SNShopPostViewModel: Identifiable, ObservableObject {
         self.post = post
 
         $post
-            .map { $0.views == 0 }
+            .map { $0.views >= 0 }
             .assign(to: \.hasUserLiked, on: self)
             .store(in: &cancellables)
 
@@ -28,5 +28,9 @@ final class SNShopPostViewModel: Identifiable, ObservableObject {
             .compactMap { $0.id }
             .assign(to: \.id, on: self)
             .store(in: &cancellables)
+    }
+
+    public func subscribe() {
+        hasUserLiked.toggle()
     }
 }

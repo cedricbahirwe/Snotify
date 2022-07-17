@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ShopPostDetailView: View {
-    var post: SNPost
-    @State private var hasSubscribed = false
+    @ObservedObject var postVM: SNShopPostViewModel
+    private var post: SNPost { postVM.post }
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack {
@@ -47,15 +47,15 @@ struct ShopPostDetailView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
                 Button {
-                    hasSubscribed.toggle()
+                    postVM.subscribe()
                 } label: {
-                    Text(hasSubscribed ? "Followed" : "Follow")
+                    Text(postVM.hasUserLiked ? "Followed" : "Follow")
                         .font(.system(.callout, design: .rounded))
                         .fontWeight(.medium)
-                        .foregroundColor(hasSubscribed ? .white : .green)
+                        .foregroundColor(postVM.hasUserLiked ? .white : .green)
                         .padding(.horizontal, 10)
                         .frame(height: 32)
-                        .background(hasSubscribed ? .green : .clear, in: RoundedRectangle(cornerRadius: 13))
+                        .background(postVM.hasUserLiked ? .green : .clear, in: RoundedRectangle(cornerRadius: 13))
                         .overlay(RoundedRectangle(cornerRadius: 13).stroke(Color.green, lineWidth: 1))
                 }
             }
@@ -68,7 +68,7 @@ struct ShopPostDetailView: View {
 
 
             VStack {
-                Text(post.description)
+                Text(postVM.description)
                     .lineLimit(5)
             }
 
@@ -96,6 +96,6 @@ struct ShopPostDetailView: View {
 
 struct ShopPostDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ShopPostDetailView(post: .preview)
+        ShopPostDetailView(post: .init(.preview))
     }
 }
