@@ -1,0 +1,33 @@
+/* 
+  Localizable.strings
+  Snotify
+
+  Created by Cédric Bahirwe on 17/07/2022.
+  
+*/
+
+// Common
+"Cancel" = "Annuler";
+"Follow" = "S'abonner";
+"Followed" = "Abonné";
+
+// Home View
+"News" = "Nouveautés";
+"Home" = "Accueil";
+"Profile" = "Profil";
+
+// Profile View
+"Posts" = "Publications";
+"Likes" = "J'aime";
+"Followers" = "Abonnés";
+"Contact" = "Contacter";
+"See on Maps" = "Voir sur Maps";
+"Address: THEADDRESS" = "Addresse: %@";
+
+// Settings View
+"Learn More" = "Lire Plus";
+"Sign Out" = "Se Deconnecter";
+"Settings" = "Réglages";
+"Edit Profil" = "Modifier le profile";
+
+// Post Row View

@@ -49,7 +49,7 @@ struct ShopPostDetailView: View {
                 Button {
                     hasSubscribed.toggle()
                 } label: {
-                    Text(hasSubscribed ? "Abonné" : "S'abonner")
+                    Text(hasSubscribed ? "Followed" : "Follow")
                         .font(.system(.callout, design: .rounded))
                         .fontWeight(.medium)
                         .foregroundColor(hasSubscribed ? .white : .green)
@@ -68,7 +68,7 @@ struct ShopPostDetailView: View {
 
 
             VStack {
-                Text(post.description ?? "")
+                Text(post.description)
                     .lineLimit(5)
             }
 

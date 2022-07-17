@@ -68,7 +68,7 @@ struct HomeView: View {
                 ShopPostView()
                     .environmentObject(snPostingManager)
             })
-            .navigationTitle("Nouveautés")
+            .navigationTitle("News")
             .toolbar {
                 ToolbarItem(id: "CreatePost",
                             placement: .navigationBarTrailing,

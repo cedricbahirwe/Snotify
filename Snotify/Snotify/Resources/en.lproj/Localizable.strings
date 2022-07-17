@@ -1,0 +1,33 @@
+/* 
+  Localizable.strings
+  Snotify
+
+  Created by Cédric Bahirwe on 17/07/2022.
+  
+*/
+
+// Common
+"Cancel" = "Annuler";
+"Follow" = "Follow";
+"Followed" = "Followed";
+
+// Home View
+"News" = "News";
+"Home" = "Home";
+"Profile" = "Profile";
+
+// Profile View
+"Posts" = "Posts";
+"Likes" = "Likes";
+"Followers" = "Followers";
+"Contact" = "Contact";
+"See on Maps" = "See on Maps";
+"Address: THEADDRESS" = "Address: %@";
+
+// Settings View
+"Learn More" = "Learn More";
+"Sign Out" = "Sign Out";
+"Settings" = "Settings";
+"Edit Profil" = "Edit Profil";
+
+// Post Row View

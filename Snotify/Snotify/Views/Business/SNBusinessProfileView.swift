@@ -49,11 +49,11 @@ struct SNBusinessProfileView: ProfileViewProtocol {
                     )
 
                     HStack {
-                        vStackView("\(shopVM.shop.postsCount)", "Publications")
+                        vStackView("\(shopVM.shop.postsCount)", "Posts")
                             .frame(maxWidth: .infinity)
-                        vStackView("\(shopVM.shop.followers)", "Abonnés")
+                        vStackView("\(shopVM.shop.followers)", "Followers")
                             .frame(maxWidth: .infinity)
-                        vStackView("\(shopVM.shop.likes)", "J'aime")
+                        vStackView("\(shopVM.shop.likes)", "Likes")
                             .frame(maxWidth: .infinity)
                     }
                     .frame(maxWidth: .infinity)
@@ -97,13 +97,13 @@ struct SNBusinessProfileView: ProfileViewProtocol {
                 Button {
                     //
                 } label: {
-                    Label("Modifier le profile", systemImage: "pencil")
+                    Label("Edit Profil", systemImage: "pencil")
                 }
 
                 Button {
                     showSettingsView.toggle()
                 } label: {
-                    Label("paramètres", systemImage: "gear")
+                    Label("Settings", systemImage: "gear")
                 }
 
             }
@@ -132,9 +132,15 @@ private extension SNBusinessProfileView {
             Text(shopVM.shop.description ?? "...")
                 .font(.callout.weight(.light))
 
-            Text("Address: \(shopVM.shop.address)")
-                .font(.callout)
-                .foregroundColor(.blue)
+            Text(
+                String(format:
+                        NSLocalizedString("Address: THEADDRESS",
+                                          comment: ""),
+                       shopVM.shop.address
+                      )
+            )
+            .font(.callout)
+            .foregroundColor(.blue)
 
         }
     }
@@ -144,7 +150,7 @@ private extension SNBusinessProfileView {
             Button {
                 //
             } label: {
-                Text("S'abonner")
+                Text("Follow")
                     .font(.callout.weight(.semibold))
                     .foregroundColor(.accentColor)
                     .padding(.horizontal, 6)
@@ -158,7 +164,7 @@ private extension SNBusinessProfileView {
                 Button {
                     shopVM.shop.callShop()
                 } label: {
-                    Text("Contacter")
+                    Text("Contact")
                         .font(.callout.weight(.semibold))
                         .padding(.horizontal, 6)
                         .frame(maxWidth: Layout.ctaFrame.width)
@@ -170,7 +176,7 @@ private extension SNBusinessProfileView {
 
             if shopVM.shop.location != nil {
                 Button(action: openMapForPlace) {
-                    Text("Voir sur Maps")
+                    Text("See on Maps")
                         .font(.callout.weight(.semibold))
                         .padding(.horizontal, 8)
                         .frame(maxWidth: Layout.ctaFrame.width)
