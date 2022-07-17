@@ -25,20 +25,20 @@ struct SnotifyApp: App {
     }
 
     private func observeScenePhase(_ scene: ScenePhase) {
-        return
-//        switch scene {
-//        case .background:
-//            print("Enter background mode")
-//        case .inactive:
-//            print("Enter inactive mode")
-//        case .active:
-//            print("Enter active mode")
-//        @unknown default:
-//            print("Enter unknown mode")
-//        }
+        
+        switch scene {
+        case .background:
+            print("Enter background mode")
+        case .inactive:
+            print("Enter inactive mode")
+        case .active:
+            print("Enter active mode")
+        @unknown default:
+            print("Enter unknown mode")
+        }
     }
 
     private func handIncomingURL(_ url: URL) {
-        print("✅Well, this was new ")
+        prints("Well, New URL: \(url)")
     }
 }

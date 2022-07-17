@@ -14,7 +14,7 @@ struct SNBusinessProfileView: ProfileViewProtocol {
     @State private var showSettingsView = false
 
     private var shopVM: SNShopViewModel {
-        shopsListVM.shopsVM.first ?? .init(.preview)
+        shopsListVM.shopsVM.last ?? .init(.preview)
     }
     private var hasLoadShop: Bool { shopsListVM.shopsVM.first != nil }
     var body: some View {
@@ -124,7 +124,7 @@ private extension SNBusinessProfileView {
         VStack(alignment: .leading) {
             Text(shopVM.shop.name)
             if let categories = shopVM.shop.categories.map(\.rawValue), categories.count > 0 {
-                Text("Catégorie(s)")
+                Text(categories.map({ $0.capitalized }).joined(separator: ", "))
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
@@ -132,7 +132,7 @@ private extension SNBusinessProfileView {
             Text(shopVM.shop.description ?? "...")
                 .font(.callout.weight(.light))
 
-            Text(shopVM.shop.address)
+            Text("Address: \(shopVM.shop.address)")
                 .font(.callout)
                 .foregroundColor(.blue)
 
