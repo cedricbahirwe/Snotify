@@ -61,7 +61,7 @@ struct ShopPostView: View {
                 }
             }
             .preferredColorScheme(.light)
-            .navigationTitle("Nouveau Post")
+            .navigationTitle("New Post")
             .navigationBarTitleDisplayMode(.inline)
             .background(Color.black.ignoresSafeArea(.all, edges: .bottom))
             .overlay(

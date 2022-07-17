@@ -31,7 +31,7 @@ struct HomeView: View {
                             }
                             .frame(width: 40, height: 40)
                             .clipped()
-                            Text("Publier par \(newPost.shop.name)")
+                            Text("Post by \(newPost.shop.name)")
                                 .foregroundColor(.gray)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -40,7 +40,7 @@ struct HomeView: View {
                         .animation(.easeInOut, value: snPostingManager.isPublishingPost)
                         .onDisappear() {
                             withAnimation {
-                                shopPostListVM.addRemotePost(newPost)
+//                                shopPostListVM.addRemotePost(newPost)
                             }
                         }
                     }
@@ -76,7 +76,7 @@ struct HomeView: View {
                     Button {
                         snPostingManager.isSubmitMode.toggle()
                     } label: {
-                        Label("Publier a nouveau post",
+                        Label("Publish a new post",
                               systemImage: "plus.square")
                     }
                 }

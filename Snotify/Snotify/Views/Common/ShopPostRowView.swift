@@ -52,13 +52,13 @@ struct ShopPostRowView: View {
                     Button {
                         postCell.subscribe()
                     } label: {
-                        Text(postCell.hasUserLiked ? "Followed" : "Follow")
+                        Text(postCell.hasUserFollwed ? "Followed" : "Follow")
                             .font(.system(.callout, design: .rounded))
                             .fontWeight(.medium)
-                            .foregroundColor(postCell.hasUserLiked ? .white : .green)
+                            .foregroundColor(postCell.hasUserFollwed ? .white : .green)
                             .padding(.horizontal, 10)
                             .frame(height: 32)
-                            .background(postCell.hasUserLiked ? .green : .clear, in: RoundedRectangle(cornerRadius: 13))
+                            .background(postCell.hasUserFollwed ? .green : .clear, in: RoundedRectangle(cornerRadius: 13))
                             .overlay(RoundedRectangle(cornerRadius: 13).stroke(Color.green, lineWidth: 1))
                     }
                     .buttonStyle(.plain)

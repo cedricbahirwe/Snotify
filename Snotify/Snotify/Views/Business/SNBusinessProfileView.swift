@@ -132,13 +132,7 @@ private extension SNBusinessProfileView {
             Text(shopVM.shop.description ?? "...")
                 .font(.callout.weight(.light))
 
-            Text(
-                String(format:
-                        NSLocalizedString("Address: THEADDRESS",
-                                          comment: ""),
-                       shopVM.shop.address
-                      )
-            )
+            Text("Address: \(shopVM.shop.address)")
             .font(.callout)
             .foregroundColor(.blue)
 

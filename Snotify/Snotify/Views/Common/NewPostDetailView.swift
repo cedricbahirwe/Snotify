@@ -68,7 +68,7 @@ struct NewPostDetailView: View {
             }
             .padding(.horizontal)
         }
-        .navigationTitle("Nouveau Post")
+        .navigationTitle("New Post")
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {

@@ -11,11 +11,18 @@
 "Follow" = "S'abonner";
 "Followed" = "Abonné";
 "Reach out to shop" = "Contact le shop";
+"New Post" = "Nouvelle Publication";
+"Post" = "Publier";
+"Price" = "Prix";
+"Comments" = "Commentaires";
+"Continue" = "Continuer";
 
 // Home View
 "News" = "Nouveautés";
 "Home" = "Accueil";
 "Profile" = "Profil";
+"Publish a new post" = "Publier a nouveau post";
+"Post by %@" = "Publier par %@";
 
 // Profile View
 "Posts" = "Publications";
@@ -23,7 +30,7 @@
 "Followers" = "Abonnés";
 "Contact" = "Contacter";
 "See on Maps" = "Voir sur Maps";
-"Address: THEADDRESS" = "Addresse: %@";
+"Address: %@" = "Addresse: %@";
 
 // Settings View
 "Learn More" = "Lire Plus";
@@ -32,3 +39,8 @@
 "Edit Profil" = "Modifier le profile";
 
 // Post Row View
+
+// New Post View
+"Enter description" = "Entrer une description";
+"Enter price" = "Entrer le prix";
+ "Leave a comment" = "Laissez un commentaire";

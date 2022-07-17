@@ -49,13 +49,13 @@ struct ShopPostDetailView: View {
                 Button {
                     postVM.subscribe()
                 } label: {
-                    Text(postVM.hasUserLiked ? "Followed" : "Follow")
+                    Text(postVM.hasUserFollwed ? "Followed" : "Follow")
                         .font(.system(.callout, design: .rounded))
                         .fontWeight(.medium)
-                        .foregroundColor(postVM.hasUserLiked ? .white : .green)
+                        .foregroundColor(postVM.hasUserFollwed ? .white : .green)
                         .padding(.horizontal, 10)
                         .frame(height: 32)
-                        .background(postVM.hasUserLiked ? .green : .clear, in: RoundedRectangle(cornerRadius: 13))
+                        .background(postVM.hasUserFollwed ? .green : .clear, in: RoundedRectangle(cornerRadius: 13))
                         .overlay(RoundedRectangle(cornerRadius: 13).stroke(Color.green, lineWidth: 1))
                 }
             }
@@ -68,7 +68,7 @@ struct ShopPostDetailView: View {
 
 
             VStack {
-                Text(postVM.description)
+                Text(post.description)
                     .lineLimit(5)
             }
 
@@ -96,6 +96,6 @@ struct ShopPostDetailView: View {
 
 struct ShopPostDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ShopPostDetailView(post: .init(.preview))
+        ShopPostDetailView(postVM: .init(.preview))
     }
 }
