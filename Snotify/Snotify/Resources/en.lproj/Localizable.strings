@@ -16,6 +16,17 @@
 "Price" = "Price";
 "Comments" = "Comments";
 "Continue" = "Continue";
+"or" = "or";
+
+// Login View
+"Email" = "Email";
+"name@domain.com" = "name@domain.com";
+"Password" = "Password";
+"Enter your password" = "Enter your password";
+"Login" = "Login";
+"Register" = "Register";
+"Create an account" = "Create an account";
+"Already have an account? Sign In instead." = "Already have an account? Sign In instead.";
 
 // Home View
 "News" = "News";
