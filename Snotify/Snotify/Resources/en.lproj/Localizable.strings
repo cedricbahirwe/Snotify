@@ -1,0 +1,57 @@
+/* 
+  Localizable.strings
+  Snotify
+
+  Created by Cédric Bahirwe on 17/07/2022.
+  
+*/
+
+// Common
+"Cancel" = "Annuler";
+"Follow" = "Follow";
+"Followed" = "Followed";
+"Reach out to shop" = "Reach out";
+"New Post" = "New Post";
+"Post" = "Post";
+"Price" = "Price";
+"Comments" = "Comments";
+"Continue" = "Continue";
+"or" = "or";
+
+// Login View
+"Email" = "Email";
+"name@domain.com" = "name@domain.com";
+"Password" = "Password";
+"Enter your password" = "Enter your password";
+"Login" = "Login";
+"Register" = "Register";
+"Create an account" = "Create an account";
+"Already have an account? Sign In instead." = "Already have an account? Sign In instead.";
+
+// Home View
+"News" = "News";
+"Home" = "Home";
+"Profile" = "Profile";
+"Publish a new post" = "Publish a new post";
+"Post by %@" = "Post by %@";
+
+// Profile View
+"Posts" = "Posts";
+"Likes" = "Likes";
+"Followers" = "Followers";
+"Contact" = "Contact";
+"See on Maps" = "See on Maps";
+"Address: %@" = "Address: %@";
+
+// Settings View
+"Learn More" = "Learn More";
+"Sign Out" = "Sign Out";
+"Settings" = "Settings";
+"Edit Profil" = "Edit Profil";
+
+// Post Row View
+
+// New Post View
+"Enter description" = "Enter description";
+"Enter price" = "Enter price";
+ "Leave a comment" = "Leave a comment";

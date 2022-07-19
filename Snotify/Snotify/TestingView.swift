@@ -8,10 +8,29 @@
 import SwiftUI
 
 struct TestingView: View {
+    let post = SNPost.preview
+
     var body: some View {
         VStack {
-            EmptyView()
+
+            Text(String(reflecting: post))
+
+            Button("Save", action: saveValue)
+                .padding()
+            Button("Get", action: getValue)
+
         }
+        .onAppear() {
+
+        }
+    }
+
+    private func saveValue() {
+        FBDatabaseStorage.shared.save(post, forKey: post.id ?? UUID().uuidString)
+    }
+
+    private func getValue() {
+//        FBDatabaseStorage.shared.getValue(forKey: post.id)
     }
 }
 

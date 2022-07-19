@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var newPosts: [SNShopPost] = SNShopPost.previews
+    @StateObject var shopPostListVM = SNShopPostListViewModel()
     @State private var isLoading: Bool = false
     @State private var isAShop: Bool = false
     @StateObject private var snPostingManager = SNPostingManager.shared
@@ -18,10 +18,20 @@ struct HomeView: View {
                 if let newPost = snPostingManager.temporaryPost {
                     if snPostingManager.isPublishingPost {
                         HStack {
-                            Image(newPost.images.first ?? "")
-                                .resizable()
-                                .frame(width: 50, height: 50)
-                            Text("Publier par \(newPost.shop.name)")
+                            Group {
+                                if let url = URL(string: newPost.images.first ?? "") {
+                                    AsyncImage(url: url){ image in
+                                        image.resizable()
+                                    } placeholder: {
+                                        Color.gray
+                                    }
+                                } else {
+                                    Color.gray
+                                }
+                            }
+                            .frame(width: 40, height: 40)
+                            .clipped()
+                            Text("Post by \(newPost.shop.name)")
                                 .foregroundColor(.gray)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -30,34 +40,35 @@ struct HomeView: View {
                         .animation(.easeInOut, value: snPostingManager.isPublishingPost)
                         .onDisappear() {
                             withAnimation {
-                                newPosts.insert(newPost, at: 0)
+//                                shopPostListVM.addRemotePost(newPost)
                             }
                         }
                     }
                 }
                 
-                ForEach(newPosts) { post in
+                ForEach(shopPostListVM.shopPostVM) { postCell  in
                     ZStack(alignment: .leading) {
                         NavigationLink {
-                            ShopPostDetailView(post: post)
+                            ShopPostDetailView(postVM: postCell)
                         } label: { EmptyView() }
                             .opacity(0)
 
-                        ShopPostRowView(post)
+                        ShopPostRowView(postCell: postCell)
                     }
                     .listRowBackground(EmptyView())
                     .listRowSeparator(.hidden)
-                    .redacted(reason: isLoading ? .init() : .placeholder)
+                    .redacted(reason: isLoading ? .placeholder : .init())
                 }
             }
             .listStyle(PlainListStyle())
-            .fullScreenCover(isPresented: $snPostingManager.isSubmitMode, onDismiss: {
+            .fullScreenCover(isPresented: $snPostingManager.isSubmitMode,
+                             onDismiss: {
                 // On Dismiss, Do Something (e.g: Reload)
             }, content: {
                 ShopPostView()
                     .environmentObject(snPostingManager)
             })
-            .navigationTitle("Nouveautés")
+            .navigationTitle("News")
             .toolbar {
                 ToolbarItem(id: "CreatePost",
                             placement: .navigationBarTrailing,
@@ -65,15 +76,15 @@ struct HomeView: View {
                     Button {
                         snPostingManager.isSubmitMode.toggle()
                     } label: {
-                        Label("Publier a nouveau post",
+                        Label("Publish a new post",
                               systemImage: "plus.square")
                     }
                 }
             }
             .onAppear() {
-                DispatchQueue.main.asyncAfter(deadline: .now()+2) {
-                    self.isLoading = true
-                }
+//                DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+//                    self.isLoading = true
+//                }
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())

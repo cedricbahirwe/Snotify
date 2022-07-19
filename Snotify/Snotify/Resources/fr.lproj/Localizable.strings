@@ -1,0 +1,59 @@
+/* 
+  Localizable.strings
+  Snotify
+
+  Created by Cédric Bahirwe on 17/07/2022.
+  
+*/
+
+// Common
+"Cancel" = "Annuler";
+"Follow" = "S'abonner";
+"Followed" = "Abonné";
+"Reach out to shop" = "Contact le shop";
+"New Post" = "Nouvelle Publication";
+"Post" = "Publier";
+"Price" = "Prix";
+"Comments" = "Commentaires";
+"Continue" = "Continuer";
+"or" = "ou";
+
+// Login View
+"Email" = "Addresse mail";
+"name@domain.com" = "nom@domain.com";
+"Password" = "Mot de passe";
+"Login" = "Se connecter";
+"Register" = "S'enregister";
+"Enter your password" = "Entrer votre mot de passe";
+"Forgot password?" = "Mot de passe oublié?";
+"Create an account" = "Créer un compte";
+"Already have an account? Sign In instead." = "Déjà un compte?, connectez-vous plutôt.";
+
+
+// Home View
+"News" = "Nouveautés";
+"Home" = "Accueil";
+"Profile" = "Profil";
+"Publish a new post" = "Publier a nouveau post";
+"Post by %@" = "Publier par %@";
+
+// Profile View
+"Posts" = "Publications";
+"Likes" = "J'aime";
+"Followers" = "Abonnés";
+"Contact" = "Contacter";
+"See on Maps" = "Voir sur Maps";
+"Address: %@" = "Addresse: %@";
+
+// Settings View
+"Learn More" = "Lire Plus";
+"Sign Out" = "Se Deconnecter";
+"Settings" = "Réglages";
+"Edit Profil" = "Modifier le profile";
+
+// Post Row View
+
+// New Post View
+"Enter description" = "Entrer une description";
+"Enter price" = "Entrer le prix";
+ "Leave a comment" = "Laissez un commentaire";

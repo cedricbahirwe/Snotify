@@ -31,7 +31,7 @@ struct SNLoginView: View {
                         VStack(alignment: .leading) {
                             Text("Email")
                                 .font(.rounded(weight: .bold))
-                            TextField("nom@domain.com", text: $loginModel.email)
+                            TextField("name@domain.com", text: $loginModel.email)
                                 .focused($focusedField, equals: .email)
                                 .submitLabel(.next)
                                 .textContentType(.emailAddress)
@@ -47,10 +47,10 @@ struct SNLoginView: View {
                         }
 
                         VStack(alignment: .leading) {
-                            Text("Mot de passe")
+                            Text("Password")
                                 .font(.rounded(weight: .bold))
 
-                            SecureField("Enter votre mot de passe", text: $loginModel.password)
+                            SecureField("Enter your password", text: $loginModel.password)
                                 .focused($focusedField, equals: .password)
                                 .submitLabel(.join)
                                 .textContentType(showRegistrationView ? .newPassword : .password)
@@ -65,7 +65,7 @@ struct SNLoginView: View {
 
                         VStack {
                             Button(action: processManualAuth) {
-                                Text(showRegistrationView ? "S'en enregistrer" : "Se connecter")
+                                Text(showRegistrationView ? "Register" : "Login")
                                     .font(.rounded(weight: .bold))
                                     .frame(maxWidth: .infinity)
                                     .frame(height: 45)
@@ -84,7 +84,7 @@ struct SNLoginView: View {
                         Button {
                             // Password
                         } label: {
-                            Text("Mot de passe oublié?")
+                            Text("Forgot password?")
                                 .font(.rounded(weight: .medium))
 
                         }.hidden()
@@ -169,7 +169,7 @@ private extension SNLoginView {
         VStack {
             HStack {
                 Color.gray.frame(height: 1)
-                Text("ou")
+                Text("or")
                 Color.gray.frame(height: 1)
             }
             HStack(spacing: 18) {
@@ -187,7 +187,7 @@ private extension SNLoginView {
                 showRegistrationView.toggle()
             }
         } label: {
-            Text(showRegistrationView ? "Déjà un compte?, connectez-vous plutôt." : "Créer un compte?")
+            Text(showRegistrationView ? "Already have an account? Sign In instead." : "Create an account")
                 .font(.rounded(.callout, weight: .medium))
                 .lineLimit(1)
                 .minimumScaleFactor(0.8)

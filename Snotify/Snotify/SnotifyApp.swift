@@ -19,26 +19,27 @@ struct SnotifyApp: App {
 //            TestingView()
             ContentView()
                 .onOpenURL(perform: handIncomingURL)
+                .environment(\.locale, .init(identifier: "fr"))
 
         }
         .onChange(of: scenePhase, perform: observeScenePhase)
     }
 
     private func observeScenePhase(_ scene: ScenePhase) {
-        return
-//        switch scene {
-//        case .background:
-//            print("Enter background mode")
-//        case .inactive:
-//            print("Enter inactive mode")
-//        case .active:
-//            print("Enter active mode")
-//        @unknown default:
-//            print("Enter unknown mode")
-//        }
+        
+        switch scene {
+        case .background:
+            print("Enter background mode")
+        case .inactive:
+            print("Enter inactive mode")
+        case .active:
+            print("Enter active mode")
+        @unknown default:
+            print("Enter unknown mode")
+        }
     }
 
     private func handIncomingURL(_ url: URL) {
-        print("✅Well, this was new ")
+        prints("Well, New URL: \(url)")
     }
 }

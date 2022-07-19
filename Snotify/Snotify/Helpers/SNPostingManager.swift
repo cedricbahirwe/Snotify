@@ -10,9 +10,9 @@ import Foundation
 final class SNPostingManager: ObservableObject {
     static var shared = SNPostingManager()
     @Published var isSubmitMode = false
-    @Published private(set) var temporaryPost: SNShopPost?
+    @Published private(set) var temporaryPost: SNPost?
     @Published private(set) var isPublishingPost: Bool
-    @Published private(set) var onPublishPost: ((SNShopPost?) -> Void)?
+    @Published private(set) var onPublishPost: ((SNPost?) -> Void)?
     private let localNotification = LocalNotificationManager()
     init() {
         temporaryPost = nil
@@ -24,7 +24,7 @@ final class SNPostingManager: ObservableObject {
     /// - Parameters:
     ///   - post: the shop object to be published
     ///   - completion: return the published post or `nil` if an error happened
-    func publishPost(_ post: SNShopPost, completion: @escaping (SNShopPost?) -> Void) {
+    func publishPost(_ post: SNPost, completion: @escaping (SNPost?) -> Void) {
         temporaryPost = post
         isPublishingPost = true
         DispatchQueue.main.asyncAfter(deadline: .now()+2) {
@@ -42,7 +42,7 @@ final class SNPostingManager: ObservableObject {
     /// - Parameters:
     ///   - post: the shop object to be published
     ///   - completion: return the published post or `nil` if an error happened
-    func publishPost(_ post: SNShopPost) {
+    func publishPost(_ post: SNPost) {
         isSubmitMode = false
         temporaryPost = post
         isPublishingPost = true

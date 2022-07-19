@@ -8,28 +8,38 @@
 import SwiftUI
 
 struct ShopPostDetailView: View {
-    var post: SNShopPost
-    @State private var hasSubscribed = false
+    @ObservedObject var postVM: SNShopPostViewModel
+    private var post: SNPost { postVM.post }
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack {
-                Image("iphone1")
-                    .resizable()
-                    .clipShape(Circle())
-                    .padding(2)
-                    .background(.background)
-                    .clipShape(Circle())
-                    .padding(1)
-                    .background(.secondary)
-                    .clipShape(Circle())
-                    .frame(width: 40, height: 40)
+                Group {
+                    if let url = URL(string: post.shop.profilePicture ?? "") {
+                        AsyncImage(url: url){ image in
+                            image.resizable()
+                        } placeholder: {
+                            Color.gray
+                        }
+                    } else {
+                        Color.gray
+                    }
+                }
+                .clipShape(Circle())
+                .padding(2)
+                .background(.background)
+                .clipShape(Circle())
+                .padding(1)
+                .background(.secondary)
+                .clipShape(Circle())
+                .frame(width: 40, height: 40)
+
                 VStack(alignment: .leading, spacing: 0) {
-                    Text("Chez Mama Esther")
+                    Text(post.shop.name)
                         .font(.system(.body, design: .rounded))
                         .fontWeight(.medium)
                         .minimumScaleFactor(0.9)
                         .lineLimit(1)
-                    Text("Virunga, Depot No.01")
+                    Text(post.shop.address)
                         .font(.caption)
                         .minimumScaleFactor(0.85)
                         .lineLimit(1)
@@ -37,41 +47,55 @@ struct ShopPostDetailView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
                 Button {
-                    hasSubscribed.toggle()
+                    postVM.subscribe()
                 } label: {
-                    Text(hasSubscribed ? "Abonné" : "S'abonner")
+                    Text(postVM.hasUserFollwed ? "Followed" : "Follow")
                         .font(.system(.callout, design: .rounded))
                         .fontWeight(.medium)
-                        .foregroundColor(hasSubscribed ? .white : .green)
+                        .foregroundColor(postVM.hasUserFollwed ? .white : .green)
                         .padding(.horizontal, 10)
                         .frame(height: 32)
-                        .background(hasSubscribed ? .green : .clear, in: RoundedRectangle(cornerRadius: 13))
+                        .background(postVM.hasUserFollwed ? .green : .clear, in: RoundedRectangle(cornerRadius: 13))
                         .overlay(RoundedRectangle(cornerRadius: 13).stroke(Color.green, lineWidth: 1))
                 }
-                .redacted(reason: .placeholder)
-
             }
-            .padding()
-            Image("iphone2")
-                .resizable()
-                .scaledToFill()
+
+            Color.gray
+                .hidden()
+                .overlay(postImageView)
                 .frame(maxWidth: 400, maxHeight: 400)
                 .cornerRadius(10)
 
+
             VStack {
-                Text("Nouveau iphone, avec $500, vous l'avez")
-                    .lineLimit(2)
+                Text(post.description)
+                    .lineLimit(5)
             }
 
-
-            Spacer()
+            Spacer(minLength: 0)
         }
-        .padding()
+        .padding(.horizontal)
+    }
+
+    private var postImageView: some View {
+        ZStack {
+            if let url = URL(string: post.images.isEmpty ? "" : post.images[0]) {
+                AsyncImage(url: url) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                } placeholder: {
+                    Color.gray
+                }
+            } else {
+                Color.gray
+            }
+        }
     }
 }
 
 struct ShopPostDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ShopPostDetailView(post: .preview)
+        ShopPostDetailView(postVM: .init(.preview))
     }
 }

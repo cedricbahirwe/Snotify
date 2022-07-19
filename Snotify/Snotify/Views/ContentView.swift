@@ -11,10 +11,10 @@ struct ContentView: View {
     @EnvironmentObject
     private var appDelegate: MainAppDelegate
     @State private var selectedTab: SNTab = SNTab.home
-
     @AppStorage(SNKeys.isUserLoggedIn) private var isLoggedIn = false
 
     var body: some View {
+//        TestingView()
         ZStack {
             TabView(selection: $selectedTab) {
                 HomeView()
@@ -33,10 +33,7 @@ struct ContentView: View {
             SNLoginView()
                 .rotation3DEffect(isLoggedIn ? .degrees(90) : .zero, axis: (x: 0, y: -10, z: 0))
         }
-        .onAppear() {
-        }
     }
-
 }
 
 struct ContentView_Previews: PreviewProvider {

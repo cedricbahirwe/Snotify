@@ -8,25 +8,33 @@
 import SwiftUI
 
 struct ShopPostRowView: View {
-    var post: SNShopPost
-    init(_ postUpdate: SNShopPost) {
-        self.post = postUpdate
-    }
-    @State private var hasSubscribed = false
+    @ObservedObject var postCell: SNShopPostViewModel
+
+    private var post: SNPost { postCell.post }
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             HStack {
-                let image = post.shop.profilePicture ?? "iphone1"
-                Image(image)
-                    .resizable()
-                    .clipShape(Circle())
-                    .padding(2)
-                    .background(.background)
-                    .clipShape(Circle())
-                    .padding(1)
-                    .background(.secondary)
-                    .clipShape(Circle())
-                    .frame(width: 40, height: 40)
+                Group {
+                    if let url = URL(string: postCell.post.shop.profilePicture ?? "") {
+                        AsyncImage(url: url){ image in
+                            image.resizable()
+                        } placeholder: {
+                            Color.gray
+                        }
+                    } else {
+                        Image(systemName: "house.fill")
+                        Color.gray
+                    }
+                }
+                .clipShape(Circle())
+                .padding(2)
+                .background(.background)
+                .clipShape(Circle())
+                .padding(1)
+                .background(.secondary)
+                .clipShape(Circle())
+                .frame(width: 40, height: 40)
+
                 VStack(alignment: .leading, spacing: 0) {
                     Text(post.shop.name)
                         .font(.system(.body, design: .rounded))
@@ -42,20 +50,20 @@ struct ShopPostRowView: View {
 
                 HStack {
                     Button {
-                        hasSubscribed.toggle()
+                        postCell.subscribe()
                     } label: {
-                        Text(hasSubscribed ? "Abonné" : "S'abonner")
+                        Text(postCell.hasUserFollwed ? "Followed" : "Follow")
                             .font(.system(.callout, design: .rounded))
                             .fontWeight(.medium)
-                            .foregroundColor(hasSubscribed ? .white : .green)
+                            .foregroundColor(postCell.hasUserFollwed ? .white : .green)
                             .padding(.horizontal, 10)
                             .frame(height: 32)
-                            .background(hasSubscribed ? .green : .clear, in: RoundedRectangle(cornerRadius: 13))
+                            .background(postCell.hasUserFollwed ? .green : .clear, in: RoundedRectangle(cornerRadius: 13))
                             .overlay(RoundedRectangle(cornerRadius: 13).stroke(Color.green, lineWidth: 1))
                     }
                     .buttonStyle(.plain)
 
-                    Button(action: showMore) {
+                    Button(action: {}) {
                         Image(systemName: "ellipsis")
                             .foregroundColor(.primary)
                             .padding(5)
@@ -63,18 +71,15 @@ struct ShopPostRowView: View {
                 }
             }
 
-            VStack(spacing: 0) {
-                let image = post.images.isEmpty ? "iphone1" : post.images[0]
-                Image(image)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(maxWidth: UIScreen.main.bounds.width-10)
-                    .overlay(
-                        shopContactBanner, alignment: .bottom
-                    )
-                    .padding(.bottom, 35)
-            }
-            .clipped()
+            Image("iphone1")
+                .resizable()
+                .scaledToFill()
+                .frame(maxWidth: UIScreen.main.bounds.width-10)
+                .hidden()
+                .overlay(postImageView)
+                .overlay(shopContactBanner, alignment: .bottom)
+                .padding(.bottom, 35)
+                .clipped()
 
             VStack(alignment: .leading, spacing: 5) {
                 if let description = post.description {
@@ -87,19 +92,30 @@ struct ShopPostRowView: View {
                     .font(.system(.caption, design: .rounded))
                     .foregroundColor(.secondary)
             }
-
         }
         .padding(.bottom)
     }
 
-    private func showMore() {
-
+    private var postImageView: some View {
+        ZStack {
+            if let url = URL(string: post.images.isEmpty ? "" : post.images[0]) {
+                AsyncImage(url: url) { image in
+                    image
+                        .resizable()
+                        .scaledToFill()
+                } placeholder: {
+                    Color.gray
+                }
+            } else {
+                Color.gray
+            }
+        }
     }
 }
 
 struct ShopPostRowView_Previews: PreviewProvider {
     static var previews: some View {
-        ShopPostRowView(.previews[0])
+        ShopPostRowView(postCell: .init(.previews[0]))
             .padding()
             .previewLayout(.fixed(width: 410, height: 400))
     }
@@ -108,7 +124,7 @@ struct ShopPostRowView_Previews: PreviewProvider {
 private extension ShopPostRowView {
     var shopContactBanner: some View {
         HStack {
-            Text("Contact le vendeur")
+            Text("Reach out to shop")
                 .font(.system(.caption, design: .rounded))
                 .fontWeight(.medium)
             Spacer()
