@@ -22,6 +22,7 @@ struct SNUser: Identifiable, Codable, FirestoreEntity {
     var points: Double
     var isActive: Bool
 
+    var phoneNumber: String?
     var profilePicture: String?
     var birthdate: Date?
     var joinDate: Date?

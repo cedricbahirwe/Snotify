@@ -11,101 +11,74 @@ import FirebaseStorage
 final class SNFirebaseImageUploader {
     static let shared = SNFirebaseImageUploader()
     private init() { }
-    var imageUrl: URL?
+    var uploadedfilePath: String?
 
     func upload(data: Data,
-                format: String,
-                path: String,
-                completionHandler: @escaping (_ status: String) -> ()) {
+                format: SNFileExtension,
+                path: FBFilePath,
+                completionHandler:  @escaping (Result<String, SNErrors>) -> Void) {
 
         let storage = Storage.storage()
         let storageRef = storage.reference()
-        let imageId = UUID()
+        let newFileID = UUID()
 
         let meta = StorageMetadata()
-        meta.contentType = "\(format == "pdf" ? "application" : "image")/\(format)";
-        let riversRef = storageRef.child("\(path)/\(imageId).\(format)")
+        meta.contentType = "image/png"
+        let fullPath = "\(path.rawValue)/\(newFileID).\(format.rawValue)"
+        self.uploadedfilePath = fullPath
+        let riversRef = storageRef.child(fullPath)
         let uploadTask = riversRef.putData(data, metadata: meta) { (metadata, error) in
             guard let metadata = metadata else {
                 // Uh-oh, an error occurred!
-                print("Error occured: \(String(describing: error))")
+                completionHandler(.failure(.unknownError(error)))
+                printf("Error occured: \(String(describing: error))")
                 return
             }
+
             // Metadata contains file metadata such as size, content-type.
             let size = metadata.size
             print("Meta data size", size)
-            // You can also access to download URL after upload.
-            riversRef.downloadURL { (url, error) in
-                guard let downloadURL = url else {
-                    // Uh-oh, an error occurred!
-                    print("Error Downloading \(String(describing: error))")
-                    return
-                }
-                self.imageUrl = downloadURL
-                print("Downloaded URL: \(downloadURL)")
-            }
         }
-        let observer = uploadTask.observe(.progress) { snapshot in
+
+        _ = uploadTask.observe(.progress) { snapshot in
             print("Progress at upload: \(snapshot)")
         }
 
-        print("observe", observer)
         _  = uploadTask.observe(.success) { snapshot in
-            snapshot.reference.downloadURL(completion: {d, error in
-//                print("Succest at \(snapshot) with \(imageUrl?.absoluteString)")
-                completionHandler(d?.absoluteString ?? "")
+            snapshot.reference.downloadURL(completion: { url, error in
+                if let url = url {
+                    completionHandler(.success(url.absoluteString))
+                } else {
+                    completionHandler(.failure(.unknownError(error)))
+                }
             })
         }
 
         _ = uploadTask.observe(.failure) { snapshot in
-            print("Failure at snapshot \(snapshot)")
+            printf("Failure at snapshot \(snapshot)")
         }
     }
 
-//    func uploadPicture(data: Data, format: String, path: String, completionHandler: @escaping (_ status: String) -> ()) {
-//        let storage = Storage.storage()
-//        let storageRef = storage.reference()
-//        let imageId = UUID()
-//
-//        let meta = StorageMetadata()
-//        meta.contentType = "\(format == "pdf" ? "application" : "image")/\(format)";
-//        let riversRef = storageRef.child("\(path)/\(imageId).\(format)")
-//        let uploadTask = riversRef.putData(data, metadata: meta) { (metadata, error) in
-//            guard let metadata = metadata else {
-//                // Uh-oh, an error occurred!
-//                print("Error with metadata \(String(describing: error))")
-//                return
-//            }
-//            // Metadata contains file metadata such as size, content-type.
-//            let size = metadata.size
-//            print("Meta size: ", size)
-//
-//            // You can also access to download URL after upload.
-//            riversRef.downloadURL { (url, error) in
-//                guard let downloadURL = url else {
-//                    // Uh-oh, an error occurred!
-//                    print("Error: \(String(describing: error))")
-//                    return
-//                }
-//                self.imageUrl = downloadURL
-//                print("Download URL: \(downloadURL)")
-//            }
-//        }
-//        let _ = uploadTask.observe(.progress) { snapshot in
-//            print("Progress value: \(snapshot)")
-//        }
-//
-//        let _ = uploadTask.observe(.success) { snapshot in
-//            snapshot.reference.downloadURL(completion: {d, error in
-////                print("SUC \(snapshot) \(self.imageUrl?.absoluteString)")
-//                completionHandler(d?.absoluteString ?? "")
-//            })
-//        }
-//
-//        let _ = uploadTask.observe(.failure) { snapshot in
-//            print("Failure: \(snapshot)")
-//        }
-//
-//    }
-}
 
+    func deleteLastUploadedFile(completion: @escaping(Bool) -> Void) {
+        guard let uploadedfilePath = uploadedfilePath else {
+            return
+        }
+
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let rencentRef = storageRef.child(uploadedfilePath)
+
+        // Delete the file
+        rencentRef.delete { error in
+          if let error = error {
+              printf("Failed to delete", error)
+              completion(false)
+            // Uh-oh, an error occurred!
+          } else {
+              prints("File deleted")
+              completion(true)
+          }
+        }
+    }
+}

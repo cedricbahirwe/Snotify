@@ -13,6 +13,12 @@ struct SNLoginView: View {
     @State private var isRegistration = true
     @State private var authModel = AuthModel()
     @FocusState private var focusedField: AuthModel.Field?
+    @State private var showProfilePicture = false
+    @State private var isUploadingPic = false
+    @State private var isDeletingPic = false
+    // MARK: - Photo Picker Properties
+    @State private var presentPhotoPicker = false
+    @State private var selectedImage: UIImage?
 
     @Namespace var animation
     var body: some View {
@@ -100,7 +106,7 @@ struct SNLoginView: View {
                         }
                         if isRegistration {
 
-                            VStack {
+                            VStack(alignment: .leading) {
                                 DisclosureGroup("What is your gender?") {
 
                                     HStack(spacing: 2) {
@@ -141,6 +147,53 @@ struct SNLoginView: View {
                                            displayedComponents: .date)
                                 .datePickerStyle(CompactDatePickerStyle())
 
+                                HStack {
+                                    if isUploadingPic {
+                                        HStack(spacing: 10) {
+                                            ProgressView()
+                                                .progressViewStyle(CircularProgressViewStyle(tint: .accentColor))
+                                            Text("Wait a sec, Your picture is being uploaded")
+                                                .foregroundColor(.accentColor)
+                                                .italic()
+                                                .lineLimit(1)
+                                                .minimumScaleFactor(0.8)
+                                        }
+                                        .padding(8)
+                                        .frame(maxWidth: .infinity)
+                                        .background(.regularMaterial)
+                                        .cornerRadius(12)
+
+                                    } else if authModel.profilePicture == nil {
+                                        Button {
+                                            presentPhotoPicker.toggle()
+                                        } label: {
+                                            Label {
+                                                Text("Add your profile picture")
+                                            } icon: {
+                                                Image(systemName: "person.circle.fill")
+                                                    .imageScale(.large)
+                                                    .foregroundStyle(.tint)
+                                            }
+                                        }
+                                        
+                                    } else {
+                                        Label {
+                                            Text("Profile Picture Added!")
+                                        } icon: {
+                                            Image(systemName: "checkmark.seal.fill")
+                                                .imageScale(.large)
+                                                .foregroundStyle(.tint)
+                                        }
+
+                                        Spacer()
+
+                                        Button("View Picture") {
+                                            showProfilePicture.toggle()
+                                        }
+
+                                    }
+                                }
+                                .padding(.vertical, 10)
                             }
                         }
 
@@ -154,6 +207,7 @@ struct SNLoginView: View {
                                     .background(.foreground)
                                     .cornerRadius(15)
                             }
+                            .disabled((isRegistration && isUploadingPic))
 
                             Text("Error Message")
                                 .font(.rounded(.caption))
@@ -186,6 +240,44 @@ struct SNLoginView: View {
             .background(.background, ignoresSafeAreaEdges: .all)
             .overlay(spinnerView)
             .ignoresSafeArea(.keyboard, edges: .bottom)
+            .onChange(of: selectedImage, perform: { _ in
+                uploadProfilePicture()
+            })
+
+            if !showProfilePicture {
+                Color.black.opacity(0.6).ignoresSafeArea()
+                    .onTapGesture {
+                        guard isDeletingPic == false else { return }
+                        showProfilePicture.toggle()
+                    }
+                VStack(spacing: 20) {
+                    Image(uiImage: selectedImage ?? .init())
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 250, height: 250)
+                        .mask(Circle())
+
+                    Button(action: deletePicture) {
+                        HStack(spacing: 10) {
+                            if isDeletingPic {
+                                ProgressView()
+                            }
+                            Text(isDeletingPic ? "Deleting Picture" : "Delete Picture")
+                                .font(.callout)
+                                .foregroundColor(.red)
+                        }
+                        .padding(14)
+                        .background(.ultraThickMaterial)
+                        .cornerRadius(15)
+                    }
+                    .disabled(isDeletingPic)
+                }
+            }
+        }
+        .fullScreenCover(isPresented: $presentPhotoPicker,
+                         onDismiss: uploadProfilePicture) {
+            PhotoPickerView(isPresented: $presentPhotoPicker,
+                            selectedImage: $selectedImage)
         }
     }
 
@@ -199,6 +291,41 @@ struct SNLoginView: View {
             focusedField = .password
         default:
             processManualAuth()
+        }
+    }
+
+    private func uploadProfilePicture() {
+        guard let selectedImage = selectedImage else {
+            return
+        }
+        guard let pngData = selectedImage.pngData() else { return }
+
+        isUploadingPic = true
+
+        SNFirebaseImageUploader.shared.upload(data: pngData,
+                                              format:.png,
+                                              path: .profiles) { result in
+            switch result {
+            case .failure(let error):
+                printf("Failed to upload", error)
+            case .success(let imageURL):
+                authModel.profilePicture = imageURL
+            }
+            isUploadingPic = false
+        }
+    }
+
+    private func deletePicture() {
+//        showProfilePicture.toggle()
+        isDeletingPic = true
+        SNFirebaseImageUploader.shared.deleteLastUploadedFile { state in
+            print("We have", state)
+            isDeletingPic = false
+            if state {
+                showProfilePicture = false
+                authModel.profilePicture = nil
+                selectedImage = nil
+            }
         }
     }
 
@@ -225,6 +352,7 @@ struct SNLoginView: View {
                                                             authModel.password) {
             isSigningIn = false
             if $0 {
+                authModel = .init()
                 prints("Sucessfully signed and logged in")
             }
         }

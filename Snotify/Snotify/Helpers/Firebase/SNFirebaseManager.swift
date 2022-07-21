@@ -154,10 +154,10 @@ final class SNFirebaseManager: NSObject {
 
             do {
                 try self.saveUser(user.uid, user: SNUser.getUser(from: authModel))
+                completion(true)
                 withAnimation {
                     self.isLoggedIn = true
                 }
-                completion(true)
             } catch {
                 printf("Saving error", error.localizedDescription)
                 completion(false)

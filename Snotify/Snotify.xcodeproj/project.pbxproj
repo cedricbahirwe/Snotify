@@ -28,6 +28,10 @@
 		CB547028288350A40074A036 /* SNPost+Previews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB547027288350A40074A036 /* SNPost+Previews.swift */; };
 		CB65ADB7288850EA0078AD77 /* SNFirebaseImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65ADB6288850EA0078AD77 /* SNFirebaseImageUploader.swift */; };
 		CB65ADBD2889918A0078AD77 /* SNSignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65ADBC2889918A0078AD77 /* SNSignupView.swift */; };
+		CB65ADBF2889BEAE0078AD77 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65ADBE2889BEAE0078AD77 /* ImagePickerView.swift */; };
+		CB65ADC12889BF0C0078AD77 /* PHPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65ADC02889BF0C0078AD77 /* PHPickerView.swift */; };
+		CB65ADC72889CA5D0078AD77 /* SNFileExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65ADC62889CA5D0078AD77 /* SNFileExtension.swift */; };
+		CB65ADC92889CAA70078AD77 /* FBFilePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65ADC82889CAA70078AD77 /* FBFilePath.swift */; };
 		CB6B4690286749910085EA12 /* NewPostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B468F286749910085EA12 /* NewPostDetailView.swift */; };
 		CB6B469428674CD90085EA12 /* SNShopPost+Previews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B469328674CD90085EA12 /* SNShopPost+Previews.swift */; };
 		CB6B469628674CF00085EA12 /* SNImages+Previews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B469528674CF00085EA12 /* SNImages+Previews.swift */; };
@@ -130,6 +134,10 @@
 		CB547027288350A40074A036 /* SNPost+Previews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SNPost+Previews.swift"; sourceTree = "<group>"; };
 		CB65ADB6288850EA0078AD77 /* SNFirebaseImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNFirebaseImageUploader.swift; sourceTree = "<group>"; };
 		CB65ADBC2889918A0078AD77 /* SNSignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSignupView.swift; sourceTree = "<group>"; };
+		CB65ADBE2889BEAE0078AD77 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
+		CB65ADC02889BF0C0078AD77 /* PHPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHPickerView.swift; sourceTree = "<group>"; };
+		CB65ADC62889CA5D0078AD77 /* SNFileExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNFileExtension.swift; sourceTree = "<group>"; };
+		CB65ADC82889CAA70078AD77 /* FBFilePath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBFilePath.swift; sourceTree = "<group>"; };
 		CB6B468E28673D9E0085EA12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CB6B468F286749910085EA12 /* NewPostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostDetailView.swift; sourceTree = "<group>"; };
 		CB6B469328674CD90085EA12 /* SNShopPost+Previews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SNShopPost+Previews.swift"; sourceTree = "<group>"; };
@@ -237,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				CB2011AF28883E9B004F50E6 /* FirestoreEntity+Protocol.swift */,
+				CB65ADC82889CAA70078AD77 /* FBFilePath.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -312,6 +321,8 @@
 				CBD3E1EA28533B7C0086A3D9 /* PhotosAccessView.swift */,
 				CBBC1658285CA86C007385E3 /* NotificationsAccessView.swift */,
 				CBBC165C285CAAD4007385E3 /* LeadingVerticalStack.swift */,
+				CB65ADBE2889BEAE0078AD77 /* ImagePickerView.swift */,
+				CB65ADC02889BF0C0078AD77 /* PHPickerView.swift */,
 			);
 			path = HelperViews;
 			sourceTree = "<group>";
@@ -442,6 +453,7 @@
 				CB5470172882D97B0074A036 /* SNCurrency.swift */,
 				CB54702328834FF20074A036 /* SNLocation.swift */,
 				CB54702128834FE10074A036 /* SNShopCategory.swift */,
+				CB65ADC62889CA5D0078AD77 /* SNFileExtension.swift */,
 				CB2011AE28883D71004F50E6 /* Firebase */,
 			);
 			path = Models;
@@ -484,7 +496,7 @@
 				CBBC164A285C9E83007385E3 /* Login */,
 				CBF6F1362871CF2F0067E920 /* ProfileViewProtocol.swift */,
 				CBE44AC828521126008E015D /* ProfileView.swift */,
-				CBF6F13A2871DFB80067E920 /* Profiel Edit */,
+				CBF6F13A2871DFB80067E920 /* Profile Edit */,
 				CBE44ACA2852112D008E015D /* HomeView.swift */,
 				CBE44ACF285214BB008E015D /* ShopPostDetailView.swift */,
 				CBE44ACD285213AB008E015D /* ShopPostView.swift */,
@@ -510,14 +522,14 @@
 			path = Business;
 			sourceTree = "<group>";
 		};
-		CBF6F13A2871DFB80067E920 /* Profiel Edit */ = {
+		CBF6F13A2871DFB80067E920 /* Profile Edit */ = {
 			isa = PBXGroup;
 			children = (
 				CBF6F1382871D6EF0067E920 /* ProfileEditView.swift */,
 				CBF6F13D2871DFD60067E920 /* UserEditView.swift */,
 				CBF6F13B2871DFCC0067E920 /* BusinessEditView.swift */,
 			);
-			path = "Profiel Edit";
+			path = "Profile Edit";
 			sourceTree = "<group>";
 		};
 		CBF7CBA5286BAAAB00183138 /* Custom Types */ = {
@@ -703,6 +715,7 @@
 				CBE44AE228529B87008E015D /* TestingView.swift in Sources */,
 				CBE44AE028523301008E015D /* SNShop+Extensions.swift in Sources */,
 				CBF6F1352871C4A20067E920 /* SNUserProfileView.swift in Sources */,
+				CB65ADC72889CA5D0078AD77 /* SNFileExtension.swift in Sources */,
 				CBF6F13C2871DFCC0067E920 /* BusinessEditView.swift in Sources */,
 				CB54701E288343F10074A036 /* SNShopRepository.swift in Sources */,
 				CB54700E2881601B0074A036 /* SNShopPostListViewModel.swift in Sources */,
@@ -713,6 +726,7 @@
 				CB6B46C42868B7C80085EA12 /* SNDebugPrinters.swift in Sources */,
 				CB54702428834FF20074A036 /* SNLocation.swift in Sources */,
 				CB5470132881CE030074A036 /* SNFBCollectionName.swift in Sources */,
+				CB65ADBF2889BEAE0078AD77 /* ImagePickerView.swift in Sources */,
 				CBEF01E32880D15F00ED9680 /* SNParser.swift in Sources */,
 				CB547020288344AF0074A036 /* SNShopViewModel.swift in Sources */,
 				CB6B46B7286891F30085EA12 /* SNFirebaseManager.swift in Sources */,
@@ -727,6 +741,8 @@
 				CBBC1650285C9EAA007385E3 /* SNLoginView.swift in Sources */,
 				CB5470182882D97B0074A036 /* SNCurrency.swift in Sources */,
 				CB65ADBD2889918A0078AD77 /* SNSignupView.swift in Sources */,
+				CB65ADC92889CAA70078AD77 /* FBFilePath.swift in Sources */,
+				CB65ADC12889BF0C0078AD77 /* PHPickerView.swift in Sources */,
 				CB65ADB7288850EA0078AD77 /* SNFirebaseImageUploader.swift in Sources */,
 				CBD3E1E428532A1F0086A3D9 /* SNLocationNotification.swift in Sources */,
 				CBD3E1E82853320F0086A3D9 /* ShopPostRowView.swift in Sources */,
@@ -917,6 +933,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Snotify/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Snotify needs to access your photo library to allow you to upload pictures when creating posts";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -948,6 +965,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Snotify/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Snotify needs to access your photo library to allow you to upload pictures when creating posts";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
