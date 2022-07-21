@@ -16,6 +16,7 @@ Notification that matters
 
 ### To come
 - Notifications
+- Topics
 - Profile Section
 - User Info Section
 
