@@ -153,7 +153,8 @@ final class SNFirebaseManager: NSObject {
             }
 
             do {
-                try self.saveUser(user.uid, user: SNUser.getUser(from: authModel))
+                let isNotificationOn = UserDefaults.standard.bool(forKey: SNKeys.allowNotifications)
+                try self.saveUser(user.uid, user: SNUser.getUser(from: authModel, allowNotification: isNotificationOn))
                 completion(true)
                 withAnimation {
                     self.isLoggedIn = true

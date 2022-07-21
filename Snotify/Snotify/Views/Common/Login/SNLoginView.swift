@@ -232,7 +232,7 @@ struct SNLoginView: View {
                                 .hidden()
                         }
                         .padding(.vertical)
-                        
+
                         Button {
                             // Password
                         } label: {
@@ -508,12 +508,12 @@ extension SNLoginView {
         }
 
         func isEmailAndPasswordValid() -> Bool {
-            isEmailValid && isPasswordValid &&
-            isFirstNameValid && isLastNameValid
+            isEmailValid && isPasswordValid
         }
 
         func isReadyForRegistration() -> Bool {
-            isEmailValid && isPasswordValid
+            isEmailValid && isPasswordValid &&
+            isFirstNameValid && isLastNameValid
         }
 
         enum Field: Int {

@@ -24,6 +24,7 @@ struct SNUser: Identifiable, Codable, FirestoreEntity {
 
     var phoneNumber: String?
     var profilePicture: String?
+    var messageToken: String?
     var birthdate: Date?
     var joinDate: Date?
 
@@ -34,11 +35,11 @@ struct SNUser: Identifiable, Codable, FirestoreEntity {
 
 
 extension SNUser {
-    static func getUser(from model: SNLoginView.AuthModel) -> SNUser {
+    static func getUser(from model: SNLoginView.AuthModel, allowNotification: Bool = true) -> SNUser {
         return SNUser(firstName: model.firstName,
                       lastName: model.lastName,
                       email: model.email,
-                      notificationAuthorized: true,
+                      notificationAuthorized: allowNotification,
                       gender: model.gender,
                       points: 100,
                       isActive: true,

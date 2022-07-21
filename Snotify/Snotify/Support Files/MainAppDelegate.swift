@@ -5,57 +5,33 @@
 //  Created by Cédric Bahirwe on 23/06/2022.
 //
 
-import Firebase
-import CoreLocation
 import UIKit
+import Firebase
 import FirebaseAuth
 import GoogleSignIn
 
 final class MainAppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
-    private let locationManager = CLLocationManager()
+    private let gcmMessageIDKey = "gcm.message_id"
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
 
-        // Configure FireBase App
         FirebaseApp.configure()
 
-//        GIDSignIn.sharedInstance.handle(url)
-//        GIDSignIn.sharedInstance().delegate = self
+        Messaging.messaging().delegate = self
 
+        UNUserNotificationCenter.current().delegate = self
 
-//        GIDSign
-//        FirebaseApp.configure()
-//        // Create the firestore ref
-//        ref = Firestore.firestore()
-//
-//        // Google Messaging Services API Key
-//        GMSServices.provideAPIKey(HoppzConstants.googleAPIKey)
-//
-//        // Location Manager for repetitive location update
-//        initializeLocationManager()
-//
-//        // TODO: What does this do (useful?)
-//        defaults.set(false, forKey: HZLocalKeys.signOut)
-//
-//        // Perform crazt validation and savings
-        //        // TODO: Investigate what happens here
-        //        AuthenticationService.shared.register()
-        //
-//        UNUserNotificationCenter.current().delegate = self
-//
-//        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-//        UNUserNotificationCenter.current().requestAuthorization(
-//            options: authOptions,
-//            completionHandler: { value, _ in
-//                print("Notication Authorized: \(value)")
-//                //                UserDefaults.standard.set(value, forKey: HZLocalKeys.isNotificationAuthorized)
-//            }
-//        )
-//
-//        application.registerForRemoteNotifications()
-//
-//        Messaging.messaging().delegate = self
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(
+            options: authOptions,
+            completionHandler: { value, _ in
+                print("Notication Authorized: \(value)")
+                UserDefaults.standard.set(value, forKey: SNKeys.allowNotifications)
+            }
+        )
+
+        application.registerForRemoteNotifications()
 
         return true
     }
@@ -68,7 +44,13 @@ final class MainAppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
     func application(_ application: UIApplication,
                      didReceiveRemoteNotification userInfo: [AnyHashable : Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        NSLog("Remove Notification Info: ", userInfo)
+        if let messageID = userInfo[gcmMessageIDKey] {
+            prints("Message ID", messageID)
+        }
+
+        prints(userInfo)
+
+        completionHandler(.newData)
     }
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -119,62 +101,47 @@ extension MainAppDelegate {
     }
 }
 
-// MARK: - Utilities
-extension MainAppDelegate {
-        func initializeLocationManager() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.allowsBackgroundLocationUpdates = true
-            locationManager.startUpdatingLocation()
-            locationManager.showsBackgroundLocationIndicator = false
-        }
-}
+// MARK: - MessagingDelegate
+extension MainAppDelegate: MessagingDelegate {
 
-// MARK: - CLLocationManagerDelegate
-extension MainAppDelegate: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager,
-                         didUpdateLocations locations: [CLLocation]) {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        NSLog("Firebase registration token: \(String(describing: fcmToken))")
+
+        if let userID = SNFirebaseManager.shared.getCurrentUserID() {
+            print("Saving the token...")
+            HZFireStoreHelpers.saveFCMRegistrationToken(userID, fcmToken)
+        }
     }
 }
 
 // MARK: - UNUserNotificationCenterDelegate
+@available(iOS 10, *)
 extension MainAppDelegate: UNUserNotificationCenterDelegate {
-    // Receive displayed notifications for iOS 10 devices.
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                willPresent notification: UNNotification,
-                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        let _ = notification.request.content.userInfo
+  func userNotificationCenter(_ center: UNUserNotificationCenter,
+                              willPresent notification: UNNotification,
+                              withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions)
+                                -> Void) {
+      let userInfo = notification.request.content.userInfo
 
-        completionHandler([[.banner, .list, .sound, .badge]])
-    }
+      if let messageID = userInfo[gcmMessageIDKey] {
+          prints("Message ID", messageID)
+      }
+      print(userInfo)
+
+      // Change this to your preferred presentation option
+      completionHandler([[.banner, .list, .badge, .sound]])
+  }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+        if let messageID = userInfo[gcmMessageIDKey] {
+            prints("Message ID", messageID)
+        }
+        print(userInfo)
+
 
         completionHandler()
     }
-
 }
-
-
-// MARK: - MessagingDelegate
-//extension MainAppDelegate: MessagingDelegate {
-//
-//    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-//        NSLog("Firebase registration token: \(String(describing: fcmToken))")
-//
-//        let currentUserId = defaults.string(forKey: HZLocalKeys.currentUserID)
-//
-//        if let currentUserId = currentUserId {
-//            HZFireStoreHelpers.saveFCMRegistrationToken(currentUserId, fcmToken)
-//        }
-//
-//        let dataDict: [String: String] = ["token": fcmToken ?? ""]
-//        NotificationCenter.default.post(
-//            name: Notification.Name("FCMToken"),
-//            object: nil,
-//            userInfo: dataDict
-//        )
-//    }
-//}
