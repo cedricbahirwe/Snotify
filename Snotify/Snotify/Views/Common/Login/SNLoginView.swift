@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct SNLoginView: View {
-    @State private var isSigningIn = false
-    @State private var showRegistrationView = false
-
     // - MARK: - Private Properties
+    @State private var isSigningIn = false
+    @State private var showRegistrationView = true
     @State private var loginModel = LoginModel()
     @FocusState private var focusedField: LoginModel.Field?
+    @State private var showGender = false
 
     var body: some View {
         ZStack {
@@ -27,7 +27,42 @@ struct SNLoginView: View {
 
                 GeometryReader { _ in
                     VStack(spacing: 20) {
-
+                        HStack(spacing: 20) {
+                            VStack(alignment: .leading) {
+                                Text("First name")
+                                    .font(.rounded(weight: .bold))
+                                TextField("First name", text: $loginModel.email)
+                                    .focused($focusedField, equals: .firstName)
+                                    .submitLabel(.next)
+                                    .textContentType(.givenName)
+                                    .keyboardType(.emailAddress)
+                                    .textInputAutocapitalization(.never)
+                                    .font(.rounded())
+                                    .padding(.horizontal)
+                                    .frame(height: 45)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .stroke(Color.gray, lineWidth: 1)
+                                    )
+                            }
+                            VStack(alignment: .leading) {
+                                Text("Last name")
+                                    .font(.rounded(weight: .bold))
+                                TextField("Last name", text: $loginModel.email)
+                                    .focused($focusedField, equals: .lastName)
+                                    .submitLabel(.next)
+                                    .textContentType(.familyName)
+                                    .keyboardType(.emailAddress)
+                                    .textInputAutocapitalization(.never)
+                                    .font(.rounded())
+                                    .padding(.horizontal)
+                                    .frame(height: 45)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .stroke(Color.gray, lineWidth: 1)
+                                    )
+                            }
+                        }
                         VStack(alignment: .leading) {
                             Text("Email")
                                 .font(.rounded(weight: .bold))
@@ -64,8 +99,29 @@ struct SNLoginView: View {
                         }
 
                         VStack {
+                            DisclosureGroup("What is your gender?",
+                                            isExpanded: $showGender.animation()) {
+                                Picker("Select Gender", selection: $loginModel.gender) {
+                                    ForEach(SNGender.allCases, id: \.self) { gender in
+                                        Text(gender.formatted).tag(gender)
+                                    }
+                                }
+                                .pickerStyle(WheelPickerStyle())
+                            }
+                            DatePicker("What is your birthdate?",
+                                       selection: $loginModel.birthdate,
+                                       in: ...Date(),
+                                       displayedComponents: .date)
+                            .datePickerStyle(CompactDatePickerStyle())
+
+                        }
+                        .onChange(of: loginModel.gender) { newValue in
+                            showGender = false
+                        }
+
+                        VStack {
                             Button(action: processManualAuth) {
-                                Text(showRegistrationView ? "Register" : "Login")
+                                Text(showRegistrationView ? "Continue" : "Login")
                                     .font(.rounded(weight: .bold))
                                     .frame(maxWidth: .infinity)
                                     .frame(height: 45)
@@ -254,6 +310,8 @@ private extension SNLoginView {
     struct LoginModel {
         var email: String = ""
         var password: String = ""
+        var gender: SNGender = .unknown
+        var birthdate: Date = Date()
 
         private var isEmailValid: Bool {
             SNEmailAddress(rawValue: email) != nil
@@ -267,6 +325,8 @@ private extension SNLoginView {
         }
 
         enum Field {
+            case firstName
+            case lastName
             case email
             case password
         }

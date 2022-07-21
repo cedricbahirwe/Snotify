@@ -19,7 +19,7 @@ struct SnotifyApp: App {
 //            TestingView()
             ContentView()
                 .onOpenURL(perform: handIncomingURL)
-                .environment(\.locale, .init(identifier: "fr"))
+//                .environment(\.locale, .init(identifier: "fr"))
 
         }
         .onChange(of: scenePhase, perform: observeScenePhase)

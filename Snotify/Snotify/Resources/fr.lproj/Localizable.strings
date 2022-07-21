@@ -16,19 +16,22 @@
 "Price" = "Prix";
 "Comments" = "Commentaires";
 "Continue" = "Continuer";
+"Password" = "Mot de passe";
 "or" = "ou";
 
 // Login View
 "Email" = "Addresse mail";
+"First name" = "Prénom";
+"Last name" = "Nom de famille";
 "name@domain.com" = "nom@domain.com";
-"Password" = "Mot de passe";
 "Login" = "Se connecter";
 "Register" = "S'enregister";
 "Enter your password" = "Entrer votre mot de passe";
 "Forgot password?" = "Mot de passe oublié?";
 "Create an account" = "Créer un compte";
 "Already have an account? Sign In instead." = "Déjà un compte?, connectez-vous plutôt.";
-
+"What is your birthdate?" = "Votre date de naissance ?";
+"What is your gender?" = "Quel est votre sexe ?";
 
 // Home View
 "News" = "Nouveautés";

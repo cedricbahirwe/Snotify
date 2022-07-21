@@ -16,17 +16,21 @@
 "Price" = "Price";
 "Comments" = "Comments";
 "Continue" = "Continue";
+"Password" = "Password";
 "or" = "or";
 
 // Login View
 "Email" = "Email";
+"First name" = "First name";
+"Last name" = "Last name";
 "name@domain.com" = "name@domain.com";
-"Password" = "Password";
 "Enter your password" = "Enter your password";
 "Login" = "Login";
 "Register" = "Register";
 "Create an account" = "Create an account";
 "Already have an account? Sign In instead." = "Already have an account? Sign In instead.";
+"What is your birthdate?" = "What is your birthdate?";
+"What is your gender?" = "What is your gender?";
 
 // Home View
 "News" = "News";

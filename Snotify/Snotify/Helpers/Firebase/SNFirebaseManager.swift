@@ -9,7 +9,9 @@ import Firebase
 import GoogleSignIn
 import Foundation
 import SwiftUI
+import FirebaseFirestore
 
+#warning("After success login check/set the message token for the user and also load their information")
 final class SNFirebaseManager: NSObject {
     @AppStorage(SNKeys.isUserLoggedIn)
     private var isLoggedIn = false
@@ -148,6 +150,8 @@ final class SNFirebaseManager: NSObject {
                 completion(false)
                 return
             }
+            #warning("Save the user in the collection after this")
+            #warning("After saving, proceed to sign in")
             completion(true)
             prints("\(result.user)")
             prints("\(String(describing: result.user.email))")
@@ -169,5 +173,49 @@ final class SNFirebaseManager: NSObject {
         } catch {
             printf("Unable to sign out, error \(error)")
         }
+    }
+}
+
+// MARK: - Store User in DB (Collection)
+extension SNFirebaseManager {
+    func saveUser(_ id: String, user: SNUser) throws {
+        let reference = Firestore.firestore()
+        try reference
+            .collection(.users)
+            .document(id)
+            .setData(from: user) { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+            }
+    }
+}
+
+// MARK: - Notification Toke Manager
+extension SNFirebaseManager {
+    private func handleUserRegistration(for userId: String) {
+        let ref = Firestore.firestore()
+        ref.collection(.users)
+            .document(userId)
+            .addSnapshotListener{ (querySnapshot, error) in
+                guard let document = querySnapshot?.data() else { return }
+                if (document["messageToken"] == nil) {
+                    Messaging.messaging().token { token, error in
+                        if let error = error {
+                            snPrint("Error fetching FCM registration token: \(error)")
+                        } else if let token = token {
+                            snPrint("FCM registration token: \(token)")
+                            ref.collection(.users).document(userId)
+                                .setData(["messageToken": token], merge: true) { error in
+                                    if  let error = error {
+                                        printf(error.localizedDescription)
+                                        return
+                                    }
+                                }
+                        }
+                    }
+                }
+            }
     }
 }

@@ -55,6 +55,12 @@ extension ProfileEditView {
             }
         }
     }
+
+    func uploadProfilePicture() {
+        SNFirebaseImageUploader.shared.upload(data: Data(), format: "png", path: "test") { value in
+            print("Image Uploaded \(value)")
+        }
+    }
 }
 
 struct UserEditView_Previews: PreviewProvider {
@@ -62,3 +68,4 @@ struct UserEditView_Previews: PreviewProvider {
         ProfileEditView.UserEditView(model: .constant(.init()))
     }
 }
+
