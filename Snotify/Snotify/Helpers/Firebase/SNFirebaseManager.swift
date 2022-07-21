@@ -135,10 +135,11 @@ final class SNFirebaseManager: NSObject {
     ///   - email: user's email
     ///   - password: user's password
     ///   - completion: whether the Sign Up process was successful
-    func signUpWithEmailAndPassword(_ email: String,
-                                    _ password: String,
+    func signUpWithEmailAndPassword(_ authModel: SNLoginView.AuthModel,
                                     completion: @escaping(Bool) -> Void) {
-        firebaseAuth.createUser(withEmail: email, password: password) { [weak self] result, error in
+        firebaseAuth.createUser(withEmail: authModel.email,
+                                password: authModel.password)
+        { [weak self] result, error in
             guard let self =  self else { return }
             if let error = error {
                 completion(false)
@@ -146,18 +147,20 @@ final class SNFirebaseManager: NSObject {
                 return
             }
 
-            guard let result = result else {
+            guard let user = result?.user else {
                 completion(false)
                 return
             }
-            #warning("Save the user in the collection after this")
-            #warning("After saving, proceed to sign in")
-            completion(true)
-            prints("\(result.user)")
-            prints("\(String(describing: result.user.email))")
-            prints("\(String(describing: result.user.displayName))")
-            withAnimation {
-                self.isLoggedIn = true
+
+            do {
+                try self.saveUser(user.uid, user: SNUser.getUser(from: authModel))
+                withAnimation {
+                    self.isLoggedIn = true
+                }
+                completion(true)
+            } catch {
+                printf("Saving error", error.localizedDescription)
+                completion(false)
             }
         }
     }

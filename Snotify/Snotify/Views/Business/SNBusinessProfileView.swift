@@ -11,6 +11,7 @@ import MapKit
 struct SNBusinessProfileView: ProfileViewProtocol {
     var sessionType: SNSessionType = .customer
     @StateObject var shopsListVM = SNShopsListViewModel()
+//    @StateObject var userVM = SNpro
     @State private var showSettingsView = false
 
     private var shopVM: SNShopViewModel {
