@@ -10,9 +10,10 @@ import SwiftUI
 struct SNLoginView: View {
     // - MARK: - Private Properties
     @State private var isSigningIn = false
-    @State private var isRegistration = true
+    @State private var isRegistration = false
     @State private var authModel = AuthModel()
     @FocusState private var focusedField: AuthModel.Field?
+    @State private var showGender = true
     @State private var showProfilePicture = false
     @State private var isUploadingPic = false
     @State private var isDeletingPic = false
@@ -28,8 +29,25 @@ struct SNLoginView: View {
                     .foregroundColor(.accentColor)
                     .font(.rounded(.largeTitle))
                     .fontWeight(.bold)
-                    .padding(.top, 30)
+                    .padding(.top, isRegistration ? 0 : 30)
                     .ignoresSafeArea(.keyboard, edges: .top)
+                    .frame(maxWidth: .infinity)
+                    .overlay(
+                        Button(action: {
+                            withAnimation {
+                                isRegistration.toggle()
+                            }
+                        }) {
+                            Image(systemName: "chevron.left")
+                                .imageScale(.large)
+                                .font(.body.bold())
+                                .padding()
+                                .background(.regularMaterial)
+                                .mask(Circle())
+                        }.opacity(isRegistration ? 1 : 0)
+                        , alignment: .leading
+                    )
+                    .padding(.bottom)
 
                 GeometryReader { _ in
                     VStack(spacing: 20) {
@@ -105,9 +123,8 @@ struct SNLoginView: View {
                                 )
                         }
                         if isRegistration {
-
                             VStack(alignment: .leading) {
-                                DisclosureGroup("What is your gender?") {
+                                DisclosureGroup("What is your gender?", isExpanded: $showGender) {
 
                                     HStack(spacing: 2) {
                                         ForEach(SNGender.allCases, id: \.self) { gender in
@@ -215,7 +232,7 @@ struct SNLoginView: View {
                                 .hidden()
                         }
                         .padding(.vertical)
-
+                        
                         Button {
                             // Password
                         } label: {
@@ -224,9 +241,6 @@ struct SNLoginView: View {
 
                         }.hidden()
 
-                        if isRegistration {
-                            signUpView
-                        }
                     }
                     .onSubmit {
                         manageKeyboardFocus()
@@ -244,7 +258,7 @@ struct SNLoginView: View {
                 uploadProfilePicture()
             })
 
-            if !showProfilePicture {
+            if showProfilePicture {
                 Color.black.opacity(0.6).ignoresSafeArea()
                     .onTapGesture {
                         guard isDeletingPic == false else { return }
@@ -316,16 +330,12 @@ struct SNLoginView: View {
     }
 
     private func deletePicture() {
-//        showProfilePicture.toggle()
         isDeletingPic = true
         SNFirebaseImageUploader.shared.deleteLastUploadedFile { state in
-            print("We have", state)
             isDeletingPic = false
-            if state {
-                showProfilePicture = false
-                authModel.profilePicture = nil
-                selectedImage = nil
-            }
+            authModel.profilePicture = nil
+            selectedImage = nil
+            showProfilePicture = false
         }
     }
 
@@ -489,8 +499,17 @@ extension SNLoginView {
             password.trimmingCharacters(in: .whitespaces).count >= 6
         }
 
+        private var isFirstNameValid: Bool {
+            firstName.trimmingCharacters(in: .whitespaces).count > 1
+        }
+
+        private var isLastNameValid: Bool {
+            lastName.trimmingCharacters(in: .whitespaces).count > 1
+        }
+
         func isEmailAndPasswordValid() -> Bool {
-            isEmailValid && isPasswordValid
+            isEmailValid && isPasswordValid &&
+            isFirstNameValid && isLastNameValid
         }
 
         func isReadyForRegistration() -> Bool {
