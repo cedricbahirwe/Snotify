@@ -30,5 +30,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:467481965896:ios:0b6323f926035497606f7d</string>
+	<key>DATABASE_URL</key>
+	<string>https://snotify-7ed5e-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>

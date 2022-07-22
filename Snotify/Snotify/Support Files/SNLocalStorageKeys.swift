@@ -12,4 +12,6 @@ public enum SNLocalStorageKeys {
     static let isUserLoggedIn = "isUserLoggedIn"
 
     static let snUserType = "snUserType"
+
+    static let allowNotifications = "allowNotifications"
 }

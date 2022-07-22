@@ -9,7 +9,9 @@ import Firebase
 import GoogleSignIn
 import Foundation
 import SwiftUI
+import FirebaseFirestore
 
+#warning("After success login check/set the message token for the user and also load their information")
 final class SNFirebaseManager: NSObject {
     @AppStorage(SNKeys.isUserLoggedIn)
     private var isLoggedIn = false
@@ -133,10 +135,11 @@ final class SNFirebaseManager: NSObject {
     ///   - email: user's email
     ///   - password: user's password
     ///   - completion: whether the Sign Up process was successful
-    func signUpWithEmailAndPassword(_ email: String,
-                                    _ password: String,
+    func signUpWithEmailAndPassword(_ authModel: SNLoginView.AuthModel,
                                     completion: @escaping(Bool) -> Void) {
-        firebaseAuth.createUser(withEmail: email, password: password) { [weak self] result, error in
+        firebaseAuth.createUser(withEmail: authModel.email,
+                                password: authModel.password)
+        { [weak self] result, error in
             guard let self =  self else { return }
             if let error = error {
                 completion(false)
@@ -144,16 +147,21 @@ final class SNFirebaseManager: NSObject {
                 return
             }
 
-            guard let result = result else {
+            guard let user = result?.user else {
                 completion(false)
                 return
             }
-            completion(true)
-            prints("\(result.user)")
-            prints("\(String(describing: result.user.email))")
-            prints("\(String(describing: result.user.displayName))")
-            withAnimation {
-                self.isLoggedIn = true
+
+            do {
+                let isNotificationOn = UserDefaults.standard.bool(forKey: SNKeys.allowNotifications)
+                try self.saveUser(user.uid, user: SNUser.getUser(from: authModel, allowNotification: isNotificationOn))
+                completion(true)
+                withAnimation {
+                    self.isLoggedIn = true
+                }
+            } catch {
+                printf("Saving error", error.localizedDescription)
+                completion(false)
             }
         }
     }
@@ -169,5 +177,49 @@ final class SNFirebaseManager: NSObject {
         } catch {
             printf("Unable to sign out, error \(error)")
         }
+    }
+}
+
+// MARK: - Store User in DB (Collection)
+extension SNFirebaseManager {
+    func saveUser(_ id: String, user: SNUser) throws {
+        let reference = Firestore.firestore()
+        try reference
+            .collection(.users)
+            .document(id)
+            .setData(from: user) { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+            }
+    }
+}
+
+// MARK: - Notification Toke Manager
+extension SNFirebaseManager {
+    private func handleUserRegistration(for userId: String) {
+        let ref = Firestore.firestore()
+        ref.collection(.users)
+            .document(userId)
+            .addSnapshotListener{ (querySnapshot, error) in
+                guard let document = querySnapshot?.data() else { return }
+                if (document["messageToken"] == nil) {
+                    Messaging.messaging().token { token, error in
+                        if let error = error {
+                            snPrint("Error fetching FCM registration token: \(error)")
+                        } else if let token = token {
+                            snPrint("FCM registration token: \(token)")
+                            ref.collection(.users).document(userId)
+                                .setData(["messageToken": token], merge: true) { error in
+                                    if  let error = error {
+                                        printf(error.localizedDescription)
+                                        return
+                                    }
+                                }
+                        }
+                    }
+                }
+            }
     }
 }

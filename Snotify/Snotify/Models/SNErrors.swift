@@ -19,4 +19,6 @@ public enum SNErrors: Error {
     case userNotFound
     case invalidUser
     case parseData
+    case noDataFound
+    case unknownError(_ error: Error?)
 }

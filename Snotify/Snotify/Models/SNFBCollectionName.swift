@@ -8,6 +8,7 @@
 import Foundation
 
 public enum SNFBCollectionName: String {
+    case users
     case posts
     case shops
 }

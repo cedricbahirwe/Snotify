@@ -117,15 +117,15 @@ class LocalNotification {
 }
 
 final class LocalNotificationManager: ObservableObject {
-    init() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
-            if granted == true && error == nil {
-                print("Notifications permitted")
-            } else {
-                print("Notifications not permitted")
-            }
-        }
-    }
+//    init() {
+//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+//            if granted == true && error == nil {
+//                print("Notifications permitted")
+//            } else {
+//                print("Notifications not permitted")
+//            }
+//        }
+//    }
 
     func schedulePostNotification(title: String,
                                   subtitle: String?,
