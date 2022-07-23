@@ -12,7 +12,7 @@ struct NewPostDetailView: View {
     @Environment(\.dismiss) private var dismiss
     private let currencies: [SNCurrency] = SNCurrency.allCases
     @EnvironmentObject private var snPostingManager: SNPostingManager
-    @State private var postModel = SNPost(shop: . previews.randomElement()!)
+    @State private var postModel = SNPost(shop: .sample)
     var body: some View {
         ScrollView {
             VStack {
@@ -89,12 +89,13 @@ struct NewPostDetailView: View {
     }
 
     private func publishPost() {
-        self.postModel.images = SNPost.preview.images
-        self.postModel.shop.location = SNLocation.ramdomLocation
+        self.postModel.images = SNPost.sample.images
+        self.postModel.shop.location = SNLocation.randomLocation
         SNPostingManager.shared.publishPost(postModel)
     }
 }
 
+#if DEBUG
 struct NewPostDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
@@ -103,6 +104,7 @@ struct NewPostDetailView_Previews: PreviewProvider {
         }
     }
 }
+#endif
 
 struct InfoButton: View {
     init(_ type: InfoButton.InfoType) {

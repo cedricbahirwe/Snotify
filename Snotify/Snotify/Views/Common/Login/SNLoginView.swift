@@ -288,11 +288,16 @@ struct SNLoginView: View {
                 }
             }
         }
+        .background(Color(.systemBackground).onTapGesture(perform: hideKeyboard))
         .fullScreenCover(isPresented: $presentPhotoPicker,
                          onDismiss: uploadProfilePicture) {
             PhotoPickerView(isPresented: $presentPhotoPicker,
                             selectedImage: $selectedImage)
         }
+    }
+
+    private func hideKeyboard() {
+        focusedField = nil
     }
 
     private func manageKeyboardFocus() {

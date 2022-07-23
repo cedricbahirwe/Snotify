@@ -19,7 +19,6 @@
 		CB5470132881CE030074A036 /* SNFBCollectionName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5470122881CE030074A036 /* SNFBCollectionName.swift */; };
 		CB5470162881CE3D0074A036 /* Firestore+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5470152881CE3D0074A036 /* Firestore+Extension.swift */; };
 		CB5470182882D97B0074A036 /* SNCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5470172882D97B0074A036 /* SNCurrency.swift */; };
-		CB54701A28833C8A0074A036 /* SNLocation+Previews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB54701928833C8A0074A036 /* SNLocation+Previews.swift */; };
 		CB54701C288343C20074A036 /* SNShopsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB54701B288343C10074A036 /* SNShopsListViewModel.swift */; };
 		CB54701E288343F10074A036 /* SNShopRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB54701D288343F10074A036 /* SNShopRepository.swift */; };
 		CB547020288344AF0074A036 /* SNShopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB54701F288344AF0074A036 /* SNShopViewModel.swift */; };
@@ -35,7 +34,6 @@
 		CB65ADCB2889DFF70078AD77 /* SNFirebasehelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65ADCA2889DFF60078AD77 /* SNFirebasehelpers.swift */; };
 		CB65ADCD2889E5BE0078AD77 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB65ADCC2889E5BE0078AD77 /* GoogleService-Info.plist */; };
 		CB6B4690286749910085EA12 /* NewPostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B468F286749910085EA12 /* NewPostDetailView.swift */; };
-		CB6B469428674CD90085EA12 /* SNShopPost+Previews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B469328674CD90085EA12 /* SNShopPost+Previews.swift */; };
 		CB6B469628674CF00085EA12 /* SNImages+Previews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B469528674CF00085EA12 /* SNImages+Previews.swift */; };
 		CB6B4698286755C60085EA12 /* SNPostingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B4697286755C60085EA12 /* SNPostingManager.swift */; };
 		CB6B469A286879E60085EA12 /* SNAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B4699286879E60085EA12 /* SNAuthenticationManager.swift */; };
@@ -56,6 +54,7 @@
 		CB6B46C02868B1530085EA12 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CB6B46BF2868B1530085EA12 /* GoogleSignInSwift */; };
 		CB6B46C22868B5BA0085EA12 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B46C12868B5B90085EA12 /* View+Extensions.swift */; };
 		CB6B46C42868B7C80085EA12 /* SNDebugPrinters.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B46C32868B7C80085EA12 /* SNDebugPrinters.swift */; };
+		CB83A7CB288C4D4C00C07829 /* SNSamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB83A7CA288C4D4C00C07829 /* SNSamples.swift */; };
 		CBBC1650285C9EAA007385E3 /* SNLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC164F285C9EAA007385E3 /* SNLoginView.swift */; };
 		CBBC1655285C9EFB007385E3 /* Extension+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC1654285C9EFB007385E3 /* Extension+Font.swift */; };
 		CBBC1659285CA86C007385E3 /* NotificationsAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC1658285CA86C007385E3 /* NotificationsAccessView.swift */; };
@@ -126,7 +125,6 @@
 		CB5470122881CE030074A036 /* SNFBCollectionName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNFBCollectionName.swift; sourceTree = "<group>"; };
 		CB5470152881CE3D0074A036 /* Firestore+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firestore+Extension.swift"; sourceTree = "<group>"; };
 		CB5470172882D97B0074A036 /* SNCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNCurrency.swift; sourceTree = "<group>"; };
-		CB54701928833C8A0074A036 /* SNLocation+Previews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SNLocation+Previews.swift"; sourceTree = "<group>"; };
 		CB54701B288343C10074A036 /* SNShopsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNShopsListViewModel.swift; sourceTree = "<group>"; };
 		CB54701D288343F10074A036 /* SNShopRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNShopRepository.swift; sourceTree = "<group>"; };
 		CB54701F288344AF0074A036 /* SNShopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNShopViewModel.swift; sourceTree = "<group>"; };
@@ -143,7 +141,6 @@
 		CB65ADCC2889E5BE0078AD77 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB6B468E28673D9E0085EA12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CB6B468F286749910085EA12 /* NewPostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostDetailView.swift; sourceTree = "<group>"; };
-		CB6B469328674CD90085EA12 /* SNShopPost+Previews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SNShopPost+Previews.swift"; sourceTree = "<group>"; };
 		CB6B469528674CF00085EA12 /* SNImages+Previews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SNImages+Previews.swift"; sourceTree = "<group>"; };
 		CB6B4697286755C60085EA12 /* SNPostingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNPostingManager.swift; sourceTree = "<group>"; };
 		CB6B4699286879E60085EA12 /* SNAuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNAuthenticationManager.swift; sourceTree = "<group>"; };
@@ -152,6 +149,7 @@
 		CB6B46B8286897A50085EA12 /* Snotify.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Snotify.entitlements; sourceTree = "<group>"; };
 		CB6B46C12868B5B90085EA12 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		CB6B46C32868B7C80085EA12 /* SNDebugPrinters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNDebugPrinters.swift; sourceTree = "<group>"; };
+		CB83A7CA288C4D4C00C07829 /* SNSamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSamples.swift; sourceTree = "<group>"; };
 		CBBC164F285C9EAA007385E3 /* SNLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNLoginView.swift; sourceTree = "<group>"; };
 		CBBC1654285C9EFB007385E3 /* Extension+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Font.swift"; sourceTree = "<group>"; };
 		CBBC1658285CA86C007385E3 /* NotificationsAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsAccessView.swift; sourceTree = "<group>"; };
@@ -391,9 +389,7 @@
 				CBE44A9E2852041C008E015D /* Preview Assets.xcassets */,
 				CBE44ADF28523301008E015D /* SNShop+Extensions.swift */,
 				CB547027288350A40074A036 /* SNPost+Previews.swift */,
-				CB6B469328674CD90085EA12 /* SNShopPost+Previews.swift */,
 				CB6B469528674CF00085EA12 /* SNImages+Previews.swift */,
-				CB54701928833C8A0074A036 /* SNLocation+Previews.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -447,6 +443,7 @@
 			children = (
 				CBF7CBA5286BAAAB00183138 /* Custom Types */,
 				CBE44AD728523163008E015D /* SNShop.swift */,
+				CB83A7CA288C4D4C00C07829 /* SNSamples.swift */,
 				CBE44AD52852315D008E015D /* SNPost.swift */,
 				CB2011AC28883CE8004F50E6 /* SNUser.swift */,
 				CB2011B128884109004F50E6 /* SNGender.swift */,
@@ -714,6 +711,7 @@
 				CBEF01DA2880C0B800ED9680 /* FBDatabaseStorage.swift in Sources */,
 				CBF6F1392871D6EF0067E920 /* ProfileEditView.swift in Sources */,
 				CBE44ACE285213AB008E015D /* ShopPostView.swift in Sources */,
+				CB83A7CB288C4D4C00C07829 /* SNSamples.swift in Sources */,
 				CBF7CBA7286BAAB800183138 /* SNEmailAddress.swift in Sources */,
 				CBE44AE228529B87008E015D /* TestingView.swift in Sources */,
 				CBE44AE028523301008E015D /* SNShop+Extensions.swift in Sources */,
@@ -737,7 +735,6 @@
 				CB5470112881CBC00074A036 /* SNPostRepository.swift in Sources */,
 				CBD3E1EB28533B7C0086A3D9 /* PhotosAccessView.swift in Sources */,
 				CBBC165D285CAAD4007385E3 /* LeadingVerticalStack.swift in Sources */,
-				CB6B469428674CD90085EA12 /* SNShopPost+Previews.swift in Sources */,
 				CB6B46C22868B5BA0085EA12 /* View+Extensions.swift in Sources */,
 				CB6B4690286749910085EA12 /* NewPostDetailView.swift in Sources */,
 				CBE44AC928521126008E015D /* ProfileView.swift in Sources */,
@@ -756,7 +753,6 @@
 				CB09C7A22864C69200B15C38 /* MainAppDelegate.swift in Sources */,
 				CB5470162881CE3D0074A036 /* Firestore+Extension.swift in Sources */,
 				CBE44AD828523163008E015D /* SNShop.swift in Sources */,
-				CB54701A28833C8A0074A036 /* SNLocation+Previews.swift in Sources */,
 				CB6B4698286755C60085EA12 /* SNPostingManager.swift in Sources */,
 				CBE44A982852041A008E015D /* SnotifyApp.swift in Sources */,
 				CB2011B028883E9B004F50E6 /* FirestoreEntity+Protocol.swift in Sources */,

@@ -15,7 +15,7 @@ struct SNBusinessProfileView: ProfileViewProtocol {
     @State private var showSettingsView = false
 
     private var shopVM: SNShopViewModel {
-        shopsListVM.shopsVM.last ?? .init(.preview)
+        shopsListVM.shopsVM.last ?? .init(.sample)
     }
     private var hasLoadShop: Bool { shopsListVM.shopsVM.first != nil }
     var body: some View {

@@ -113,6 +113,7 @@ struct ShopPostRowView: View {
     }
 }
 
+#if DEBUG
 struct ShopPostRowView_Previews: PreviewProvider {
     static var previews: some View {
         ShopPostRowView(postCell: .init(.previews[0]))
@@ -120,6 +121,7 @@ struct ShopPostRowView_Previews: PreviewProvider {
             .previewLayout(.fixed(width: 410, height: 400))
     }
 }
+#endif
 
 private extension ShopPostRowView {
     var shopContactBanner: some View {

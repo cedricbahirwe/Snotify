@@ -94,8 +94,10 @@ struct ShopPostDetailView: View {
     }
 }
 
+#if DEBUG
 struct ShopPostDetailView_Previews: PreviewProvider {
     static var previews: some View {
         ShopPostDetailView(postVM: .init(.preview))
     }
 }
+#endif

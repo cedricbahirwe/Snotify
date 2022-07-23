@@ -81,6 +81,9 @@ struct HomeView: View {
                     }
                 }
             }
+            .task({
+                await makeRequest()
+            })
             .onAppear() {
 //                DispatchQueue.main.asyncAfter(deadline: .now()+2) {
 //                    self.isLoading = true
@@ -88,6 +91,33 @@ struct HomeView: View {
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
+    }
+
+    private func makeRequest() async {
+        struct Notification: Codable {
+            let validate_only: Bool
+            let message: Message
+            struct Message: Codable {
+                let title: String
+            }
+        }
+        let notification = Notification(validate_only: false,
+                                        message: .init(title: "Welcome Sir!"))
+        guard let encoded = try? JSONEncoder().encode(notification) else {
+            print("Failed to encode order")
+            return
+        }
+        let url = URL(string: "https://fcm.googleapis.com/v1/snotify-7ed5e/messages:send")!
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        
+        do {
+            let (data, _) = try await URLSession.shared.upload(for: request, from: encoded)
+            // handle the result
+        } catch {
+            print("Checkout failed.", error)
+        }
     }
 }
 

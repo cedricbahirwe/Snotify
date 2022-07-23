@@ -15,6 +15,10 @@ extension View {
     func viewInDark() -> some View {
         self.preferredColorScheme(.dark)
     }
+
+    func dismissKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
 }
 
 extension NSObject {
