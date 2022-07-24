@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NewPostDetailView: View {
-    let imageName: String
+    let image: UIImage
     @Environment(\.dismiss) private var dismiss
     private let currencies: [SNCurrency] = SNCurrency.allCases
     @EnvironmentObject private var snPostingManager: SNPostingManager
@@ -17,7 +17,7 @@ struct NewPostDetailView: View {
         ScrollView {
             VStack {
                 HStack(alignment: .top) {
-                    Image(imageName)
+                    Image(uiImage: image)
                         .resizable()
                         .frame(width: 60, height: 60)
                     TextField("Enter une description", text: $postModel.description)
@@ -99,7 +99,7 @@ struct NewPostDetailView: View {
 struct NewPostDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            NewPostDetailView(imageName: UIImage.randomIphoneName)
+            NewPostDetailView(image: SNConstants.placeholderImage)
                 .navigationBarTitleDisplayMode(.inline)
         }
     }

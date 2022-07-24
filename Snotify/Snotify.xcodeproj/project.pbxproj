@@ -13,6 +13,7 @@
 		CB2011B028883E9B004F50E6 /* FirestoreEntity+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2011AF28883E9B004F50E6 /* FirestoreEntity+Protocol.swift */; };
 		CB2011B22888410A004F50E6 /* SNGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2011B128884109004F50E6 /* SNGender.swift */; };
 		CB2011B428884D91004F50E6 /* SNUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2011B328884D90004F50E6 /* SNUserRepository.swift */; };
+		CB4B0F38288D76C300A22F11 /* SNConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4B0F37288D76C300A22F11 /* SNConstants.swift */; };
 		CB54700C28815E130074A036 /* SNShopPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB54700B28815E130074A036 /* SNShopPostViewModel.swift */; };
 		CB54700E2881601B0074A036 /* SNShopPostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB54700D2881601B0074A036 /* SNShopPostListViewModel.swift */; };
 		CB5470112881CBC00074A036 /* SNPostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5470102881CBC00074A036 /* SNPostRepository.swift */; };
@@ -119,6 +120,7 @@
 		CB2011AF28883E9B004F50E6 /* FirestoreEntity+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirestoreEntity+Protocol.swift"; sourceTree = "<group>"; };
 		CB2011B128884109004F50E6 /* SNGender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNGender.swift; sourceTree = "<group>"; };
 		CB2011B328884D90004F50E6 /* SNUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNUserRepository.swift; sourceTree = "<group>"; };
+		CB4B0F37288D76C300A22F11 /* SNConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNConstants.swift; sourceTree = "<group>"; };
 		CB54700B28815E130074A036 /* SNShopPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNShopPostViewModel.swift; sourceTree = "<group>"; };
 		CB54700D2881601B0074A036 /* SNShopPostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNShopPostListViewModel.swift; sourceTree = "<group>"; };
 		CB5470102881CBC00074A036 /* SNPostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNPostRepository.swift; sourceTree = "<group>"; };
@@ -454,6 +456,7 @@
 				CB54702328834FF20074A036 /* SNLocation.swift */,
 				CB54702128834FE10074A036 /* SNShopCategory.swift */,
 				CB65ADC62889CA5D0078AD77 /* SNFileExtension.swift */,
+				CB4B0F37288D76C300A22F11 /* SNConstants.swift */,
 				CB2011AE28883D71004F50E6 /* Firebase */,
 			);
 			path = Models;
@@ -699,6 +702,7 @@
 				CBE44A9A2852041A008E015D /* ContentView.swift in Sources */,
 				CBF6F1372871CF2F0067E920 /* ProfileViewProtocol.swift in Sources */,
 				CBEF01E02880C4F300ED9680 /* SNErrors.swift in Sources */,
+				CB4B0F38288D76C300A22F11 /* SNConstants.swift in Sources */,
 				CB6B469A286879E60085EA12 /* SNAuthenticationManager.swift in Sources */,
 				CB2011B22888410A004F50E6 /* SNGender.swift in Sources */,
 				CBE44AD0285214BB008E015D /* ShopPostDetailView.swift in Sources */,

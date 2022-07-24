@@ -12,63 +12,31 @@ struct ShopPostView: View {
     private let columns = Array(repeating: GridItem(.flexible()), count: 4)
     @State private var isHidden = true
 
-    @State private var selectedImage: String?
+    @State private var selectedImage: UIImage?
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
+                Image(uiImage: selectedImage ?? SNConstants.placeholderImage)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(
+                        maxWidth: .infinity,
+                        minHeight: 150,
+                        maxHeight: UIScreen.main.bounds.height/4
+                    )
+                    .clipped()
 
-                ScrollView(.vertical, showsIndicators: false) {
-
-                    LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
-                        Section {
-                            Image(selectedImage ?? "iphone1")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(
-                                    width: UIScreen.main.bounds.width,
-                                    height: UIScreen.main.bounds.width
-                                )
-                                .background(Color.black)
-                        }
-
-                        Section {
-                            LazyVGrid(
-                                columns: columns,
-                                spacing: 0) {
-                                    ForEach(0..<18, id:\.self) { i in
-                                        let imgName = "shoe\(i)"
-                                        gridImageView(imgName)
-                                    }
-
-                                    ForEach(1..<6, id:\.self) { i in
-                                        let imgName = "iphone\(i)"
-                                        gridImageView(imgName)
-                                    }
-                                }
-                        } header: {
-                            Text("Recents")
-                                .foregroundColor(.white)
-                                .font(.body.weight(.semibold))
-                                .padding()
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .background(Color.black)
-                        }
-
-                        Section("Recents") {
-
-                        }
-                    }
-                }
+                PhotoPickerView(isPresented: .constant(true),
+                                selectedImage: $selectedImage)
+                .ignoresSafeArea()
             }
-            .preferredColorScheme(.light)
             .navigationTitle("New Post")
             .navigationBarTitleDisplayMode(.inline)
-            .background(Color.black.ignoresSafeArea(.all, edges: .bottom))
             .overlay(
                 VStack {
                     Spacer()
                     NavigationLink {
-                        NewPostDetailView(imageName: selectedImage ?? .init())
+                        NewPostDetailView(image: selectedImage ?? .init())
                     } label: {
                         Text("Continuer")
                             .foregroundColor(.accentColor)
@@ -103,14 +71,15 @@ struct ShopPostView: View {
     }
 
     private func gridImageView(_ imgName: String) -> some View {
+        let image = UIImage(named: imgName)
         return Image(imgName)
             .resizable()
             .aspectRatio(1, contentMode: .fill)
             .clipped()
             .id(imgName)
-            .overlay(Color.gray.opacity(imgName==selectedImage ? 0.5 : 0))
+            .overlay(Color.gray.opacity(image==selectedImage ? 0.5 : 0))
             .onTapGesture {
-                selectedImage = imgName
+                selectedImage = image
             }
     }
 }
@@ -123,3 +92,50 @@ struct ShopPostView_Previews: PreviewProvider {
 
 
 
+
+extension ShopPostView {
+    var sectionGridView: some View {
+        ScrollView(.vertical, showsIndicators: false) {
+
+            LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
+                Section {
+                    Image(uiImage: selectedImage ?? SNConstants.placeholderImage)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(
+                            width: UIScreen.main.bounds.width,
+                            height: UIScreen.main.bounds.width
+                        )
+                        .background(Color.black)
+                }
+
+                Section {
+                    LazyVGrid(
+                        columns: columns,
+                        spacing: 0) {
+                            ForEach(0..<18, id:\.self) { i in
+                                let imgName = "shoe\(i)"
+                                gridImageView(imgName)
+                            }
+
+                            ForEach(1..<6, id:\.self) { i in
+                                let imgName = "iphone\(i)"
+                                gridImageView(imgName)
+                            }
+                        }
+                } header: {
+                    Text("Recents")
+                        .foregroundColor(.white)
+                        .font(.body.weight(.semibold))
+                        .padding()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(Color.black)
+                }
+
+                Section("Recents") {
+
+                }
+            }
+        }
+    }
+}
