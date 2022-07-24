@@ -40,7 +40,7 @@ struct HomeView: View {
                         .animation(.easeInOut, value: snPostingManager.isPublishingPost)
                         .onDisappear() {
                             withAnimation {
-//                                shopPostListVM.addRemotePost(newPost)
+                                shopPostListVM.addRemotePost(newPost)
                             }
                         }
                     }

@@ -154,7 +154,12 @@ final class SNFirebaseManager: NSObject {
 
             do {
                 let isNotificationOn = UserDefaults.standard.bool(forKey: SNKeys.allowNotifications)
-                try self.saveUser(user.uid, user: SNUser.getUser(from: authModel, allowNotification: isNotificationOn))
+                let newUser = SNUser.getUser(from: authModel, allowNotification: isNotificationOn)
+                let encoder = Firestore.Encoder()
+                let encodedData = try? encoder.encode(newUser)
+                printf("clea", encodedData)
+
+                try self.saveUser(user.uid, user: newUser)
                 completion(true)
                 withAnimation {
                     self.isLoggedIn = true

@@ -49,6 +49,4 @@ final class SNShopRepository: ObservableObject {
             printf("Upload error:", error.localizedDescription)
         }
     }
-
 }
-

@@ -32,6 +32,7 @@ struct ContentView: View {
 
             SNLoginView()
                 .rotation3DEffect(isLoggedIn ? .degrees(90) : .zero, axis: (x: 0, y: -10, z: 0))
+                .allowsHitTesting(isLoggedIn == false)
         }
     }
 }

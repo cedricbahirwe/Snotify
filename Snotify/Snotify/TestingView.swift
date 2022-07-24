@@ -12,9 +12,11 @@ struct TestingView: View {
     var body: some View {
         VStack {
         }
-        .onAppear() {
+        .onAppear(perform: test)
+    }
 
-        }
+    private func test() {
+        
     }
 
 }
