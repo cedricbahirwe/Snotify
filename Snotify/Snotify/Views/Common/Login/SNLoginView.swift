@@ -44,7 +44,9 @@ struct SNLoginView: View {
                                 .padding()
                                 .background(.regularMaterial)
                                 .mask(Circle())
-                        }.opacity(isRegistration ? 1 : 0)
+                        }
+                            .disabled(isUploadingPic)
+                            .opacity(isRegistration ? 1 : 0)
                         , alignment: .leading
                     )
                     .padding(.bottom)
@@ -192,6 +194,7 @@ struct SNLoginView: View {
                                                     .foregroundStyle(.tint)
                                             }
                                         }
+                                        .disabled(isUploadingPic)
                                         
                                     } else {
                                         Label {
@@ -205,6 +208,7 @@ struct SNLoginView: View {
                                         Spacer()
 
                                         Button("View Picture") {
+                                            hideKeyboard()
                                             showProfilePicture.toggle()
                                         }
 
@@ -251,7 +255,7 @@ struct SNLoginView: View {
                     .opacity(isRegistration ? 0 : 1)
             }
             .padding(20)
-            .background(.background, ignoresSafeAreaEdges: .all)
+            .background(Color(.systemBackground).ignoresSafeArea().onTapGesture(perform: hideKeyboard))
             .overlay(spinnerView)
             .ignoresSafeArea(.keyboard, edges: .bottom)
             .onChange(of: selectedImage, perform: { _ in
@@ -259,33 +263,7 @@ struct SNLoginView: View {
             })
 
             if showProfilePicture {
-                Color.black.opacity(0.6).ignoresSafeArea()
-                    .onTapGesture {
-                        guard isDeletingPic == false else { return }
-                        showProfilePicture.toggle()
-                    }
-                VStack(spacing: 20) {
-                    Image(uiImage: selectedImage ?? .init())
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 250, height: 250)
-                        .mask(Circle())
-
-                    Button(action: deletePicture) {
-                        HStack(spacing: 10) {
-                            if isDeletingPic {
-                                ProgressView()
-                            }
-                            Text(isDeletingPic ? "Deleting Picture" : "Delete Picture")
-                                .font(.callout)
-                                .foregroundColor(.red)
-                        }
-                        .padding(14)
-                        .background(.ultraThickMaterial)
-                        .cornerRadius(15)
-                    }
-                    .disabled(isDeletingPic)
-                }
+               profilePicPreview
             }
         }
         .fullScreenCover(isPresented: $presentPhotoPicker,
@@ -293,6 +271,10 @@ struct SNLoginView: View {
             PhotoPickerView(isPresented: $presentPhotoPicker,
                             selectedImage: $selectedImage)
         }
+    }
+
+    private func hideKeyboard() {
+        focusedField = nil
     }
 
     private func manageKeyboardFocus() {
@@ -384,6 +366,37 @@ struct SNLoginView: View {
 
 // MARK: - Views
 private extension SNLoginView {
+    var profilePicPreview: some View {
+        Group {
+            Color.black.opacity(0.6).ignoresSafeArea()
+                .onTapGesture {
+                    guard isDeletingPic == false else { return }
+                    showProfilePicture.toggle()
+                }
+            VStack(spacing: 20) {
+                Image(uiImage: selectedImage ?? .init())
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 250, height: 250)
+                    .mask(Circle())
+
+                Button(action: deletePicture) {
+                    HStack(spacing: 10) {
+                        if isDeletingPic {
+                            ProgressView()
+                        }
+                        Text(isDeletingPic ? "Deleting Picture" : "Delete Picture")
+                            .font(.callout)
+                            .foregroundColor(.red)
+                    }
+                    .padding(14)
+                    .background(.ultraThickMaterial)
+                    .cornerRadius(15)
+                }
+                .disabled(isDeletingPic)
+            }
+        }
+    }
     var spinnerView: some View {
         ZStack {
             if isSigningIn {

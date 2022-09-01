@@ -13,13 +13,13 @@
 		CB2011B028883E9B004F50E6 /* FirestoreEntity+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2011AF28883E9B004F50E6 /* FirestoreEntity+Protocol.swift */; };
 		CB2011B22888410A004F50E6 /* SNGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2011B128884109004F50E6 /* SNGender.swift */; };
 		CB2011B428884D91004F50E6 /* SNUserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2011B328884D90004F50E6 /* SNUserRepository.swift */; };
+		CB4B0F38288D76C300A22F11 /* SNConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4B0F37288D76C300A22F11 /* SNConstants.swift */; };
 		CB54700C28815E130074A036 /* SNShopPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB54700B28815E130074A036 /* SNShopPostViewModel.swift */; };
 		CB54700E2881601B0074A036 /* SNShopPostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB54700D2881601B0074A036 /* SNShopPostListViewModel.swift */; };
 		CB5470112881CBC00074A036 /* SNPostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5470102881CBC00074A036 /* SNPostRepository.swift */; };
 		CB5470132881CE030074A036 /* SNFBCollectionName.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5470122881CE030074A036 /* SNFBCollectionName.swift */; };
 		CB5470162881CE3D0074A036 /* Firestore+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5470152881CE3D0074A036 /* Firestore+Extension.swift */; };
 		CB5470182882D97B0074A036 /* SNCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5470172882D97B0074A036 /* SNCurrency.swift */; };
-		CB54701A28833C8A0074A036 /* SNLocation+Previews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB54701928833C8A0074A036 /* SNLocation+Previews.swift */; };
 		CB54701C288343C20074A036 /* SNShopsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB54701B288343C10074A036 /* SNShopsListViewModel.swift */; };
 		CB54701E288343F10074A036 /* SNShopRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB54701D288343F10074A036 /* SNShopRepository.swift */; };
 		CB547020288344AF0074A036 /* SNShopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB54701F288344AF0074A036 /* SNShopViewModel.swift */; };
@@ -35,7 +35,6 @@
 		CB65ADCB2889DFF70078AD77 /* SNFirebasehelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB65ADCA2889DFF60078AD77 /* SNFirebasehelpers.swift */; };
 		CB65ADCD2889E5BE0078AD77 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB65ADCC2889E5BE0078AD77 /* GoogleService-Info.plist */; };
 		CB6B4690286749910085EA12 /* NewPostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B468F286749910085EA12 /* NewPostDetailView.swift */; };
-		CB6B469428674CD90085EA12 /* SNShopPost+Previews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B469328674CD90085EA12 /* SNShopPost+Previews.swift */; };
 		CB6B469628674CF00085EA12 /* SNImages+Previews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B469528674CF00085EA12 /* SNImages+Previews.swift */; };
 		CB6B4698286755C60085EA12 /* SNPostingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B4697286755C60085EA12 /* SNPostingManager.swift */; };
 		CB6B469A286879E60085EA12 /* SNAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B4699286879E60085EA12 /* SNAuthenticationManager.swift */; };
@@ -56,11 +55,15 @@
 		CB6B46C02868B1530085EA12 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CB6B46BF2868B1530085EA12 /* GoogleSignInSwift */; };
 		CB6B46C22868B5BA0085EA12 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B46C12868B5B90085EA12 /* View+Extensions.swift */; };
 		CB6B46C42868B7C80085EA12 /* SNDebugPrinters.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6B46C32868B7C80085EA12 /* SNDebugPrinters.swift */; };
+		CB79078B28BFF424005CF53F /* FBNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB79078A28BFF423005CF53F /* FBNotifications.swift */; };
+		CB79078D28C0C3C9005CF53F /* FCMNotificationSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB79078C28C0C3C9005CF53F /* FCMNotificationSubscriber.swift */; };
+		CB83A7CB288C4D4C00C07829 /* SNSamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB83A7CA288C4D4C00C07829 /* SNSamples.swift */; };
 		CBBC1650285C9EAA007385E3 /* SNLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC164F285C9EAA007385E3 /* SNLoginView.swift */; };
 		CBBC1655285C9EFB007385E3 /* Extension+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC1654285C9EFB007385E3 /* Extension+Font.swift */; };
 		CBBC1659285CA86C007385E3 /* NotificationsAccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC1658285CA86C007385E3 /* NotificationsAccessView.swift */; };
 		CBBC165D285CAAD4007385E3 /* LeadingVerticalStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBC165C285CAAD4007385E3 /* LeadingVerticalStack.swift */; };
 		CBBD943828842AB3006FE895 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CBBD943A28842AB3006FE895 /* Localizable.strings */; };
+		CBC6020028BFBC260058E408 /* SNFirebaseNotificationStreamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC601FF28BFBC260058E408 /* SNFirebaseNotificationStreamer.swift */; };
 		CBD3E1E428532A1F0086A3D9 /* SNLocationNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD3E1E328532A1F0086A3D9 /* SNLocationNotification.swift */; };
 		CBD3E1E628532B830086A3D9 /* moi.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = CBD3E1E528532B830086A3D9 /* moi.jpeg */; };
 		CBD3E1E82853320F0086A3D9 /* ShopPostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD3E1E72853320F0086A3D9 /* ShopPostRowView.swift */; };
@@ -120,13 +123,13 @@
 		CB2011AF28883E9B004F50E6 /* FirestoreEntity+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FirestoreEntity+Protocol.swift"; sourceTree = "<group>"; };
 		CB2011B128884109004F50E6 /* SNGender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNGender.swift; sourceTree = "<group>"; };
 		CB2011B328884D90004F50E6 /* SNUserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNUserRepository.swift; sourceTree = "<group>"; };
+		CB4B0F37288D76C300A22F11 /* SNConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNConstants.swift; sourceTree = "<group>"; };
 		CB54700B28815E130074A036 /* SNShopPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNShopPostViewModel.swift; sourceTree = "<group>"; };
 		CB54700D2881601B0074A036 /* SNShopPostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNShopPostListViewModel.swift; sourceTree = "<group>"; };
 		CB5470102881CBC00074A036 /* SNPostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNPostRepository.swift; sourceTree = "<group>"; };
 		CB5470122881CE030074A036 /* SNFBCollectionName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNFBCollectionName.swift; sourceTree = "<group>"; };
 		CB5470152881CE3D0074A036 /* Firestore+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Firestore+Extension.swift"; sourceTree = "<group>"; };
 		CB5470172882D97B0074A036 /* SNCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNCurrency.swift; sourceTree = "<group>"; };
-		CB54701928833C8A0074A036 /* SNLocation+Previews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SNLocation+Previews.swift"; sourceTree = "<group>"; };
 		CB54701B288343C10074A036 /* SNShopsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNShopsListViewModel.swift; sourceTree = "<group>"; };
 		CB54701D288343F10074A036 /* SNShopRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNShopRepository.swift; sourceTree = "<group>"; };
 		CB54701F288344AF0074A036 /* SNShopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNShopViewModel.swift; sourceTree = "<group>"; };
@@ -143,7 +146,6 @@
 		CB65ADCC2889E5BE0078AD77 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB6B468E28673D9E0085EA12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CB6B468F286749910085EA12 /* NewPostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostDetailView.swift; sourceTree = "<group>"; };
-		CB6B469328674CD90085EA12 /* SNShopPost+Previews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SNShopPost+Previews.swift"; sourceTree = "<group>"; };
 		CB6B469528674CF00085EA12 /* SNImages+Previews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SNImages+Previews.swift"; sourceTree = "<group>"; };
 		CB6B4697286755C60085EA12 /* SNPostingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNPostingManager.swift; sourceTree = "<group>"; };
 		CB6B4699286879E60085EA12 /* SNAuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNAuthenticationManager.swift; sourceTree = "<group>"; };
@@ -152,12 +154,16 @@
 		CB6B46B8286897A50085EA12 /* Snotify.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Snotify.entitlements; sourceTree = "<group>"; };
 		CB6B46C12868B5B90085EA12 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		CB6B46C32868B7C80085EA12 /* SNDebugPrinters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNDebugPrinters.swift; sourceTree = "<group>"; };
+		CB79078A28BFF423005CF53F /* FBNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBNotifications.swift; sourceTree = "<group>"; };
+		CB79078C28C0C3C9005CF53F /* FCMNotificationSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCMNotificationSubscriber.swift; sourceTree = "<group>"; };
+		CB83A7CA288C4D4C00C07829 /* SNSamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSamples.swift; sourceTree = "<group>"; };
 		CBBC164F285C9EAA007385E3 /* SNLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNLoginView.swift; sourceTree = "<group>"; };
 		CBBC1654285C9EFB007385E3 /* Extension+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Font.swift"; sourceTree = "<group>"; };
 		CBBC1658285CA86C007385E3 /* NotificationsAccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsAccessView.swift; sourceTree = "<group>"; };
 		CBBC165C285CAAD4007385E3 /* LeadingVerticalStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadingVerticalStack.swift; sourceTree = "<group>"; };
 		CBBD943928842AB3006FE895 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CBBD943B28842AB5006FE895 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CBC601FF28BFBC260058E408 /* SNFirebaseNotificationStreamer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNFirebaseNotificationStreamer.swift; sourceTree = "<group>"; };
 		CBD3E1E328532A1F0086A3D9 /* SNLocationNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNLocationNotification.swift; sourceTree = "<group>"; };
 		CBD3E1E528532B830086A3D9 /* moi.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = moi.jpeg; sourceTree = "<group>"; };
 		CBD3E1E72853320F0086A3D9 /* ShopPostRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopPostRowView.swift; sourceTree = "<group>"; };
@@ -238,6 +244,8 @@
 			isa = PBXGroup;
 			children = (
 				CB6B46B6286891F30085EA12 /* SNFirebaseManager.swift */,
+				CBC601FF28BFBC260058E408 /* SNFirebaseNotificationStreamer.swift */,
+				CB79078C28C0C3C9005CF53F /* FCMNotificationSubscriber.swift */,
 				CB65ADB6288850EA0078AD77 /* SNFirebaseImageUploader.swift */,
 				CB65ADCA2889DFF60078AD77 /* SNFirebasehelpers.swift */,
 			);
@@ -249,6 +257,7 @@
 			children = (
 				CB2011AF28883E9B004F50E6 /* FirestoreEntity+Protocol.swift */,
 				CB65ADC82889CAA70078AD77 /* FBFilePath.swift */,
+				CB79078A28BFF423005CF53F /* FBNotifications.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -391,9 +400,7 @@
 				CBE44A9E2852041C008E015D /* Preview Assets.xcassets */,
 				CBE44ADF28523301008E015D /* SNShop+Extensions.swift */,
 				CB547027288350A40074A036 /* SNPost+Previews.swift */,
-				CB6B469328674CD90085EA12 /* SNShopPost+Previews.swift */,
 				CB6B469528674CF00085EA12 /* SNImages+Previews.swift */,
-				CB54701928833C8A0074A036 /* SNLocation+Previews.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -447,6 +454,7 @@
 			children = (
 				CBF7CBA5286BAAAB00183138 /* Custom Types */,
 				CBE44AD728523163008E015D /* SNShop.swift */,
+				CB83A7CA288C4D4C00C07829 /* SNSamples.swift */,
 				CBE44AD52852315D008E015D /* SNPost.swift */,
 				CB2011AC28883CE8004F50E6 /* SNUser.swift */,
 				CB2011B128884109004F50E6 /* SNGender.swift */,
@@ -457,6 +465,7 @@
 				CB54702328834FF20074A036 /* SNLocation.swift */,
 				CB54702128834FE10074A036 /* SNShopCategory.swift */,
 				CB65ADC62889CA5D0078AD77 /* SNFileExtension.swift */,
+				CB4B0F37288D76C300A22F11 /* SNConstants.swift */,
 				CB2011AE28883D71004F50E6 /* Firebase */,
 			);
 			path = Models;
@@ -702,9 +711,11 @@
 				CBE44A9A2852041A008E015D /* ContentView.swift in Sources */,
 				CBF6F1372871CF2F0067E920 /* ProfileViewProtocol.swift in Sources */,
 				CBEF01E02880C4F300ED9680 /* SNErrors.swift in Sources */,
+				CB4B0F38288D76C300A22F11 /* SNConstants.swift in Sources */,
 				CB6B469A286879E60085EA12 /* SNAuthenticationManager.swift in Sources */,
 				CB2011B22888410A004F50E6 /* SNGender.swift in Sources */,
 				CBE44AD0285214BB008E015D /* ShopPostDetailView.swift in Sources */,
+				CB79078D28C0C3C9005CF53F /* FCMNotificationSubscriber.swift in Sources */,
 				CBE44AD2285217BD008E015D /* Date+Extensions.swift in Sources */,
 				CBE44ACB2852112D008E015D /* HomeView.swift in Sources */,
 				CBBC1659285CA86C007385E3 /* NotificationsAccessView.swift in Sources */,
@@ -714,12 +725,14 @@
 				CBEF01DA2880C0B800ED9680 /* FBDatabaseStorage.swift in Sources */,
 				CBF6F1392871D6EF0067E920 /* ProfileEditView.swift in Sources */,
 				CBE44ACE285213AB008E015D /* ShopPostView.swift in Sources */,
+				CB83A7CB288C4D4C00C07829 /* SNSamples.swift in Sources */,
 				CBF7CBA7286BAAB800183138 /* SNEmailAddress.swift in Sources */,
 				CBE44AE228529B87008E015D /* TestingView.swift in Sources */,
 				CBE44AE028523301008E015D /* SNShop+Extensions.swift in Sources */,
 				CBF6F1352871C4A20067E920 /* SNUserProfileView.swift in Sources */,
 				CB65ADC72889CA5D0078AD77 /* SNFileExtension.swift in Sources */,
 				CBF6F13C2871DFCC0067E920 /* BusinessEditView.swift in Sources */,
+				CBC6020028BFBC260058E408 /* SNFirebaseNotificationStreamer.swift in Sources */,
 				CB54701E288343F10074A036 /* SNShopRepository.swift in Sources */,
 				CB54700E2881601B0074A036 /* SNShopPostListViewModel.swift in Sources */,
 				CBF6F12C2871C0F00067E920 /* SNSessionType.swift in Sources */,
@@ -737,9 +750,9 @@
 				CB5470112881CBC00074A036 /* SNPostRepository.swift in Sources */,
 				CBD3E1EB28533B7C0086A3D9 /* PhotosAccessView.swift in Sources */,
 				CBBC165D285CAAD4007385E3 /* LeadingVerticalStack.swift in Sources */,
-				CB6B469428674CD90085EA12 /* SNShopPost+Previews.swift in Sources */,
 				CB6B46C22868B5BA0085EA12 /* View+Extensions.swift in Sources */,
 				CB6B4690286749910085EA12 /* NewPostDetailView.swift in Sources */,
+				CB79078B28BFF424005CF53F /* FBNotifications.swift in Sources */,
 				CBE44AC928521126008E015D /* ProfileView.swift in Sources */,
 				CBF6F13E2871DFD60067E920 /* UserEditView.swift in Sources */,
 				CBBC1650285C9EAA007385E3 /* SNLoginView.swift in Sources */,
@@ -756,7 +769,6 @@
 				CB09C7A22864C69200B15C38 /* MainAppDelegate.swift in Sources */,
 				CB5470162881CE3D0074A036 /* Firestore+Extension.swift in Sources */,
 				CBE44AD828523163008E015D /* SNShop.swift in Sources */,
-				CB54701A28833C8A0074A036 /* SNLocation+Previews.swift in Sources */,
 				CB6B4698286755C60085EA12 /* SNPostingManager.swift in Sources */,
 				CBE44A982852041A008E015D /* SnotifyApp.swift in Sources */,
 				CB2011B028883E9B004F50E6 /* FirestoreEntity+Protocol.swift in Sources */,

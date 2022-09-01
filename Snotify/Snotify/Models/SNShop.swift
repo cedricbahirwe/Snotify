@@ -60,3 +60,8 @@ public extension SNShop {
         UIApplication.shared.open(url)
     }
 }
+
+public extension SNShop {
+    static let sample = SNSamples.shop
+    static let samples: [SNShop] = SNSamples.shops
+}

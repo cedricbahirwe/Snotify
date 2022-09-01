@@ -12,7 +12,7 @@ enum HZFireStoreHelpers {
         Firestore.firestore()
             .collection(.users)
             .document(currentUserId)
-            .setData(["messageToken": fcmToken as? Any],
+            .setData(["messageToken": fcmToken as Any],
                      merge: true) { error in
                 if let error = error {
                     printf(error.localizedDescription)

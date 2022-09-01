@@ -50,9 +50,11 @@ struct PhotosAccessView: View {
     }
 }
 
+#if DEBUG
 struct PhotosAccessView_Previews: PreviewProvider {
     static var previews: some View {
         PhotosAccessView(isPresented: .constant(false))
 //            .preferredColorScheme(.dark)
     }
 }
+#endif

@@ -40,7 +40,7 @@ struct HomeView: View {
                         .animation(.easeInOut, value: snPostingManager.isPublishingPost)
                         .onDisappear() {
                             withAnimation {
-//                                shopPostListVM.addRemotePost(newPost)
+                                shopPostListVM.addRemotePost(newPost)
                             }
                         }
                     }
@@ -76,15 +76,9 @@ struct HomeView: View {
                     Button {
                         snPostingManager.isSubmitMode.toggle()
                     } label: {
-                        Label("Publish a new post",
-                              systemImage: "plus.square")
+                        Label("Publish a new post", systemImage: "plus.square")
                     }
                 }
-            }
-            .onAppear() {
-//                DispatchQueue.main.asyncAfter(deadline: .now()+2) {
-//                    self.isLoading = true
-//                }
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())

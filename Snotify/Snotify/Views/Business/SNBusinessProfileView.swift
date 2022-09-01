@@ -15,7 +15,7 @@ struct SNBusinessProfileView: ProfileViewProtocol {
     @State private var showSettingsView = false
 
     private var shopVM: SNShopViewModel {
-        shopsListVM.shopsVM.last ?? .init(.preview)
+        shopsListVM.shopsVM.last ?? .init(.sample)
     }
     private var hasLoadShop: Bool { shopsListVM.shopsVM.first != nil }
     var body: some View {
@@ -85,6 +85,16 @@ struct SNBusinessProfileView: ProfileViewProtocol {
             Button("Sign Out", role: .destructive) {
                 SNFirebaseManager.shared.signOut()
             }
+            #if DEBUG
+            Button("Test Notification") {
+                let data = SNNotificationMessageData(title: "Hello friend", body: "I do not know")
+                let token = "eWrmDi6GfUyDhqLqcSjL_l:APA91bHGlqzX19Nt7ahaVORBZxr_N19sm-crXgMtvNiL2D4_isjQsGKtxUc9QNzU3F2GGxyzDRybPwPX1ib5ts8vWAz1hFj9OOF-F5b-3XVVsUsrS8P8P_IRX_tc79fDCgw3JmZR8hH6"
+                Task {
+                    await FCMNotificationStreamer.sendNotification(type:.user(accessToken: token), content: data)
+                    //                            await FCMNotificationStreamer.shared.sendNotification(type: .topic(.stories), content: data)
+                }
+            }
+            #endif
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {

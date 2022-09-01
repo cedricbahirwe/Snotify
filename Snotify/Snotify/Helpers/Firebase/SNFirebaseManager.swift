@@ -29,7 +29,7 @@ final class SNFirebaseManager: NSObject {
     }
 
     public func getCurrentUserID() -> String? {
-        firebaseAuth.currentUser?.uid
+        return firebaseAuth.currentUser?.uid
     }
 
     /// Sig In usin `GoogleSinIn` and on success sign In in `Firebase`
@@ -42,11 +42,11 @@ final class SNFirebaseManager: NSObject {
             setSignInFalse()
             return
         }
-
+        
         // Create Google Sign In configuration object.
         let config = GIDConfiguration(clientID: clientID)
-
-
+        
+        
         // Start the sign in flow!
         GIDSignIn.sharedInstance.signIn(
             with: config,
@@ -54,49 +54,69 @@ final class SNFirebaseManager: NSObject {
         { [self] user, error in
             if let error = error {
                 setSignInFalse()
-                printf("There was an error: \(error)")
+                printf("There was signIn error: \(error)")
+                return
+            }
+            
+            if let scopes = user?.grantedScopes, !scopes.contains(SignInScope.firebaseMessaging.rawValue) {
+                GIDSignIn.sharedInstance.addScopes(
+                    [SignInScope.firebaseMessaging.rawValue],
+                    presenting: self.getRootViewController())
+                { user, error in
+                    
+                    if let error = error {
+                        setSignInFalse()
+                        printf("There was scope error: \(error)")
+                        return
+                    }
+                    self.handleSignIn(user, completion: completion)
+                }
+            } else {
+                handleSignIn(user, completion: completion)
+            }
+        }
+    }
+
+    private func handleSignIn(_ user: GIDGoogleUser?, completion: @escaping() -> Void) {
+
+        guard
+            let authentication = user?.authentication,
+            let idToken = authentication.idToken
+        else {
+            completion()
+            return
+        }
+
+        let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                       accessToken: authentication.accessToken)
+
+
+        // Sign in in FireBase Auth
+        self.firebaseAuth.signIn(with: credential) { result, error in
+            if let error = error {
+                completion()
+                printf("There was firebase error: \(error.localizedDescription)")
                 return
             }
 
-            guard
-                let authentication = user?.authentication,
-                let idToken = authentication.idToken
-            else {
-                setSignInFalse()
+            guard let user = result?.user else {
+                printf("No user found")
                 return
             }
-
-            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                           accessToken: authentication.accessToken)
-
-
-            // Sign in in FireBase Auth
-            self.firebaseAuth.signIn(with: credential) { result, error in
-                if let error = error {
-                    setSignInFalse()
-                    printf("There was an error: \(error.localizedDescription)")
-                    return
-                }
-
-                guard let user = result?.user else {
-                    printf("No user found")
-                    return
-                }
-                setSignInFalse()
-                withAnimation {
-                    self.isLoggedIn = true
-                }
-
-                print("User ID: \(String(describing: user.uid))")
-
-                print("User name: \(String(describing: user.displayName))")
-
-                print("User Photo URL: \(String(describing: user.photoURL))")
-
-                print("User email: \(user.email ?? "No email found")")
-
-                print("User phone: \(user.phoneNumber ?? "No phone found")")
+            completion()
+            withAnimation {
+                self.isLoggedIn = true
             }
+
+            print("User ID: \(String(describing: user.uid))")
+
+            print("User name: \(String(describing: user.displayName))")
+
+            print("User Photo URL: \(String(describing: user.photoURL))")
+
+            print("User email: \(user.email ?? "No email found")")
+
+            print("User phone: \(user.phoneNumber ?? "No phone found")")
         }
     }
 
@@ -154,7 +174,8 @@ final class SNFirebaseManager: NSObject {
 
             do {
                 let isNotificationOn = UserDefaults.standard.bool(forKey: SNKeys.allowNotifications)
-                try self.saveUser(user.uid, user: SNUser.getUser(from: authModel, allowNotification: isNotificationOn))
+                let newUser = SNUser.getUser(from: authModel, allowNotification: isNotificationOn)
+                try self.saveUser(user.uid, user: newUser)
                 completion(true)
                 withAnimation {
                     self.isLoggedIn = true
@@ -170,7 +191,7 @@ final class SNFirebaseManager: NSObject {
     func signOut() {
         do  {
             GIDSignIn.sharedInstance.signOut()
-            try Auth.auth().signOut()
+            try firebaseAuth.signOut()
             withAnimation {
                 isLoggedIn = false
             }
@@ -180,6 +201,13 @@ final class SNFirebaseManager: NSObject {
     }
 }
 
+// MARK: - SignIn Scopes
+extension SNFirebaseManager {
+    enum SignInScope: String {
+        case firebaseMessaging = "https://www.googleapis.com/auth/firebase.messaging"
+    }
+
+}
 // MARK: - Store User in DB (Collection)
 extension SNFirebaseManager {
     func saveUser(_ id: String, user: SNUser) throws {

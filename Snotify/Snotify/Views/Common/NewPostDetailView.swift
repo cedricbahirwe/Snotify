@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct NewPostDetailView: View {
-    let imageName: String
+    let image: UIImage
     @Environment(\.dismiss) private var dismiss
     private let currencies: [SNCurrency] = SNCurrency.allCases
     @EnvironmentObject private var snPostingManager: SNPostingManager
-    @State private var postModel = SNPost(shop: . previews.randomElement()!)
+    @State private var postModel = SNPost(shop: .sample)
     var body: some View {
         ScrollView {
             VStack {
                 HStack(alignment: .top) {
-                    Image(imageName)
+                    Image(uiImage: image)
                         .resizable()
                         .frame(width: 60, height: 60)
                     TextField("Enter une description", text: $postModel.description)
@@ -80,7 +80,9 @@ struct NewPostDetailView: View {
                 }
             }
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: publishPost) {
+                Button(action: {
+                    Task { await publishPost() }
+                }) {
                     Text("Publier")
                         .font(.body.weight(.semibold))
                 }
@@ -88,21 +90,23 @@ struct NewPostDetailView: View {
         }
     }
 
-    private func publishPost() {
-        self.postModel.images = SNPost.preview.images
-        self.postModel.shop.location = SNLocation.ramdomLocation
-        SNPostingManager.shared.publishPost(postModel)
+    private func publishPost() async {
+        self.postModel.images = SNPost.sample.images
+        self.postModel.shop.location = SNLocation.randomLocation
+        await SNPostingManager.shared.publishPost(postModel)
     }
 }
 
+#if DEBUG
 struct NewPostDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            NewPostDetailView(imageName: UIImage.randomIphoneName)
+            NewPostDetailView(image: SNConstants.placeholderImage)
                 .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
+#endif
 
 struct InfoButton: View {
     init(_ type: InfoButton.InfoType) {

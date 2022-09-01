@@ -13,7 +13,7 @@ public struct SNPost: Identifiable, Codable {
     public init(id: String?, images: [String], description: String = "",
                 createdDate: Date = Date(), comments: String = "",
                 price: Double? = nil, currency: SNCurrency = .usd,
-                views: Int = 0, shop: SNShop) {
+                views: Int = 0, shop: SNPost.SNShop) {
         self.id = id
         self.images = images
         self.description = description
@@ -25,7 +25,7 @@ public struct SNPost: Identifiable, Codable {
         self.shop = shop
     }
     
-    public init(shop: SNShop) {
+    public init(shop: SNPost.SNShop) {
         self.id = nil
         self.images = []
         self.description = ""
@@ -45,11 +45,15 @@ public struct SNPost: Identifiable, Codable {
     public var price: Double?
     public var currency: SNCurrency
     public var views: Int
-    public var shop: SNShop
+    public var shop: SNPost.SNShop
 }
 
 extension SNPost {
-    public struct SNShop : Identifiable, Codable {
+
+    static let sample = SNSamples.post
+    static let samples: [SNPost] = SNSamples.posts
+    
+    public struct SNShop: Identifiable, Codable {
         public init(id: String, name: String, address: String,
                     profilePicture: String? = nil, location: SNLocation?,
                     description: String? = nil,
@@ -70,5 +74,8 @@ extension SNPost {
         public var location: SNLocation?
         public var description: String?
         public var ownerId: String?
+
+        static let sample = SNSamples.shopPost
+        static let samples = SNSamples.shopPosts
     }
 }
