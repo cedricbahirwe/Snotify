@@ -80,7 +80,9 @@ struct NewPostDetailView: View {
                 }
             }
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: publishPost) {
+                Button(action: {
+                    Task { await publishPost() }
+                }) {
                     Text("Publier")
                         .font(.body.weight(.semibold))
                 }
@@ -88,10 +90,10 @@ struct NewPostDetailView: View {
         }
     }
 
-    private func publishPost() {
+    private func publishPost() async {
         self.postModel.images = SNPost.sample.images
         self.postModel.shop.location = SNLocation.randomLocation
-        SNPostingManager.shared.publishPost(postModel)
+        await SNPostingManager.shared.publishPost(postModel)
     }
 }
 

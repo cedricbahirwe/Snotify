@@ -17,6 +17,8 @@ public enum FCMNotificationSubscriber {
                 if let error = error {
                     print(error)
                     return
+                } else {
+                    print("Subscribed to \(topic.rawValue)")
                 }
             })
     }

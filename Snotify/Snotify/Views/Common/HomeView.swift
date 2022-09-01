@@ -74,13 +74,7 @@ struct HomeView: View {
                             placement: .navigationBarTrailing,
                             showsByDefault: isAShop) {
                     Button {
-                        let data = SNNotificationMessageData(title: "Hello friend", body: "I do not know")
-                        let token = "eWrmDi6GfUyDhqLqcSjL_l:APA91bHGlqzX19Nt7ahaVORBZxr_N19sm-crXgMtvNiL2D4_isjQsGKtxUc9QNzU3F2GGxyzDRybPwPX1ib5ts8vWAz1hFj9OOF-F5b-3XVVsUsrS8P8P_IRX_tc79fDCgw3JmZR8hH6"
-                        Task {
-                            await FCMNotificationStreamer.sendNotification(type:.user(accessToken: token), content: data)
-//                            await FCMNotificationStreamer.shared.sendNotification(type: .topic(.stories), content: data)
-                        }
-//                        snPostingManager.isSubmitMode.toggle()
+                        snPostingManager.isSubmitMode.toggle()
                     } label: {
                         Label("Publish a new post", systemImage: "plus.square")
                     }

@@ -111,7 +111,7 @@ extension MainAppDelegate: MessagingDelegate {
         if let userID = SNFirebaseManager.shared.getCurrentUserID() {
             print("Saving the token...")
             HZFireStoreHelpers.saveFCMRegistrationToken(userID, fcmToken)
-            FCMNotificationSubscriber.subscribe(to: .stories)
+            FCMNotificationSubscriber.subscribe(to: .general)
         }
     }
 }
