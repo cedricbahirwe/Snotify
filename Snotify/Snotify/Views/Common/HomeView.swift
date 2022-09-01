@@ -74,50 +74,19 @@ struct HomeView: View {
                             placement: .navigationBarTrailing,
                             showsByDefault: isAShop) {
                     Button {
-                        snPostingManager.isSubmitMode.toggle()
+                        let data = SNNotificationMessageData(title: "Hello friend", body: "I do not know")
+                        Task {
+                            await FCMNotificationStreamer.shared.sendNotification(type: .topic(.stories), content: data)
+                        }
+//                        snPostingManager.isSubmitMode.toggle()
                     } label: {
                         Label("Publish a new post",
                               systemImage: "plus.square")
                     }
                 }
             }
-            .task({
-                await makeRequest()
-            })
-            .onAppear() {
-//                DispatchQueue.main.asyncAfter(deadline: .now()+2) {
-//                    self.isLoading = true
-//                }
-            }
         }
         .navigationViewStyle(StackNavigationViewStyle())
-    }
-
-    private func makeRequest() async {
-        struct Notification: Codable {
-            let validate_only: Bool
-            let message: Message
-            struct Message: Codable {
-                let title: String
-            }
-        }
-        let notification = Notification(validate_only: false,
-                                        message: .init(title: "Welcome Sir!"))
-        guard let encoded = try? JSONEncoder().encode(notification) else {
-            print("Failed to encode order")
-            return
-        }
-        let url = URL(string: "https://fcm.googleapis.com/v1/snotify-7ed5e/messages:send")!
-        var request = URLRequest(url: url)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "POST"
-        
-        do {
-            let (data, _) = try await URLSession.shared.upload(for: request, from: encoded)
-            // handle the result
-        } catch {
-            print("Checkout failed.", error)
-        }
     }
 }
 

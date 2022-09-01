@@ -62,6 +62,7 @@ final class MainAppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
                      options: [UIApplication.OpenURLOptionsKey : Any] = [:] ) -> Bool {
 
         GIDSignIn.sharedInstance.handle(url)
+
         // Determine who sent the URL.
         let sendingAppID = options[.sourceApplication]
         debugPrint("source application = \(sendingAppID ?? "Unknown")")
@@ -110,6 +111,7 @@ extension MainAppDelegate: MessagingDelegate {
         if let userID = SNFirebaseManager.shared.getCurrentUserID() {
             print("Saving the token...")
             HZFireStoreHelpers.saveFCMRegistrationToken(userID, fcmToken)
+            FCMNotificationSubscriber.subscribe(to: .stories)
         }
     }
 }
@@ -145,3 +147,5 @@ extension MainAppDelegate: UNUserNotificationCenterDelegate {
         completionHandler()
     }
 }
+
+//final class Something: Messerv
