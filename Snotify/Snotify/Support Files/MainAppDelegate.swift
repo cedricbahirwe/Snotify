@@ -7,7 +7,7 @@
 
 import UIKit
 import Firebase
-import FirebaseAuth
+import FirebaseMessaging
 import GoogleSignIn
 
 final class MainAppDelegate: NSObject, UIApplicationDelegate, ObservableObject {
@@ -119,20 +119,20 @@ extension MainAppDelegate: MessagingDelegate {
 // MARK: - UNUserNotificationCenterDelegate
 @available(iOS 10, *)
 extension MainAppDelegate: UNUserNotificationCenterDelegate {
-  func userNotificationCenter(_ center: UNUserNotificationCenter,
-                              willPresent notification: UNNotification,
-                              withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions)
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions)
                                 -> Void) {
-      let userInfo = notification.request.content.userInfo
+        let userInfo = notification.request.content.userInfo
 
-      if let messageID = userInfo[gcmMessageIDKey] {
-          prints("Message ID", messageID)
-      }
-      print(userInfo)
+        if let messageID = userInfo[gcmMessageIDKey] {
+            prints("Message ID", messageID)
+        }
+        print(userInfo)
 
-      // Change this to your preferred presentation option
-      completionHandler([[.banner, .list, .badge, .sound]])
-  }
+        // Change this to your preferred presentation option
+        completionHandler([[.banner, .list, .badge, .sound]])
+    }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
@@ -147,5 +147,3 @@ extension MainAppDelegate: UNUserNotificationCenterDelegate {
         completionHandler()
     }
 }
-
-//final class Something: Messerv

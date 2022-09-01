@@ -7,7 +7,7 @@
 
 import FirebaseMessaging
 
-final class FCMNotificationSubscriber {
+public enum FCMNotificationSubscriber {
     static func subscribe(to topic: SNFBNotificationTopic) {
         Messaging
             .messaging()

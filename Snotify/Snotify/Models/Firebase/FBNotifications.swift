@@ -31,10 +31,6 @@ struct SNNotificationMessage: Codable {
 
     struct NotificationData: Codable {
         let title,  body: String
-
-        static func 🆕(_ title: String, _ body: String) -> Self {
-            .init(title: title, body: body)
-        }
     }
 }
 
